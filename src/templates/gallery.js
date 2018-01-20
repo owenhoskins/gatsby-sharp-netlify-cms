@@ -1,10 +1,11 @@
 import React from 'react';
 
 export default ({ data }) => {
+  console.log('gallery.js data: ', data)
   const { markdownRemark: post } = data;
   return (
     <div>
-      {post.frontmatter.title}
+      <h2>{post && post.frontmatter && post.frontmatter.title}</h2>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </div>
   );

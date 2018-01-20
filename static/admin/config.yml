@@ -14,8 +14,9 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {name: kind, widget: hidden, default: "page"}
+      - {name: kind, widget: hidden, default: "gallery"}
       - {label: "Template", name: "templateKey", widget: "hidden", default: gallery }
+      - {label: "Path", name: "path", widget: "string", pattern: ['^\/[a-z0-9\-]+$', "Must begin with '/' and may only consist of lowercase letters (except umlauts), numbers and '-'"]}
       - {label: "Title", name: "title", widget: "string"}
       - {name: order, label: Position, widget: number, default: 0}
       - {label: "Body", name: "body", widget: "markdown"}
@@ -24,4 +25,4 @@ collections:
         widget: list
         required: true
         fields:
-          - {name: image, label: Imaage, widget: image, required: true, class: "gallery"}
+          - {name: image, label: Image, widget: image, class: "gallery"}
