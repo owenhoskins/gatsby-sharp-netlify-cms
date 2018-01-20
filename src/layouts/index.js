@@ -2,27 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import Header from '../components/Header'
 import './index.css'
 
-const TemplateWrapper = ({ children }) => (
+const TemplateWrapper = ({
+  children,
+  data: { pages },
+  ...props
+}) => (
   <div>
     <Helmet
-      title="Gatsby Default Starter"
+      title="Gallery pages"
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <Header />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
+    <div>
+      {
+        pages.edges && pages.edges.map(
+          ({ node: { frontmatter }}) => {
+            return <div style={{display: 'block'}}><a href={frontmatter.path}>{frontmatter.title}</a></div>
+          }
+        )
+      }
       {children()}
     </div>
   </div>
@@ -33,3 +35,27 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+
+export const query = graphql`
+  query LayoutQuery {
+
+    pages: allMarkdownRemark(
+      filter: {
+        id: { regex: "/pages/"},
+        frontmatter: {kind: {eq: "page"}}
+      },
+      sort: {order: ASC, fields: [frontmatter___order]}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            path
+            title
+          }
+        }
+      }
+    }
+
+  }
+`

@@ -1,0 +1,27 @@
+backend:
+  name: git-gateway
+  repo: owenhoskins/gatsby-sharp-netlify-cms
+  branch: master # Branch to update (optional; defaults to master)
+
+media_folder: "static/img" # this is where netlify cms places images.
+public_folder: "/img" # this is where gatsby places images
+
+collections:
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "src/pages/galleries"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {name: kind, widget: hidden, default: "page"}
+      - {label: "Template", name: "templateKey", widget: "hidden", default: gallery }
+      - {label: "Title", name: "title", widget: "string"}
+      - {name: order, label: Position, widget: number, default: 0}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - name: images
+        label: Gallery
+        widget: list
+        required: true
+        fields:
+          - {name: image, label: Imaage, widget: image, required: true, class: "gallery"}
