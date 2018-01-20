@@ -32,7 +32,7 @@ export default function Template({ data }) {
     image
     //image: { childImageSharp: { sizes }}
   }) => {
-    if (image.childImageSharp) {
+    if (image && image.childImageSharp) {
       const { childImageSharp: { sizes }} = image
       const { aspectRatio, src, srcSet } = sizes
       photos.push({
