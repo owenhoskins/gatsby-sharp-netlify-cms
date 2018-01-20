@@ -4,6 +4,21 @@ import Helmet from 'react-helmet'
 
 import './index.css'
 
+import { window } from 'global'
+
+const handleClickAdmin = () => {
+  if(typeof window !== 'undefined') {
+    if (window.netlifyIdentity) {
+      if (window.netlifyIdentity.currentUser()) {
+        document.location.href = "/admin/"
+      } else {
+        window.netlifyIdentity.open()
+      }
+    }
+  }
+}
+
+
 const TemplateWrapper = ({
   children,
   data: { pages },
@@ -17,6 +32,11 @@ const TemplateWrapper = ({
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
+   <a
+      onClick={handleClickAdmin}
+    >
+      Admin
+    </a>
     <div>
       {
         pages.edges && pages.edges.map(
