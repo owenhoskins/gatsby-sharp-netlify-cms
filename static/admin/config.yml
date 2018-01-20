@@ -29,5 +29,5 @@ collections:
       - label: 'Gallery Manager'
         name: 'gallery'
         widget: 'gallery'
-          field:
-            - {label: Image, name: image, widget: image}
+        field:
+          - {label: Image, name: image, widget: image}
