@@ -72,10 +72,10 @@ export default class PhotoGallery extends React.Component {
         }>
           {
             ({ measureRef }) =>
-              <div ref={measureRef} style={{ marginLeft: '300px' }}>
+              <div ref={measureRef} style={{ marginLeft: '250px' }}>
                 {width > 1 &&
                 <Gallery
-                  margin={24}
+                  margin={15}
                   columns={
                     width < 500 ? 1 : width < 760 ? 2 : width < 1024 ? 3 : 4
                   }

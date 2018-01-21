@@ -47,7 +47,7 @@ class ImageCanvas extends Component {
   }
 }
 
-const GalleryPreview = ({ value, getAsset }) => {
+export const GalleryPreview = ({ value, getAsset }) => {
 
   const images = []
   value.forEach(function(val, index) {
@@ -58,7 +58,7 @@ const GalleryPreview = ({ value, getAsset }) => {
     }
   })
 
-  // console.log('images: ', images)
+  console.log('images: ', images)
 
   return (
     <div
@@ -81,5 +81,3 @@ const GalleryPreview = ({ value, getAsset }) => {
 GalleryPreview.propTypes = {
   value: PropTypes.node,
 };
-
-export default GalleryPreview;
