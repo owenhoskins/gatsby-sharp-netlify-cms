@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 /*
 import PropTypes from 'prop-types';
@@ -8,10 +8,10 @@ import { List, Map } from 'immutable';
 import { partial } from 'lodash';
 import c from 'classnames';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
-*/
-
 //import { Icon, ListItemTopBar } from 'UI';
 //import ObjectControl from 'EditorWidgets/Object/ObjectControl';
+*/
+
 
 // This is the editing component
 export class GalleryControl extends Component {
@@ -22,7 +22,7 @@ export class GalleryControl extends Component {
 
 // This is the preview component
 export const GalleryPreview = props => {
-  console.log('GalleryPreview props: ', field && field.get('fields')))
+  console.log('GalleryPreview props: ', props.field && props.field.get('fields'))
   // {(field && field.get('fields')) || null}
   return <div></div>;
 }
