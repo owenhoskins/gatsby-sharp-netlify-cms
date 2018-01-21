@@ -34,6 +34,7 @@ const TemplateWrapper = ({
     />
    <a
       onClick={handleClickAdmin}
+      href="#"
     >
       Admin
     </a>
