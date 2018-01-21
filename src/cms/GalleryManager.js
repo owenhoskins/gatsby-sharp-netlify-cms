@@ -21,7 +21,8 @@ export class GalleryControl extends Component {
 }
 
 // This is the preview component
-export function GalleryPreview({ value, getAsset }) {
+export function GalleryPreview({ field, value, getAsset }) {
+  console.log('GalleryPreview: ', field, value, getAsset(value))
   const assets = value && value.length && value.map(item => {
     console.log('GalleryPreview assets map: ', item, getAsset(item))
     return item
