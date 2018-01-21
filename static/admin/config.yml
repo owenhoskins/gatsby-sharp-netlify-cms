@@ -22,12 +22,7 @@ collections:
       - {label: 'Body', name: 'body', widget: 'markdown'}
       - name: images
         label: Gallery
-        widget: list
+        widget: gallery
         required: true
         fields:
           - {name: image, label: Image, widget: image, class: 'gallery'}
-      - label: 'Gallery Manager'
-        name: 'gallery'
-        widget: 'gallery'
-        field:
-          - {label: Image, name: image, widget: image}

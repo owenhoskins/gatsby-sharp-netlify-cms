@@ -17,4 +17,7 @@ export class GalleryControl extends Component {
 }
 
 // This is the preview component
-export const GalleryPreview = props => <div></div>;
+export const GalleryPreview = props => {
+  console.log('GalleryPreview props: ', props)
+  return <div></div>;
+}
