@@ -21,12 +21,18 @@ export class GalleryControl extends Component {
 }
 
 // This is the preview component
-export const GalleryPreview = props => {
-  console.log('GalleryPreview props: ', props.field && props.field.get('fields'))
-  // {(field && field.get('fields')) || null}
-  return <div></div>;
+export function GalleryPreview({ value, getAsset }) {
+  const assets = value && value.length && value.map(item => {
+    console.log('GalleryPreview assets map: ', item, getAsset(item))
+    return item
+  })
+
+  console.log("GalleryPreview assets: ", assets)
+
+  return <div></div>
 }
 
 GalleryPreview.propTypes = {
-  field: PropTypes.node,
+  getAsset: PropTypes.func.isRequired,
+  value: PropTypes.node
 };
