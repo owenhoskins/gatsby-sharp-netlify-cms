@@ -19,7 +19,7 @@ class ImageCanvas extends Component {
 
   prepareCanvas = (src) => {
     const self = this
-    const canvas = this.refs.canvas
+    const canvas = this.canvas
     const ctx = canvas.getContext('2d')
     const image = new Image()
     image.src = src
@@ -36,7 +36,7 @@ class ImageCanvas extends Component {
   render() {
     return (
       <canvas
-        ref="canvas"
+        ref={ (ref) => this.canvas = ref }
         style={{
           display: 'inline-block',
           margin: '15px',
