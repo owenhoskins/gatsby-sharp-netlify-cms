@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 /*
 import PropTypes from 'prop-types';
@@ -21,6 +22,11 @@ export class GalleryControl extends Component {
 
 // This is the preview component
 export const GalleryPreview = props => {
-  console.log('GalleryPreview props: ', props)
+  console.log('GalleryPreview props: ', field && field.get('fields')))
+  // {(field && field.get('fields')) || null}
   return <div></div>;
 }
+
+GalleryPreview.propTypes = {
+  field: PropTypes.node,
+};
