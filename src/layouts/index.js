@@ -64,7 +64,7 @@ export const query = graphql`
     pages: allMarkdownRemark(
       filter: {
         id: { regex: "/pages/"},
-        frontmatter: {kind: {eq: "gallery"}}
+        frontmatter: {kind: {eq: "artist"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {

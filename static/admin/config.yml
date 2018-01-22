@@ -26,3 +26,40 @@ collections:
         required: true
         fields:
           - {name: image, label: Image, widget: image, class: 'gallery'}
+
+  - name: artists
+    label: Artists
+    folder: 'src/pages/artists'
+    slug: "/artists/{{slug}}"
+    create: true
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}
+    fields:
+      - {name: kind, widget: hidden, default: 'artist'}
+      - {label: 'Template', name: 'templateKey', widget: 'hidden', default: artist }
+      - {label: "Name", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Type", name: "type", widget: "select", options: ["hair", "makeup", "stylist", "grooming", "manicurist", "color"]}
+      - {name: order, label: Position, widget: number, default: 0}
+      - {label: "Instagram handle", name: "instragram_handle", widget: "string", tagname: "p"}
+      - {label: "Instagram API key", name: "instragram_key", widget: "string", tagname: "p"}
+      - name: portfolios
+        label: Portfolios
+        widget: list
+        optional: true
+        fields:
+          - {label: 'Title', name: 'title', widget: 'string'}
+          - name: images
+            label: Gallery
+            widget: gallery
+            required: true
+            fields:
+              - {name: image, label: Image, widget: image, class: 'gallery'}
+      - name: videos
+        label: Videos
+        widget: list
+        optional: true
+        fields:
+          - {label: 'Title', name: 'title', widget: 'string'}
+          - {label: 'URL', name: 'video_url', widget: 'string'}
+      - {label: "Biography Text", name: "body", widget: "markdown"}
+      - {label: "Portrait Image", name: "image", widget: "image", required: false, tagname: ""}
