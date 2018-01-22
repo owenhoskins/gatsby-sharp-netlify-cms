@@ -2,15 +2,19 @@
 kind: artist
 templateKey: artist
 title: Adir Abergel
+path: /adir-abergel
 type: hair
 order: '1'
-path: '/adir-abergel'
-instragram_handle: hairbyadir
-instragram_key: '123'
+instagram_handle: hairbyadir
+instagram_key: '12345'
 portfolios:
   - images:
       - image: /img/aaron-burden-160110.jpg
+      - image: /img/blair-fraser-125238.jpg
     title: Editorial
+  - images:
+      - image: /img/afrah-158939.jpg
+    title: Advertising
 videos:
   - title: 'Chanel: Gabrielle featuring Kristen Stewart'
     video_url: 'https://vimeo.com/231705685'
