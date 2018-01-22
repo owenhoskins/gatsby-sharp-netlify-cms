@@ -74,6 +74,25 @@ export const pageQuery = graphql`
       frontmatter {
         path
         title
+        type
+        order
+        portfolios {
+          title
+          images {
+            image
+          }
+        }
+        videos {
+          title
+          video_url
+        }
+        image {
+          childImageSharp {
+            sizes(maxWidth: 300) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
     }
   }

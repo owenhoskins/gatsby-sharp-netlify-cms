@@ -38,10 +38,11 @@ collections:
       - {name: kind, widget: hidden, default: 'artist'}
       - {label: 'Template', name: 'templateKey', widget: 'hidden', default: artist }
       - {label: "Name", name: "title", widget: "string", tagname: "h1"}
+      - {label: 'Path', name: 'path', widget: 'string', pattern: ['^\/[a-z0-9\-]+$', 'Must begin with "/" and may only consist of lowercase letters (except umlauts), numbers and "-"']}
       - {label: "Type", name: "type", widget: "select", options: ["hair", "makeup", "stylist", "grooming", "manicurist", "color"]}
       - {name: order, label: Position, widget: number, default: 0}
-      - {label: "Instagram handle", name: "instragram_handle", widget: "string", tagname: "p"}
-      - {label: "Instagram API key", name: "instragram_key", widget: "string", tagname: "p"}
+      - {label: "Instagram handle", name: "instagram_handle", widget: "string", tagname: "p", optional: true}
+      - {label: "Instagram API key", name: "instagram_key", widget: "string", tagname: "p", optional: true }
       - name: portfolios
         label: Portfolios
         widget: list

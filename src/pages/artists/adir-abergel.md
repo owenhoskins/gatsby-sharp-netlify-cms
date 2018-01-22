@@ -4,6 +4,7 @@ templateKey: artist
 title: Adir Abergel
 type: hair
 order: '1'
+path: '/adir-abergel'
 instragram_handle: hairbyadir
 instragram_key: '123'
 portfolios:
