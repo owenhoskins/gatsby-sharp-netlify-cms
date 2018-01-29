@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "author": "Owen Hoskins <owen.hoskins@gmail.com>",
   "dependencies": {
-    "gatsby": "^1.9.158",
+    "gatsby": "^1.9.165",
     "gatsby-image": "^1.0.21",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-glamor": "^1.6.8",
