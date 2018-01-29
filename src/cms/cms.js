@@ -5,4 +5,4 @@ import "netlify-cms/dist/cms.css";
 
 import { GalleryPreview } from './GalleryManager'
 
-CMS.registerWidget('gallery', 'list', GalleryPreview);
+//CMS.registerWidget('gallery', 'list', GalleryPreview);

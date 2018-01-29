@@ -42,6 +42,17 @@ exports.onCreateNode = ({
         obj.image = adjust(obj.image)
       })
     }
+    const { portfolios } = frontmatter
+    if (portfolios) {
+      node.frontmatter.portfolios.forEach(obj => {
+        const { gallery } = obj
+        if (gallery) {
+          obj.gallery.forEach(obj => {
+            obj.image = adjust(obj.image)
+          })
+        }
+      })
+    }
   }
 }
 

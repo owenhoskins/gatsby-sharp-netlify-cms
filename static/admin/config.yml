@@ -49,7 +49,7 @@ collections:
         optional: true
         fields:
           - {label: 'Title', name: 'title', widget: 'string'}
-          - name: images
+          - name: gallery
             label: Gallery
             widget: gallery
             required: true

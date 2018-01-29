@@ -27,25 +27,10 @@ const renderImage = (props) => {
 
 export default function Template({ data }) {
   const { markdownRemark: post } = data;
+  const { frontmatter: { portfolios } } = post
+  // how does destructuring with defaults work again with nested things
 
-  const photos = []
-  post.frontmatter.images && post.frontmatter.images.forEach(({
-    image
-    //image: { childImageSharp: { sizes }}
-  }) => {
-    if (image && image.childImageSharp) {
-      const { childImageSharp: { sizes }} = image
-      const { aspectRatio, src, srcSet } = sizes
-      photos.push({
-        width: aspectRatio, height: 1, src,
-        srcSet: srcSet.split(","),
-        sizes: [sizes.sizes],
-        originalSizes: sizes,
-      })
-    } else {
-      console.log("!!does not have childImageSharp: ", image)
-    }
-  })
+  console.log('portfolios: ', portfolios)
 
   return (
     <section>
@@ -55,10 +40,33 @@ export default function Template({ data }) {
           {post.frontmatter.title}
         </h1>
         <div>
-          <PhotoGallery
-            renderImage={renderImage}
-            photos={ photos }
-          />
+          {
+            portfolios && portfolios.map(portfolio => {
+                const gallery = portfolio.gallery && portfolio.gallery.map(({image}) => {
+                  if (image && image.childImageSharp) {
+                    const { childImageSharp: { sizes }} = image
+                    const { aspectRatio, src, srcSet } = sizes
+                    return {
+                      width: aspectRatio, height: 1, src,
+                      srcSet: srcSet.split(","),
+                      sizes: [sizes.sizes],
+                      originalSizes: sizes,
+                    }
+                  } else {
+                    console.log("!!does not have childImageSharp: ", image)
+                  }
+                })
+                return (
+                  <div>
+                    <h1>{ portfolio.title }</h1>
+                    <PhotoGallery
+                      renderImage={renderImage}
+                      photos={ gallery }
+                    />
+                  </div>
+                )
+            })
+          }
         </div>
         <h2>Biography</h2>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -78,8 +86,14 @@ export const pageQuery = graphql`
         order
         portfolios {
           title
-          images {
-            image
+          gallery {
+            image {
+              childImageSharp {
+                sizes(maxWidth: 300) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
         videos {

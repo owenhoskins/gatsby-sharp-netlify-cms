@@ -8,12 +8,11 @@ order: '1'
 instagram_handle: hairbyadir
 instagram_key: '12345'
 portfolios:
-  - images:
-      - image: /img/aaron-burden-160110.jpg
-      - image: /img/blair-fraser-125238.jpg
+  - gallery:
+      - image: /img/image-sanity1.jpg
     title: Editorial
-  - images:
-      - image: /img/afrah-158939.jpg
+  - gallery:
+      - image: /img/image-sanity2.jpg
     title: Advertising
 videos:
   - title: 'Chanel: Gabrielle featuring Kristen Stewart'
