@@ -26,11 +26,14 @@ const renderImage = (props) => {
 }
 
 export default function Template({ data }) {
+  console.log(`Artist template data`, data)
   const { markdownRemark: post } = data;
   const { frontmatter: { portfolios } } = post
+  const { photos = [] } = data
   // how does destructuring with defaults work again with nested things
 
-  console.log('portfolios: ', portfolios)
+  //console.log('portfolios: ', portfolios)
+  //console.log('photos: ', photos)
 
   return (
     <section>
@@ -68,6 +71,14 @@ export default function Template({ data }) {
             })
           }
         </div>
+        <h2>Instagram</h2>
+        {
+          photos.edges && photos.edges.map(
+            ({ node: { id, media }}) => {
+              return <div style={{display: 'inline-block'}}><img src={ media }/></div>
+            }
+          )
+        }
         <h2>Biography</h2>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
@@ -76,7 +87,22 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
-  query ArtistByPath($path: String!) {
+  query ArtistByPath(
+    $path: String!,
+    $instagram_handle: String!,
+    $permalink: String!
+  ) {
+    photos: allInstagramPhoto(filter: {username: {eq: $instagram_handle}}) {
+      edges {
+        node {
+          id
+          time
+          media
+          text
+          username
+        }
+      }
+    }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {

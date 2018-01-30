@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import slug from 'slug'
 
 import './index.css'
 
@@ -42,14 +43,7 @@ const TemplateWrapper = ({
       {
         pages.edges && pages.edges.map(
           ({ node: { frontmatter }}) => {
-            return <div style={{display: 'block'}}><a href={frontmatter.path}>{frontmatter.title}</a></div>
-          }
-        )
-      }
-      {
-        photos.edges && photos.edges.map(
-          ({ node: { id, media }}) => {
-            return <div style={{display: 'block'}}><a href={`/${id}/`}>{ id }</a></div>
+            return <div style={{display: 'block'}}><a href={`/artist/${slug(frontmatter.path)}`}>{frontmatter.title}</a></div>
           }
         )
       }
@@ -81,17 +75,6 @@ export const query = graphql`
             path
             title
           }
-        }
-      }
-    }
-
-    photos: allInstagramPhoto {
-      edges {
-        node {
-          id
-          time
-          media
-          text
         }
       }
     }

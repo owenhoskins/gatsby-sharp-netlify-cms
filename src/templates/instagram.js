@@ -1,17 +1,37 @@
 import React from 'react';
 
-export default function Template({ data: { instagramPhoto } }) {
-  console.log('Instagram Template data: ', instagramPhoto)
+export default function Template({ data: { photos } }) {
+  console.log('Instagram Template data: ', data, photos)
   return (
-    <div><img src={ instagramPhoto.media } /></div>
+    <div>
+      {
+        photos.edges && photos.edges.map(
+          ({ node: { id, media }}) => {
+            return <div style={{display: 'block'}}><img src={ media } /></div>
+          }
+        )
+      }
+    </div>
   )
 }
 
 
 export const pageQuery = graphql`
-  query InstagramById($id: String!) {
-    instagramPhoto(id: { eq: $id }) {
+  query InstagramById($username: String!) {
+    photos: allInstagramPhoto(filter: {username: {eq: $username}}) {
+      edges {
+        node {
+          id
+          time
+          media
+          text
+          username
+        }
+      }
+    }
+    instagramPhoto(username: { eq: $username }) {
       id
+      username
       media
     }
   }

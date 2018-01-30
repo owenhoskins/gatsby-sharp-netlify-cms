@@ -22,7 +22,10 @@ module.exports = {
     {
       resolve: `instagram-scraper`,
       options: {
-        usernames: [`titled.berlin`]
+        usernames: [
+          `allanface`,
+          `hairbyadir`
+        ]
       }
     },
     'gatsby-plugin-sharp',

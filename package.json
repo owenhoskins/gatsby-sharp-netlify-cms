@@ -27,7 +27,8 @@
     "prop-types": "^15.5.8",
     "gatsby-transformer-json": "^1.0.8",
     "axios": "^0.17.1",
-    "bluebird": "^3.5.1"
+    "bluebird": "^3.5.1",
+    "slug": "^0.9.1"
   },
   "keywords": [
     "gatsby"

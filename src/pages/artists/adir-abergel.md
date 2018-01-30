@@ -2,7 +2,7 @@
 kind: artist
 templateKey: artist
 title: Adir Abergel
-path: /adir-abergel
+path: /artist/adir-abergel
 type: hair
 order: '1'
 instagram_handle: hairbyadir

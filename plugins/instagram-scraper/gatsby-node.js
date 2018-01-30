@@ -16,6 +16,7 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
             res.data.user.media.nodes.map(item => {
 
               const datum = {
+                username: username,
                 id: get(item, `id`),
                 code: get(item, `code`),
                 time: toISO8601(get(item, `date`)),
@@ -23,6 +24,7 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
                 text: get(item, `caption`),
                 media: get(item, `display_src`),
                 image: `images/${item.code}.jpg`,
+                follows: res.data.user.follows.count
               }
 
               const digest = crypto

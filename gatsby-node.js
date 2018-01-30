@@ -1,6 +1,8 @@
 const path = require('path');
 const _ = require('lodash');
+const Promise = require(`bluebird`)
 const loadYaml = require('./loadYaml')
+const slug = require(`slug`)
 
 const adminConfig = loadYaml('./static/admin/config.yml')
 
@@ -57,71 +59,88 @@ exports.onCreateNode = ({
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
+  return new Promise((resolve, reject) => {
 
-  return graphql(`
-  {
-    allInstagramPhoto {
-      edges {
-        node {
-          id
-          code
-          time
-          type
-          text
-          media
-          image
-        }
-      }
-    }
-  }
-  `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()))
-      return Promise.reject(result.errors);
-    }
-    result.data.allInstagramPhoto.edges.forEach(({ node }) => {
-      console.log('allInstagramPhoto node: ', node)
-      createPage({
-        path: `/${node.id}/`,
-        component: path.resolve(`src/templates/instagram.js`),
-        context: {
-          id: node.id,
-        }
-      });
-    });
-  });
-
-  return graphql(`
-    {
-      allMarkdownRemark {
-        edges {
-          node {
-            excerpt(pruneLength: 400)
-            html
-            id
-            frontmatter {
-              templateKey
-              path
-              title
-              instagram_handle
+    graphql(`
+      {
+        allInstagramPhoto {
+          edges {
+            node {
+              username
+              id
+              code
+              time
+              type
+              text
+              media
+              image
             }
           }
         }
       }
-    }
-  `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()))
-      return Promise.reject(result.errors);
-    }
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      `).then(result => {
+        if (result.errors) {
+          result.errors.forEach(e => console.error(e.toString()))
+          return reject(result.errors);
+        }
+        result.data.allInstagramPhoto.edges.forEach(({ node }) => {
+          //console.log('allInstagramPhoto node: ', node)
+          createPage({
+            path: `/${slug(node.username)}/`,
+            component: path.resolve(`src/templates/instagram.js`),
+            context: {
+              id: node.id,
+              username: node.username
+            }
+          });
+        });
+    })
+    // ==== END INSTAGRAM ====
+    .then(() => {
+      graphql(`
+        {
+          allMarkdownRemark {
+            edges {
+              node {
+                excerpt(pruneLength: 400)
+                html
+                id
+                frontmatter {
+                  templateKey
+                  path
+                  title
+                  instagram_handle
+                }
+              }
+            }
+          }
+        }
+      `).then(result => {
+        if (result.errors) {
+          result.errors.forEach(e => console.error(e.toString()))
+          return reject(result.errors);
+        }
+        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 
-      createPage({
-        path: node.frontmatter.path,
-        component: path.resolve(`src/templates/${String(node.frontmatter.templateKey)}.js`),
-        context: {} // additional data can be passed via context
-      });
+          //console.log('allMarkdownRemark node: ', node)
 
-    });
-  });
+          const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
+          //console.log("permalink: ", permalink)
+          // we can't pass the permalink into the graphql data.
+          // how can we automatically set the path in the md file?
+
+          createPage({
+            path: permalink,
+            component: path.resolve(`src/templates/${String(node.frontmatter.templateKey)}.js`),
+            context: {
+              instagram_handle: node.frontmatter.instagram_handle,
+              permalink: permalink
+            }
+          });
+        });
+        resolve()
+      })
+    })
+    // ==== END ARTISTS ====
+  })
 };
