@@ -19,6 +19,12 @@ module.exports = {
         name: 'images'
       }
     },
+    {
+      resolve: `instagram-scraper`,
+      options: {
+        usernames: [`titled.berlin`]
+      }
+    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-transformer-remark',

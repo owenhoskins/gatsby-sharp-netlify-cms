@@ -4,7 +4,6 @@ const loadYaml = require('./loadYaml')
 
 const adminConfig = loadYaml('./static/admin/config.yml')
 
-
 const adjustImagePath = nodePath => image => {
   if (_.isString(image)) {
     if (image.indexOf(adminConfig.public_folder) === 0) {
@@ -60,6 +59,39 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
   return graphql(`
+  {
+    allInstagramPhoto {
+      edges {
+        node {
+          id
+          code
+          time
+          type
+          text
+          media
+          image
+        }
+      }
+    }
+  }
+  `).then(result => {
+    if (result.errors) {
+      result.errors.forEach(e => console.error(e.toString()))
+      return Promise.reject(result.errors);
+    }
+    result.data.allInstagramPhoto.edges.forEach(({ node }) => {
+      console.log('allInstagramPhoto node: ', node)
+      createPage({
+        path: `/${node.id}/`,
+        component: path.resolve(`src/templates/instagram.js`),
+        context: {
+          id: node.id,
+        }
+      });
+    });
+  });
+
+  return graphql(`
     {
       allMarkdownRemark {
         edges {
@@ -71,6 +103,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               templateKey
               path
               title
+              instagram_handle
             }
           }
         }
@@ -82,11 +115,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors);
     }
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
       createPage({
         path: node.frontmatter.path,
         component: path.resolve(`src/templates/${String(node.frontmatter.templateKey)}.js`),
         context: {} // additional data can be passed via context
       });
+
     });
   });
 };

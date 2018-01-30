@@ -21,7 +21,7 @@ const handleClickAdmin = () => {
 
 const TemplateWrapper = ({
   children,
-  data: { pages },
+  data: { pages, photos },
   ...props
 }) => (
   <div>
@@ -43,6 +43,13 @@ const TemplateWrapper = ({
         pages.edges && pages.edges.map(
           ({ node: { frontmatter }}) => {
             return <div style={{display: 'block'}}><a href={frontmatter.path}>{frontmatter.title}</a></div>
+          }
+        )
+      }
+      {
+        photos.edges && photos.edges.map(
+          ({ node: { id, media }}) => {
+            return <div style={{display: 'block'}}><a href={`/${id}/`}>{ id }</a></div>
           }
         )
       }
@@ -74,6 +81,17 @@ export const query = graphql`
             path
             title
           }
+        }
+      }
+    }
+
+    photos: allInstagramPhoto {
+      edges {
+        node {
+          id
+          time
+          media
+          text
         }
       }
     }
