@@ -1,4 +1,9 @@
 import React from "react"
+//import logo from "!file-loader!../static/images/logo.png"
+import * as PropTypes from "prop-types"
+import { TypographyStyle } from "react-typography"
+import typography from "./utils/typography"
+
 
 let stylesStr
 if (process.env.NODE_ENV === `production`) {
@@ -31,6 +36,7 @@ module.exports = class HTML extends React.Component {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           {this.props.headComponents}
+          <TypographyStyle typography={typography} />
           {css}
           <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
         </head>
@@ -43,6 +49,7 @@ module.exports = class HTML extends React.Component {
           />
           {this.props.postBodyComponents}
           <script src="/js/netlify-login.js"></script>
+          <div className="column-grid"></div>
         </body>
       </html>
     )

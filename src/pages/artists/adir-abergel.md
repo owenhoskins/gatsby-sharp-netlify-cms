@@ -9,14 +9,60 @@ instagram_handle: hairbyadir
 instagram_key: '12345'
 portfolios:
   - gallery:
-      - image: /img/image-sanity1.jpg
+      - image: /img/2017-01_aal_headshot_11.jpg
+      - image: /img/aaron-burden-160110.jpg
+      - image: /img/aaron-burden-199008.jpg
+      - image: /img/adam-krowitz-386792.jpg
+      - image: /img/afrah-158939.jpg
     title: Editorial
   - gallery:
-      - image: /img/image-sanity2.jpg
+      - image: /img/2017-01_aal_headshot_11.jpg
+      - image: /img/denys-nevozhai-106939.jpg
+      - image: /img/denys-nevozhai-122463.jpg
+      - image: /img/derek-liang-239062.jpg
+      - image: /img/derek-liang-287864.jpg
+      - image: /img/enrapture-media-270310.jpg
+      - image: /img/enrapture-media-276958.jpg
+      - image: /img/geran-de-klerk-136347.jpg
+      - image: /img/geran-de-klerk-170850.jpg
+      - image: /img/greg-rakozy-90223.jpg
     title: Advertising
+  - gallery:
+      - image: /img/2017-01_aal_headshot_11.jpg
+      - image: /img/lance-asper-153770.jpg
+      - image: /img/lance-asper-153781.jpg
+      - image: /img/lance-asper-278010.jpg
+      - image: /img/mark-basarab-121664.jpg
+      - image: /img/martin-jernberg-198920.jpg
+      - image: /img/martin-sanchez-139280.jpg
+      - image: /img/matt-howard-248418.jpg
+      - image: /img/matt-howard-248420.jpg
+      - image: /img/matt-howard-248421.jpg
+      - image: /img/matt-palmer-204708.jpg
+      - image: /img/matt-palmer-211947.jpg
+      - image: /img/matthew-kane-113948.jpg
+      - image: /img/ahmed-saffu-225481.jpg
+      - image: /img/alex-bykov-211289.jpg
+      - image: /img/andreas-gucklhorn-285567.jpg
+      - image: /img/anton-gudkov-133774.jpg
+      - image: /img/benny-jackson-185393.jpg
+      - image: /img/blair-fraser-125238.jpg
+      - image: /img/adam-krowitz-386792.jpg
+    title: Red Carpet
+  - gallery:
+      - image: /img/2017-01_aal_headshot_11.jpg
+      - image: /img/sweet-ice-cream-photography-122596.jpg
+      - image: /img/sweet-ice-cream-photography-139596.jpg
+      - image: /img/sweet-ice-cream-photography-143023.jpg
+      - image: /img/sweet-ice-cream-photography-216650.jpg
+      - image: /img/syd-sujuaan-191706.jpg
+      - image: /img/tommy-lisbin-275670.jpg
+      - image: /img/victor-smits-100279.jpg
+      - image: /img/vishwesh-jirgale-304762.jpg
+    title: Fine art
 videos:
   - title: 'Chanel: Gabrielle featuring Kristen Stewart'
-    video_url: 'https://vimeo.com/231705685'
+    url: 'https://vimeo.com/231705685'
 image: /img/2017-01_aal_headshot_11.jpg
 ---
 A visual artist first and foremost, Adir Abergel fuses the boundaries between fashion, art and celebrity in a way that few Hollywood hairstylists have managed to do. Using hair as his principal medium, Adir challenges red carpet conventions to exquisite effect, integrating beauty and originality into a single expression. He is the creative force behind some of the most memorable moments in celebrity hairstyling, and has been instrumental in constructing the distinctive styles of such influential talent as Rooney Mara, Kristen Stewart, Marion Cotillard, Gwyneth Paltrow, Kirsten Dunst, Anne Hathaway and Reese Witherspoon.

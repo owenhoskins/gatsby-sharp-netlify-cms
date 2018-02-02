@@ -1,98 +1,92 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import PhotoGallery from '../components/Gallery/'
-import Img from 'gatsby-image'
+import Responsive from 'react-responsive'
 
-const renderImage = (props) => {
-  const {
-    photo: { width, height, originalSizes },
-    margin,
-    onClick,
-  } = props
-  return (
-    <div
-      style={{
-        width,
-        height,
-        float: 'left',
-        margin,
-        cursor: 'pointer'
-      }}
-      onClick={(evt) => onClick(evt, props)}
-    >
-      <Img sizes={originalSizes} />
-    </div>
-  )
-}
+import { Grid, Row, Col } from '../components/Grid'
+import MobileGallery from '../components/Gallery/Mobile'
+import DesktopGallery from '../components/Gallery/Desktop'
 
 export default function Template({ data }) {
-  console.log(`Artist template data`, data)
-  const { markdownRemark: post } = data;
-  const { frontmatter: { portfolios } } = post
-  const { photos = [] } = data
-  // how does destructuring with defaults work again with nested things
-
-  //console.log('portfolios: ', portfolios)
-  //console.log('photos: ', photos)
+  // console.log(`Artist template data`, data)
+  const { markdownRemark: artist } = data;
+  const { frontmatter: { portfolios = [], videos = [], image } } = artist
+  const { html: biography } = artist
+  const { instagram: { edges: insta = [] } } = data
 
   return (
     <section>
-      <Helmet title={`${post.frontmatter.title}`} />
+      <Helmet title={`${artist.frontmatter.title}`} />
       <div>
-        <h1>
-          {post.frontmatter.title}
-        </h1>
-        <div>
-          {
-            portfolios && portfolios.map(portfolio => {
-                const gallery = portfolio.gallery && portfolio.gallery.map(({image}) => {
-                  if (image && image.childImageSharp) {
-                    const { childImageSharp: { sizes }} = image
-                    const { aspectRatio, src, srcSet } = sizes
-                    return {
-                      width: aspectRatio, height: 1, src,
-                      srcSet: srcSet.split(","),
-                      sizes: [sizes.sizes],
-                      originalSizes: sizes,
+        <Grid>
+          <Row>
+            <Col xs={ 3 }>
+              {'Menu'}
+            </Col>
+            <Col xs={ 9 }>
+              <h1>
+                {artist.frontmatter.title}
+              </h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+            </Col>
+          </Row>
+        </Grid>
+
+        <Responsive maxWidth={`48em`}>
+          <MobileGallery
+            portfolios={portfolios}
+            videos={videos}
+            instagram={insta}
+            biography={biography}
+            image={image}
+          />
+        </Responsive>
+        <Responsive minWidth={`48em`}>
+          <div>
+            <DesktopGallery
+              portfolios={portfolios}
+              videos={videos}
+              instagram={insta}
+              biography={biography}
+              image={image}
+            />
+            {`Desktop`}
+            {
+              portfolios && portfolios.map((portfolio, index) => {
+                  const gallery = portfolio.gallery && portfolio.gallery.map(({image}) => {
+                    if (image && image.childImageSharp) {
+                      const { childImageSharp: { sizes }} = image
+                      const { aspectRatio, src, srcSet } = sizes
+                      return {
+                        width: aspectRatio,
+                        height: 1,
+                        src,
+                        srcSet: srcSet.split(","),
+                        sizes: [sizes.sizes],
+                        originalSizes: sizes,
+                      }
+                    } else {
+                      console.log("!!does not have childImageSharp: ", image)
                     }
-                  } else {
-                    console.log("!!does not have childImageSharp: ", image)
-                  }
-                })
-                return (
-                  <div>
-                    <h1>{ portfolio.title }</h1>
-                    <PhotoGallery
-                      renderImage={renderImage}
-                      photos={ gallery }
-                    />
-                  </div>
-                )
-            })
-          }
-        </div>
-        <h2>Instagram</h2>
-        {
-          photos.edges && photos.edges.map(
-            ({ node: { id, media }}) => {
-              return <div style={{display: 'inline-block'}}><img src={ media }/></div>
+                  })
+                  return (
+                    <div key={index}>
+                    </div>
+                  )
+              })
             }
-          )
-        }
-        <h2>Biography</h2>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          </div>
+        </Responsive>
       </div>
     </section>
   );
 }
 
 export const pageQuery = graphql`
-  query ArtistByPath(
-    $path: String!,
-    $instagram_handle: String!,
-    $permalink: String!
-  ) {
-    photos: allInstagramPhoto(filter: {username: {eq: $instagram_handle}}) {
+  query ArtistByPath($path: String!, $instagram_handle: String!) {
+    instagram: allInstagramPhoto(filter: {username: {eq: $instagram_handle}}) {
       edges {
         node {
           id
@@ -124,7 +118,7 @@ export const pageQuery = graphql`
         }
         videos {
           title
-          video_url
+          url
         }
         image {
           childImageSharp {

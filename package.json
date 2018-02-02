@@ -23,12 +23,17 @@
     "react-measure": "^2.0.2",
     "react-photo-gallery": "^6.0.22",
     "lodash": "^4.16.4",
-    "mkdirp": "^0.5.1",
     "prop-types": "^15.5.8",
-    "gatsby-transformer-json": "^1.0.8",
     "axios": "^0.17.1",
     "bluebird": "^3.5.1",
-    "slug": "^0.9.1"
+    "slug": "^0.9.1",
+    "typography": "^0.16.6",
+    "react-typography": "^0.16.6",
+    "gatsby-plugin-offline": "^1.0.9",
+    "mousetrap": "^1.6.0",
+    "react-swipeable-views": "^0.12.8",
+    "react-responsive": "^1.2.6",
+    "react-player": "^1.1.1"
   },
   "keywords": [
     "gatsby"
