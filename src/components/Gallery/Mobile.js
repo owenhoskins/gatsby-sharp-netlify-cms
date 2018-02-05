@@ -119,11 +119,14 @@ class MobileGallery extends Component {
 
   render() {
     const { viewIndex, tabIndex } = this.state;
-    const { sections = [], views = [], viewIndexes = [] } = this.props
+    const { title, sections = [], views = [], viewIndexes = [] } = this.props
 
     return (
       <div>
-      <Tabs
+        <h1>
+          {title}
+        </h1>
+        <Tabs
           viewIndexes={viewIndexes}
           tabIndex={tabIndex}
           onChange={this.handleChange}

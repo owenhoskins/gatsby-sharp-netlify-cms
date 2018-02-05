@@ -183,6 +183,8 @@ class Image extends React.Component {
       alt,
       className,
       outerWrapperClassName,
+      outerCss = {},
+      innerCss = {},
       style = {},
       sizes,
       resolutions,
@@ -208,22 +210,22 @@ class Image extends React.Component {
       // The outer div is necessary to reset the z-index to 0.
       return (
         <div
-          className={`${
-            outerWrapperClassName ? outerWrapperClassName : ``
-          } gatsby-image-outer-wrapper`}
-          style={{
+          className={`image-outer-wrapper`}
+          css={{
             zIndex: 0,
             // Let users set component to be absolutely positioned.
             position: style.position === `absolute` ? `initial` : `relative`,
+            width: '100%',
+            ...outerCss
           }}
         >
           <div
-            className={`${className ? className : ``} gatsby-image-wrapper`}
-            style={{
+            className={`gatsby-image-wrapper`}
+            css={{
               position: `relative`,
               overflow: `hidden`,
               zIndex: 1,
-              ...style,
+              ...innerCss,
             }}
             ref={this.handleRef}
           >
