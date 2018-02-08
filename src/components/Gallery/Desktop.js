@@ -107,26 +107,11 @@ class Desktop extends Component {
             width: '12rem',
             marginLeft: '8rem'
           }}>
-            {/*<Menu sections={sections} />*/}
-            <ul
-              css={{
-                position: 'fixed'
-              }}
-            >
-              {
-                sections.map((section, i) => {
-                  return <li key={i}>
-                    <div
-                      onClick={() => this.scrollToSection(i, section.key)}
-                      css={{
-                        textDecoration: this.state.currentSection === section.key ? 'underline' : 'none'
-                      }}
-                    >
-                      {section.title}</div>
-                  </li>
-                })
-              }
-            </ul>
+            <Menu
+              sections={sections}
+              scrollToSection={this.scrollToSection}
+              currentSection={this.state.currentSection}
+            />
           </div>
           <div css={{
             float: 'left',

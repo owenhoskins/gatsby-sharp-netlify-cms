@@ -1,14 +1,30 @@
 import React, { Component } from 'react'
 
+import Item from './Item'
 
 const Menu = ({
-  sections
+  sections,
+  scrollToSection,
+  currentSection
 }) => {
   return (
-    <ul>
+    <ul
+      css={{
+        position: 'fixed'
+      }}
+    >
       {
         sections.map((section, i) => {
-          return <li key={i}>{section.title}</li>
+          return <li
+            key={i}
+            onClick={() => scrollToSection(i, section.key)}
+            css={{ cursor: 'pointer', listStyle: 'none', textAlign: 'right' }}
+          >
+            <Item
+              title={section.title}
+              active={currentSection === section.key}
+            />
+          </li>
         })
       }
     </ul>
