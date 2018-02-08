@@ -36,30 +36,6 @@ export default function Template({ data }) {
             biography={biography}
             image={image}
           />
-          {
-            portfolios && portfolios.map((portfolio, index) => {
-                const gallery = portfolio.gallery && portfolio.gallery.map(({image}) => {
-                  if (image && image.childImageSharp) {
-                    const { childImageSharp: { sizes }} = image
-                    const { aspectRatio, src, srcSet } = sizes
-                    return {
-                      width: aspectRatio,
-                      height: 1,
-                      src,
-                      srcSet: srcSet.split(","),
-                      sizes: [sizes.sizes],
-                      originalSizes: sizes,
-                    }
-                  } else {
-                    console.log("!!does not have childImageSharp: ", image)
-                  }
-                })
-                return (
-                  <div key={index}>
-                  </div>
-                )
-            })
-          }
         </div>
       </Responsive>
     </section>
@@ -91,7 +67,7 @@ export const pageQuery = graphql`
           gallery {
             image {
               childImageSharp {
-                sizes(maxWidth: 300) {
+                sizes(maxWidth: 1000, quality: 100) {
                   ...GatsbyImageSharpSizes
                 }
               }
@@ -104,8 +80,8 @@ export const pageQuery = graphql`
         }
         image {
           childImageSharp {
-            sizes(maxWidth: 300) {
-              ...GatsbyImageSharpSizes
+            resolutions(width: 400) {
+              ...GatsbyImageSharpResolutions
             }
           }
         }

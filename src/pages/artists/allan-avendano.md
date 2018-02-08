@@ -6,6 +6,22 @@ path: /artist/allan-avendano
 type: makeup
 order: '1'
 instagram_handle: allanface
+portfolios:
+  - gallery:
+      - image: /img/2008-04_AAL_MQH_JALOUSE_04.jpg
+      - image: /img/2008-10_AAL_CCR_ELLEIT_01.jpg
+      - image: /img/2008-10_AAL_CCR_ELLEIT_02.jpg
+      - image: /img/2008-10_AAL_CCR_ELLEIT_03.jpg
+      - image: /img/2008-10_AAL_CCR_ELLEIT_08.jpg
+    title: 'Editorial'
+  - gallery:
+      - image: /img/0000-00_AAL_NEUTROGENA_01.jpg
+      - image: /img/2013-09_AAL_KLE_CAROLL_03.jpg
+      - image: /img/2016-02-02_AAL_CHANEL_05.jpg
+      - image: /img/0000-00_AAL_NEUTROGENA_02.jpg
+      - image: /img/2014-03_AAL_CCR_MQN_LOREAL_06.jpg
+      - image: /img/2017-05_AAL_CHANEL_05.jpg
+    title: 'Advertising'
 ---
 At a very early age, Allan Avendaño was enamored by the glamour of old Hollywood. Thinking he may find his path in the entertainment industry, he pursued a Bachelor of Science in Communications and acquired a job in television production. Upon realizing his true interest in beauty and fashion, he switched gears and began working for a fashion magazine. Given the responsibility of booking talent for shoots, Allan assigned himself as makeup artist on an editorial job, laying the foundation for his current career.
 
