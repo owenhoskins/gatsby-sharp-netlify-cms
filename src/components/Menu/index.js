@@ -3,6 +3,82 @@ import React, { Component } from 'react'
 import Item from './Item'
 import Toggle from './Toggle'
 
+export default class Menu extends Component {
+
+  state = {
+    isVisible: true
+  }
+
+  onMouseEnter = () => {
+    this.setState({isVisible: true})
+  }
+
+  onMouseLeave = () => {
+    this.setState({isVisible: false})
+  }
+
+  render() {
+    const {
+      isCover,
+      type,
+      sections,
+      scrollToSection,
+      currentSection
+    } = this.props
+
+    return (
+      <div
+        css={{
+          position: 'fixed',
+          zIndex: 2000
+        }}
+      >
+
+        <ul
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          css={{
+            marginLeft: 0,
+            marginTop: '3rem',
+            marginBottom: 0,
+            listStyle: 'none',
+            textAlign: 'right',
+          }}
+        >
+          <li
+            css={{
+              marginBottom: '10rem'
+            }}
+          >
+            <Toggle>{type}</Toggle>
+          </li>
+          {
+            sections.map((section, i) => {
+              return <li
+                key={i}
+                onClick={() => scrollToSection(i, section.key)}
+                css={{
+                  cursor: 'pointer',
+                  marginBottom: '2rem',
+                  transition: 'opacity 800ms ease-out, transform 600ms ease-out, 600ms filter ease-out',
+                  transform: !isCover ? 'translate3d(0,0,0)' : 'translate3d(0,-40px,0)',
+                  opacity: !isCover ? 1 : 0
+                }}
+              >
+                <Item
+                  isVisible={this.state.isVisible}
+                  title={section.title}
+                  active={currentSection === section.key}
+                />
+              </li>
+            })
+          }
+        </ul>
+      </div>
+    )
+  }
+}
+/*
 const Menu = ({
   isCover,
   type,
@@ -19,6 +95,8 @@ const Menu = ({
     >
 
       <ul
+        // onMouseEnter
+        // onMouseLeave
         css={{
           marginLeft: 0,
           marginTop: '3rem',
@@ -60,3 +138,4 @@ const Menu = ({
 }
 
 export default Menu
+*/

@@ -2,31 +2,47 @@ import React from 'react'
 
 import { basekick } from '../../utils/typography'
 
-const Item = ({ title, active }) => (
-  <div
-    css={{
-      transition: 'opacity 300ms ease-in-out',
-      opacity: active ? 1 : 0.3,
-      filter: 'blur(1px)',
-      letterSpacing: '3px',
-      textTransform: 'lowercase',
-      ...basekick({
-        typeSizeModifier: 0.875,
-        typeRowSpan: 3,
-      })
-    }}
-  >
-    {title}
-    <span
+const Item = ({ title, active, isVisible }) => {
+
+  let opacity
+  if (isVisible) {
+    opacity = 0.3
+    if (active) {
+      opacity = 1
+    }
+  } else {
+    opacity = 0
+    if (active) {
+      opacity = 1
+    }
+  }
+
+  return (
+    <div
       css={{
-        display: 'inline-block',
-        marginLeft: '3rem',
-        letterSpacing: '-1px'
+        transition: 'opacity 300ms ease-in-out',
+        //opacity: active ? 1 : 0.3,
+        opacity,
+        filter: 'blur(1px)',
+        letterSpacing: '3px',
+        textTransform: 'lowercase',
+        ...basekick({
+          typeSizeModifier: 0.875,
+          typeRowSpan: 3,
+        })
       }}
     >
-     {`——`}
-    </span>
-  </div>
-)
-
+      {title}
+      <span
+        css={{
+          display: 'inline-block',
+          marginLeft: '3rem',
+          letterSpacing: '-1px'
+        }}
+      >
+       {`——`}
+      </span>
+    </div>
+  )
+}
 export default Item
