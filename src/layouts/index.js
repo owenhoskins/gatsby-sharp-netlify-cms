@@ -35,20 +35,20 @@ const TemplateWrapper = ({
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-   <a
+   {/*<a
       onClick={handleClickAdmin}
       href="#"
     >
       Admin
-    </a>
+    </a>*/}
     <div css={{display: 'relative'}}>
-      {
+      {/*
         pages.edges && pages.edges.map(
           ({ node: { frontmatter }}) => {
             return <div key={ frontmatter.path } style={{display: 'block'}}><a href={frontmatter.path}>{frontmatter.title}</a></div>
           }
         )
-      }
+      */}
       {children()}
       <Baseline />
     </div>

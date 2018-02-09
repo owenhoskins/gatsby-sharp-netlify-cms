@@ -2,11 +2,11 @@ import React from 'react'
 
 import { basekick } from '../../utils/typography'
 
-const Item = ({ title, active }) => (
+const Toggle = ({ children }) => (
   <div
     css={{
       transition: 'opacity 300ms ease-in-out',
-      opacity: active ? 1 : 0.3,
+      opacity: 1,
       filter: 'blur(1px)',
       letterSpacing: '3px',
       textTransform: 'lowercase',
@@ -16,7 +16,7 @@ const Item = ({ title, active }) => (
       })
     }}
   >
-    {title}
+    {children}
     <span
       css={{
         display: 'inline-block',
@@ -29,4 +29,4 @@ const Item = ({ title, active }) => (
   </div>
 )
 
-export default Item
+export default Toggle

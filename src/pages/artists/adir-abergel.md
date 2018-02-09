@@ -5,8 +5,9 @@ title: Adir Abergel
 path: "/artist/adir-abergel"
 type: hair
 order: '1'
+cover: /img/AAL_HEADER_02.jpg
+enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: hairbyadir
-instagram_key: '12345'
 portfolios:
   - gallery:
       - image: /img/2008-04_AAL_MQH_JALOUSE_04.jpg

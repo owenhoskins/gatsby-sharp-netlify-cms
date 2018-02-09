@@ -71,6 +71,43 @@ body {
   display: block; }
 
 
+/* headroom */
+
+.headroom {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 0 2rem;
+}
+.headroom--unfixed {
+  position: relative;
+  transform: translateY(0);
+}
+.headroom--scrolled {
+  transition: transform 200ms ease-in-out;
+  left: 18rem;
+  top: 3rem;
+}
+.headroom--unpinned {
+  position: fixed;
+  transform: translateY(calc(-100% - 3rem));
+}
+.headroom--pinned {
+  position: fixed;
+  transform: translateY(0%);
+}
+
+.headroom--pinned::before {
+  content: " ";
+  position: fixed;
+  top: -3rem;
+  left: 0;
+  right: 0;
+  height: 16rem;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
+  pointer-events: none;
+}
 
 
 /* flex box grid */

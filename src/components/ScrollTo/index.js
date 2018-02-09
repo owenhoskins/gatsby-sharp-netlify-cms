@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom'
 import scroll from 'scroll'
 import scrollDoc from 'scroll-doc'
-import ease from 'ease-component'
 
 const page = scrollDoc()
 

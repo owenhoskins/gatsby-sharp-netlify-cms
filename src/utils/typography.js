@@ -48,7 +48,8 @@ export const options = {
 
       },
       a: {
-        color: `##575483`,
+        color: `#575483`,
+        textDecoration: 'none'
       },
     }
   },

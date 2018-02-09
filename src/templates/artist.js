@@ -9,16 +9,16 @@ import DesktopGallery from '../components/Gallery/Desktop'
 export default function Template({ data }) {
   // console.log(`Artist template data`, data)
   const { markdownRemark: artist } = data;
-  const { frontmatter: { portfolios = [], videos = [], image } } = artist
+  const { frontmatter: { portfolios = [], videos = [], image, instagram_handle, type, title, enquire } } = artist
   const { html: biography } = artist
   const { instagram: { edges: insta = [] } } = data
 
   return (
     <section>
-      <Helmet title={`${artist.frontmatter.title}`} />
+      <Helmet title={`${title}`} />
       <Responsive maxWidth={`48em`}>
         <MobileGallery
-          title={artist.frontmatter.title}
+          title={title}
           portfolios={portfolios}
           videos={videos}
           instagram={insta}
@@ -29,12 +29,15 @@ export default function Template({ data }) {
       <Responsive minWidth={`48em`}>
         <div>
           <DesktopGallery
-            title={artist.frontmatter.title}
+            title={title}
+            type={type}
             portfolios={portfolios}
             videos={videos}
             instagram={insta}
             biography={biography}
             image={image}
+            instagram_handle={instagram_handle}
+            enquire={enquire}
           />
         </div>
       </Responsive>
@@ -62,6 +65,7 @@ export const pageQuery = graphql`
         title
         type
         order
+        instagram_handle
         portfolios {
           title
           gallery {

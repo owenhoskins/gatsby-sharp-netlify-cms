@@ -7,8 +7,19 @@ import { Grid, Row, Col } from '../Grid'
 import Img from '../Image'
 import Video from '../Video'
 import Menu from '../Menu'
+import Header from '../Header'
 
-const Model = ({portfolios = [], videos = [], instagram = [], biography, image}) => {
+const Model = ({
+  portfolios = [],
+  videos = [],
+  instagram = [],
+  biography,
+  image,
+  title,
+  type,
+  instagram_handle,
+  enquire
+}) => {
 
   const sections = portfolios.map(portfolio => {
     return {
@@ -37,8 +48,12 @@ const Model = ({portfolios = [], videos = [], instagram = [], biography, image})
       videos={videos}
       instagram={instagram}
       biography={{
+        name: title,
+        type: type,
         text: biography,
-        image: image
+        image: image,
+        enquire: enquire,
+        instagram: instagram_handle
       }}
     />
   )
@@ -86,38 +101,34 @@ class Desktop extends Component {
   }
 
   render() {
-    const { portfolios, videos, instagram, biography, sections = [], title } = this.props
+    const { portfolios, videos, instagram, biography, sections = [] } = this.props
     const images = []
     return (
       <div>
-      <Grid>
-        <Row>
-          <Col xs={ 2 }>
-            Menu
-          </Col>
-          <Col xs={ 10 }>
-            <h1>
-              {title}
-            </h1>
-          </Col>
-        </Row>
-      </Grid>
         <div>
           <div css={{
-            width: '12rem',
-            marginLeft: '8rem'
+            width: '10rem',
+            marginLeft: '6rem'
           }}>
             <Menu
+              type={biography.type}
               sections={sections}
               scrollToSection={this.scrollToSection}
               currentSection={this.state.currentSection}
             />
           </div>
           <div css={{
+            marginTop: '3rem',
             float: 'left',
-            width: 'calc(100% - 20rem)',
-            marginLeft: '20rem'
+            width: 'calc(100% - 18rem)',
+            marginLeft: '18rem'
           }}>
+            <Header
+              name={biography.name}
+              instagram={biography.instagram}
+              enquire={biography.enquire}
+            />
+
             {
               portfolios && portfolios.map((portfolio, index) => {
                 const refKey = sections[index].key
@@ -129,7 +140,8 @@ class Desktop extends Component {
                   >
                     <div
                       css={{
-                        marginBottom: '20rem',
+                        marginTop: '10rem',
+                        marginBottom: '10rem',
                         textAlign: 'center'
                       }}
                     >
@@ -244,22 +256,22 @@ class Desktop extends Component {
                   onEnter={() => this.handleSectionEnter(`Biography`)}
                 >
                   <div>
-                    <Grid>
+                    <Grid fluid>
                       <Row>
-                        <Col xs={ 4 }>
+                        <Col xs={ 3 }>
                         {
                           biography.image && (
                             <Img
                               style={{
-                                width: biography.image.childImageSharp.resolutions.width + 'px',
-                                height: biography.image.childImageSharp.resolutions.height + 'px'
+                                width: 256 * ( biography.image.childImageSharp.resolutions.width / biography.image.childImageSharp.resolutions.height ) + 'px',
+                                height: '256px'
                               }}
                               resolutions={biography.image.childImageSharp.resolutions}
                             />
                           )
                         }
                         </Col>
-                        <Col xs={ 6 }>
+                        <Col xs={ 7 }>
                           <div dangerouslySetInnerHTML={{ __html: biography.text }} />
                         </Col>
                       </Row>
