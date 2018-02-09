@@ -21,13 +21,13 @@ const Model = ({
   enquire
 }) => {
 
-  const sections = portfolios.map(portfolio => {
+  const sections = portfolios ? portfolios.map(portfolio => {
     return {
       title: portfolio.title,
       key: portfolio.title.replace(/ /g, ''),
       count: portfolio.gallery.length
     }
-  })
+  }) : []
 
   if (videos && videos.length > 0) {
     sections.push({title: 'Videos', key: 'Videos', count: videos.length})
@@ -91,7 +91,9 @@ class Desktop extends Component {
     });
   }
 
-  scrollToSection = (i, key) => ScrollTo(this[key], {duration: 1500, offset: -32, align: 'top'}, this.scrollComplete)
+  scrollToSection = (i, key) => {
+    ScrollTo(this[key], {duration: 0, offset: -32, align: 'top'}, this.scrollComplete)
+  }
 
   scrollComplete = () => console.log('scroll complete!!')
 

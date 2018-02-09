@@ -24,7 +24,8 @@ module.exports = {
       options: {
         usernames: [
           `allanface`,
-          `hairbyadir`
+          `hairbyadir`,
+          `mararoszak`
         ]
       }
     },
