@@ -36,7 +36,7 @@ const Cover = ({
             left: 0,
             zIndex: -1,
             opacity: isCover ? 1 : 0.2,
-            transition: '1s filter ease-in-out, 1s transform ease-in-out',
+            transition: '2s opacity ease-in-out, 2s filter ease-in-out, 2s transform ease-in-out',
             filter: isCover ? 'blur(0)' : 'blur(50px)',
             transform: isCover ? 'scale(1)' : 'scale(1.1)'
           }}

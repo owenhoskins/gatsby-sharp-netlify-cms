@@ -5,6 +5,7 @@ const Title = ({ children, style, onClick }) => (
   <h1
     onClick={onClick}
     css={{
+      filter: 'blur(2px)',
       letterSpacing: '4px',
       textTransform: 'uppercase',
       ...basekick({

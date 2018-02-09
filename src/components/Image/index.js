@@ -103,12 +103,12 @@ const noscriptImg = props => {
 }
 
 const Img = props => {
-  const { objectFit, opacity, onLoad, transitionDelay = ``, ...otherProps } = props
+  const { style, objectFit, opacity, onLoad, transitionDelay = ``, ...otherProps } = props
   return (
     <img
       {...otherProps}
       onLoad={onLoad}
-      style={{
+      css={{
         position: `absolute`,
         top: 0,
         left: 0,
@@ -119,6 +119,7 @@ const Img = props => {
         height: `100%`,
         objectFit: objectFit ? objectFit : `contain`,
         objectPosition: `top center`,
+        ...style
       }}
     />
   )
@@ -251,6 +252,10 @@ class Image extends React.Component {
                 src={image.base64}
                 opacity={!this.state.imgLoaded ? 1 : 0}
                 transitionDelay={`0.25s`}
+                style={{
+                  filter: 'blur(20px)',
+                  transform: 'scale(1.5)'
+                }}
               />
             )}
 

@@ -5,8 +5,16 @@ import { Block } from 'glamor/jsxstyle'
 import { Tabs, Tab } from '../UI'
 import Img from '../Image'
 import Video from '../Video'
+import { Headline } from '../Styled'
 
-const Model = ({portfolios, videos, instagram, biography, portrait}) => {
+const Model = ({
+  portfolios,
+  videos,
+  instagram,
+  biography,
+  portrait,
+  title
+}) => {
 
   const views = []
   const viewIndexes = []
@@ -60,18 +68,19 @@ const Model = ({portfolios, videos, instagram, biography, portrait}) => {
     sections.push({title: 'Biography', count: 1})
 
     if (portrait && portrait.childImageSharp) {
-      const { childImageSharp: { sizes }} = portrait
-      views.push({ biography: { text: biography, image: sizes } })
+      //const { childImageSharp: { resolutions }} = portrait
+      views.push({ biography: { text: biography, portrait: portrait } })
     }
 
   }
 
-  console.log('sections: ', sections)
-  console.log('viewIndexes: ', viewIndexes)
-  console.log('views: ', views)
+  //console.log('sections: ', sections)
+  //console.log('viewIndexes: ', viewIndexes)
+  //console.log('views: ', views)
 
   return (
     <MobileGallery
+      title={title}
       sections={sections}
       views={views}
       viewIndexes={viewIndexes}
@@ -123,9 +132,9 @@ class MobileGallery extends Component {
 
     return (
       <div>
-        <h1>
+        <Headline style={{margin: '4rem 2.3rem'}}>
           {title}
-        </h1>
+        </Headline>
         <Tabs
           viewIndexes={viewIndexes}
           tabIndex={tabIndex}
@@ -137,6 +146,7 @@ class MobileGallery extends Component {
               return <Tab
                 key={index}
                 label={portfolio.title}
+                active={tabIndex === index}
               />
             })
           }
@@ -175,25 +185,24 @@ class MobileGallery extends Component {
                   />
                 }
                 if (instagram) {
-                  return <Img
+                  return <img
                     key={index}
                     style={{
                       width: 'auto',
-                      height: '70vh'
+                      height: '256px'
                     }}
-                    sizes={instagram}
+                    src={instagram.src}
                   />
                 }
                 if (biography) {
                   return (
                     <div>
                         <Img
-                          key={index}
                           style={{
-                            width: 'auto',
-                            height: '15rem'
+                            width: 256 * ( biography.portrait.childImageSharp.resolutions.width / biography.portrait.childImageSharp.resolutions.height ) + 'px',
+                            height: '256px'
                           }}
-                          sizes={biography.image}
+                          resolutions={biography.portrait.childImageSharp.resolutions}
                         />
                       <div dangerouslySetInnerHTML={{ __html: biography.text }} />
                     </div>

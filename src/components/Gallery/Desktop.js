@@ -192,7 +192,7 @@ class Desktop extends Component {
             />
             <div
               css={{
-                transition: 'opacity 800ms ease-out, transform 600ms ease-out, 600ms filter ease-out',
+                transition: 'opacity 1000ms ease-out, transform 800ms ease-out, 800ms filter ease-out',
                 transform: this.state.isVisible ? 'translate3d(0,0,0)' : 'translate3d(0,20px,0)',
                 opacity: this.state.isVisible ? 1 : 0
               }}

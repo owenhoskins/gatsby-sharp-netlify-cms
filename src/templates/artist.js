@@ -7,7 +7,6 @@ import MobileGallery from '../components/Gallery/Mobile'
 import DesktopGallery from '../components/Gallery/Desktop'
 
 export default function Template({ data }) {
-  // console.log(`Artist template data`, data)
   const { markdownRemark: artist } = data;
   const {
     frontmatter: {
