@@ -9,7 +9,18 @@ import DesktopGallery from '../components/Gallery/Desktop'
 export default function Template({ data }) {
   // console.log(`Artist template data`, data)
   const { markdownRemark: artist } = data;
-  const { frontmatter: { portfolios = [], videos = [], image, instagram_handle, type, title, enquire } } = artist
+  const {
+    frontmatter: {
+      portfolios = [],
+      videos = [],
+      image,
+      instagram_handle,
+      type,
+      title,
+      cover,
+      enquire
+    }
+  } = artist
   const { html: biography } = artist
   const { instagram: { edges: insta = [] } } = data
 
@@ -30,6 +41,7 @@ export default function Template({ data }) {
         <div>
           <DesktopGallery
             title={title}
+            cover={cover}
             type={type}
             portfolios={portfolios}
             videos={videos}
@@ -66,6 +78,13 @@ export const pageQuery = graphql`
         type
         order
         instagram_handle
+        cover {
+          childImageSharp {
+            sizes(maxWidth: 2600, quality: 100) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
         portfolios {
           title
           gallery {

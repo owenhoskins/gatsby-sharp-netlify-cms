@@ -62,13 +62,15 @@ const Model = ({
 class Desktop extends Component {
 
   state = {
-    currentImage: 0
+    currentImage: 0,
+    isVisible: true
   }
 
   openLightbox = (event, obj) => {
     this.setState({
       currentImage: obj.index,
       lightboxIsOpen: true,
+      isVisible: false,
     });
   }
 
@@ -76,6 +78,7 @@ class Desktop extends Component {
     this.setState({
       currentImage: 0,
       lightboxIsOpen: false,
+      isVisible: true
     });
   }
 
@@ -92,7 +95,12 @@ class Desktop extends Component {
   }
 
   scrollToSection = (i, key) => {
-    ScrollTo(this[key], {duration: 0, offset: -32, align: 'top'}, this.scrollComplete)
+    this.setState({isVisible: false})
+    setTimeout(()=> {
+      ScrollTo(this[key], {duration: 0, offset: -32, align: 'top'})
+      this.setState({isVisible: true})
+    }, 800)
+
   }
 
   scrollComplete = () => console.log('scroll complete!!')
@@ -123,7 +131,10 @@ class Desktop extends Component {
             marginTop: '3rem',
             float: 'left',
             width: 'calc(100% - 18rem)',
-            marginLeft: '18rem'
+            marginLeft: '18rem',
+            transition: 'opacity 800ms ease-out, transform 600ms ease-out, 600ms filter ease-out',
+            transform: this.state.isVisible ? 'translate3d(0,0,0)' : 'translate3d(0,-40px,0)',
+            opacity: this.state.isVisible ? 1 : 0
           }}>
             <Header
               name={biography.name}

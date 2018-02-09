@@ -40,21 +40,21 @@ const Model = ({portfolios, videos, instagram, biography, image}) => {
     }
   })
 
-  if (videos.length > 0) {
+  if (videos && videos.length > 0) {
     const starting = sections[sections.length - 1].count + viewIndexes[viewIndexes.length - 1]
     viewIndexes.push(starting)
     sections.push({title: 'Videos', count: videos.length})
     videos.map((video, index) => { views.push({video})})
   }
 
-  if (instagram.length > 0) {
+  if (instagram && instagram.length > 0) {
     const starting = sections[sections.length - 1].count + viewIndexes[viewIndexes.length - 1]
     viewIndexes.push(starting)
     sections.push({title: 'Instagram', count: instagram.length})
     instagram.map(photo => views.push({ instagram: { src: photo.node.media }}))
   }
 
-  if (biography.length > 0) {
+  if (biography && biography.length > 0) {
     const starting = sections[sections.length - 1].count + viewIndexes[viewIndexes.length - 1]
     viewIndexes.push(starting)
     sections.push({title: 'Biography', count: 1})
