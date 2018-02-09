@@ -5,7 +5,7 @@ title: Adir Abergel
 path: "/artist/adir-abergel"
 type: hair
 order: '1'
-cover: /img/AAL_HEADER_02.jpg
+cover: /img/2015-05_MRK_INTERVIEW_06.jpg
 enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: hairbyadir
 portfolios:
@@ -196,7 +196,7 @@ portfolios:
 videos:
   - title: 'Chanel: Gabrielle featuring Kristen Stewart'
     url: 'https://vimeo.com/231705685'
-image: /img/2017-01_AAL_HEADSHOT_11.jpg
+portrait: /img/2017-01_AAL_HEADSHOT_11.jpg
 ---
 A visual artist first and foremost, Adir Abergel fuses the boundaries between fashion, art and celebrity in a way that few Hollywood hairstylists have managed to do. Using hair as his principal medium, Adir challenges red carpet conventions to exquisite effect, integrating beauty and originality into a single expression. He is the creative force behind some of the most memorable moments in celebrity hairstyling, and has been instrumental in constructing the distinctive styles of such influential talent as Rooney Mara, Kristen Stewart, Marion Cotillard, Gwyneth Paltrow, Kirsten Dunst, Anne Hathaway and Reese Witherspoon.
 

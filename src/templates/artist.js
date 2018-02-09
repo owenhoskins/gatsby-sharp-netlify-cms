@@ -13,7 +13,7 @@ export default function Template({ data }) {
     frontmatter: {
       portfolios = [],
       videos = [],
-      image,
+      portrait,
       instagram_handle,
       type,
       title,
@@ -34,7 +34,7 @@ export default function Template({ data }) {
           videos={videos}
           instagram={insta}
           biography={biography}
-          image={image}
+          portrait={portrait}
         />
       </Responsive>
       <Responsive minWidth={`48em`}>
@@ -47,7 +47,7 @@ export default function Template({ data }) {
             videos={videos}
             instagram={insta}
             biography={biography}
-            image={image}
+            portrait={portrait}
             instagram_handle={instagram_handle}
             enquire={enquire}
           />
@@ -101,7 +101,7 @@ export const pageQuery = graphql`
           title
           url
         }
-        image {
+        portrait {
           childImageSharp {
             resolutions(width: 400) {
               ...GatsbyImageSharpResolutions

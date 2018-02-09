@@ -103,7 +103,7 @@ const noscriptImg = props => {
 }
 
 const Img = props => {
-  const { opacity, onLoad, transitionDelay = ``, ...otherProps } = props
+  const { objectFit, opacity, onLoad, transitionDelay = ``, ...otherProps } = props
   return (
     <img
       {...otherProps}
@@ -117,7 +117,7 @@ const Img = props => {
         opacity,
         width: `100%`,
         height: `100%`,
-        objectFit: `contain`,
+        objectFit: objectFit ? objectFit : `contain`,
         objectPosition: `top center`,
       }}
     />
@@ -189,7 +189,10 @@ class Image extends React.Component {
       sizes,
       resolutions,
       backgroundColor,
+      objectFit,
+      customAspect
     } = convertProps(this.props)
+
 
     let bgColor
     if (typeof backgroundColor === `boolean`) {
@@ -207,6 +210,10 @@ class Image extends React.Component {
         image.srcSet = image.srcSetWebp
       }
 
+      const defaultAspect = {
+        width: `100%`,
+        paddingBottom: `${100 / image.aspectRatio}%`,
+      }
       // The outer div is necessary to reset the z-index to 0.
       return (
         <div
@@ -231,9 +238,8 @@ class Image extends React.Component {
           >
             {/* Preserve the aspect ratio. */}
             <div
-              style={{
-                width: `100%`,
-                paddingBottom: `${100 / image.aspectRatio}%`,
+              css={{
+                ...(customAspect ? customAspect : defaultAspect)
               }}
             />
 
@@ -284,6 +290,7 @@ class Image extends React.Component {
                 srcSet={image.srcSet}
                 src={image.src}
                 sizes={image.sizes}
+                objectFit={objectFit}
                 opacity={
                   this.state.imgLoaded || this.props.fadeIn === false ? 1 : 0
                 }

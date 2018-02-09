@@ -5,6 +5,7 @@ title: Mara Roszak
 path: "/artist/mara-roszak"
 type: hair
 order: '2'
+cover: /img/2015-05_MRK_INTERVIEW_06.jpg
 enquire: 'alexandra.feldman@starworksgroup.com'
 instagram_handle: mararoszak
 portfolios:
@@ -177,7 +178,7 @@ portfolios:
       - image: /img/42_MRK_KYB_02.jpg
       - image: /img/43_MRK_RC_34.jpg
     title: 'Red Carpet'
-image: /img/2015-05_MRK_INTERVIEW_06.jpg
+portrait: /img/2015-05_MRK_INTERVIEW_06.jpg
 ---
 Growing up in the Laurel Canyon area of Los Angeles, Mara Roszak was exposed to a broad range of aesthetics. Mara's mother was a sculptor and encouraged her to explore all forms of visual art. At the young age of 15, Mara undertook her hairstyling education, and within two years she was working with some of the most celebrated talent in the entertainment industry. The expansion of her career into the editorial and advertising arena soon followed.
 

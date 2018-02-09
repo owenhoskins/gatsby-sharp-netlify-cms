@@ -5,6 +5,8 @@ import slug from 'slug'
 
 import { Baseline } from '../components/Layout'
 
+//import Scroll from '../components/Scroll'
+
 import './index.css'
 
 import { window } from 'global'
@@ -24,7 +26,7 @@ const handleClickAdmin = () => {
 
 const TemplateWrapper = ({
   children,
-  data: { pages, photos },
+  // data: { pages, photos },
   ...props
 }) => (
   <div>

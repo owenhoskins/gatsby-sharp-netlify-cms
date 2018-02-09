@@ -2,14 +2,16 @@ import React from 'react'
 import Headroom from 'react-headroom'
 import { Headline, Subline } from '../Styled'
 
-const Header = ({ name, instagram, enquire }) => (
+const Header = ({ name, instagram, enquire, isCover }) => (
     <Headroom disableInlineStyles>
       <Headline
         style={{
           display: 'inline-block',
+          opacity: isCover ? 0 : 1,
         }}>
-        {name}</Headline>
-      <div css={{float: 'right'}}>
+        {name}
+      </Headline>
+      <div css={{ float: 'right', opacity: isCover ? 0 : 1, }}>
         <Subline
           style={{
             display: 'inline-block',
@@ -28,7 +30,7 @@ const Header = ({ name, instagram, enquire }) => (
           <a href={`mailto:${enquire}`}>
             {`Email Agent`}
           </a>
-          </Subline>
+        </Subline>
       </div>
   </Headroom>
 )

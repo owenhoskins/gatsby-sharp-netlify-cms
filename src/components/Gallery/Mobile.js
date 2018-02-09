@@ -6,7 +6,7 @@ import { Tabs, Tab } from '../UI'
 import Img from '../Image'
 import Video from '../Video'
 
-const Model = ({portfolios, videos, instagram, biography, image}) => {
+const Model = ({portfolios, videos, instagram, biography, portrait}) => {
 
   const views = []
   const viewIndexes = []
@@ -59,8 +59,8 @@ const Model = ({portfolios, videos, instagram, biography, image}) => {
     viewIndexes.push(starting)
     sections.push({title: 'Biography', count: 1})
 
-    if (image && image.childImageSharp) {
-      const { childImageSharp: { sizes }} = image
+    if (portrait && portrait.childImageSharp) {
+      const { childImageSharp: { sizes }} = portrait
       views.push({ biography: { text: biography, image: sizes } })
     }
 

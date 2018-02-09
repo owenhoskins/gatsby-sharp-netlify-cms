@@ -33,9 +33,12 @@ exports.onCreateNode = ({
   const { frontmatter } = node
   if (frontmatter) {
     const adjust = adjustImagePath(node.fileAbsolutePath)
-    const { image } = frontmatter
-    if (image) {
-      node.frontmatter.image = adjust(image)
+    const { portrait, cover } = frontmatter
+    if (portrait) {
+      node.frontmatter.portrait = adjust(portrait)
+    }
+    if (cover) {
+      node.frontmatter.cover = adjust(cover)
     }
     const { images } = frontmatter
     if (images) {

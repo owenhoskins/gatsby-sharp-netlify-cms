@@ -4,6 +4,7 @@ import Item from './Item'
 import Toggle from './Toggle'
 
 const Menu = ({
+  isCover,
   type,
   sections,
   scrollToSection,
@@ -12,7 +13,8 @@ const Menu = ({
   return (
     <div
       css={{
-        position: 'fixed'
+        position: 'fixed',
+        zIndex: 2000
       }}
     >
 
@@ -39,7 +41,10 @@ const Menu = ({
               onClick={() => scrollToSection(i, section.key)}
               css={{
                 cursor: 'pointer',
-                marginBottom: '2rem'
+                marginBottom: '2rem',
+                transition: 'opacity 800ms ease-out, transform 600ms ease-out, 600ms filter ease-out',
+                transform: !isCover ? 'translate3d(0,0,0)' : 'translate3d(0,-40px,0)',
+                opacity: !isCover ? 1 : 0
               }}
             >
               <Item

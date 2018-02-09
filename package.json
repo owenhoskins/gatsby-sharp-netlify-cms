@@ -24,6 +24,7 @@
     "mousetrap": "^1.6.0",
     "netlify-cms": "owenhoskins/netlify-cms#owenhoskins-image-preview",
     "prop-types": "^15.5.8",
+    "react-event-listener": "^0.5.3",
     "react-headroom": "^2.2.2",
     "react-helmet": "^5.2.0",
     "react-images": "^0.5.14",
