@@ -31,5 +31,8 @@ export default function (ref, options, callback) {
   };
   var element = ReactDOM.findDOMNode(ref);
   if (element === null) return 0;
-  return scroll.top(page, calculateScrollOffset(element, options.offset, options.align), options, callback);
+
+  return page.scrollTop = calculateScrollOffset(element, options.offset, options.align)
+
+  //return scroll.top(page, calculateScrollOffset(element, options.offset, options.align), options, callback);
 };
