@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Img from '../Image'
-import { Title } from '../Styled'
+import { HeaderXL } from '../Styled'
 
 const Cover = ({
   cover,
@@ -13,7 +13,7 @@ const Cover = ({
     const { aspectRatio, src, srcSet } = sizes
     return (
       <div>
-        <Title
+        <HeaderXL
           onClick={onClick}
           style={{
             position: 'fixed',
@@ -26,7 +26,7 @@ const Cover = ({
             pointerEvents: isCover ? 'auto' : 'none',
             transition: '1s opacity ease-in-out'
           }}
-        >{name}</Title>
+        >{name}</HeaderXL>
         <div
           css={{
             position: 'fixed',

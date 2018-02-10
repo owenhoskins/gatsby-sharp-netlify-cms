@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Lightbox from 'react-images'
 import Waypoint from 'react-waypoint'
 import EventListener, { withOptions } from 'react-event-listener'
+import Gallery from './'
 
 import ScrollTo from '../ScrollTo'
 import { Grid, Row, Col } from '../Grid'
@@ -11,6 +12,30 @@ import Video from '../Video'
 import Menu from '../Menu'
 import Header from '../Header'
 import Cover from '../Cover'
+
+import { HeaderLG, HeaderSM } from '../Styled'
+
+const renderImage = (props) => {
+  const {
+    photo: { width, height, originalSizes },
+    margin,
+    onClick,
+  } = props
+  return (
+    <div
+      style={{
+        width,
+        height,
+        float: 'left',
+        margin,
+        cursor: 'pointer'
+      }}
+      onClick={(evt) => onClick(evt, props)}
+    >
+      <Img sizes={originalSizes} />
+    </div>
+  )
+}
 
 const Model = ({
   cover,
@@ -22,6 +47,7 @@ const Model = ({
   title,
   type,
   instagram_handle,
+  follows,
   enquire
 }) => {
 
@@ -58,7 +84,8 @@ const Model = ({
         text: biography,
         portrait: portrait,
         enquire: enquire,
-        instagram: instagram_handle
+        instagram: instagram_handle,
+        follows: follows
       }}
     />
   )
@@ -88,6 +115,7 @@ class Desktop extends Component {
 
 */
   openLightbox = (event, obj) => {
+    // console.log('openLightbox: ', obj)
     this.setState({
       currentImage: obj.index,
       lightboxIsOpen: true,
@@ -118,7 +146,7 @@ class Desktop extends Component {
   scrollToSection = (i, key) => {
     this.setState({isVisible: false})
     setTimeout(()=> {
-      ScrollTo(this[key], {duration: 0, offset: -52, align: 'top'})
+      ScrollTo(this[key], {duration: 0, offset: 0, align: 'top'})
       this.setState({isVisible: true})
     }, 800)
 
@@ -200,6 +228,7 @@ class Desktop extends Component {
               {
                 portfolios && portfolios.map((portfolio, index) => {
                   const refKey = sections[index].key
+                  const photos = []
                   return (
                     <Waypoint
                       onEnter={() => this.handleSectionEnter(refKey)}
@@ -208,14 +237,34 @@ class Desktop extends Component {
                     >
                       <div
                         css={{
-                          marginTop: '10rem',
-                          marginBottom: '10rem',
+                          paddingTop: '5rem',
+                          paddingBottom: '10rem',
                           textAlign: 'center'
                         }}
                       >
+                        <div css={{margin: '5rem 0 5rem'}}>
+                          <HeaderLG>
+                            {sections[index].title}
+                          </HeaderLG>
+                        </div>
                       {
                         portfolio.gallery && portfolio.gallery.map(({image}, index) => {
-                        if (image && image.childImageSharp) {
+                          const { childImageSharp: { sizes }} = image
+                          const { aspectRatio, src, srcSet } = sizes
+                          sizes.sizes = '500px'
+                          images.push({src, srcSet: srcSet.split(',')})
+                          photos.push({
+                            width: aspectRatio,
+                            height: 1,
+                            src,
+                            srcSet: srcSet.split(","),
+                            sizes: [sizes.sizes],
+                            originalSizes: sizes,
+                            imageIndex: images.length - 1
+                          })
+                        })
+
+                        /*if (image && image.childImageSharp) {
                           const { childImageSharp: { sizes }} = image
                           const { aspectRatio, src, srcSet } = sizes
 
@@ -242,10 +291,15 @@ class Desktop extends Component {
                                 sizes={sizes}
                               />
                             </div>
-                            )
-                          }
-                        })
+                            )*/
                       }
+                      <Gallery
+                        margin={16}
+                        columns={4}
+                        ImageComponent={renderImage}
+                        photos={photos}
+                        onClick={this.openLightbox}
+                      />
                       </div>
                     </Waypoint>
                   )
@@ -260,10 +314,16 @@ class Desktop extends Component {
                   >
                     <div
                       css={{
-                        marginBottom: '20rem',
+                        paddingTop: '5rem',
+                        paddingBottom: '10rem',
                         textAlign: 'center'
                       }}
                     >
+                    <div css={{margin: '5rem 0 5rem'}}>
+                      <HeaderLG>
+                        {`Videos`}
+                      </HeaderLG>
+                    </div>
                     {
                       videos.map((video, index) =>
                         <Video
@@ -285,10 +345,19 @@ class Desktop extends Component {
                   >
                     <div
                       css={{
-                        marginBottom: '20rem',
+                        paddingTop: '5rem',
+                        paddingBottom: '10rem',
                         textAlign: 'center'
                       }}
                     >
+                    <div css={{margin: '5rem 0 5rem'}}>
+                      <HeaderLG>
+                        {`@${biography.instagram}`}
+                      </HeaderLG>
+                      <HeaderSM>
+                        {`${biography.follows} following`}
+                      </HeaderSM>
+                    </div>
                     {
                       //     instagram.map(photo => views.push({ instagram: { src: photo.node.media }}))
 
@@ -299,16 +368,24 @@ class Desktop extends Component {
                             position: 'relative',
                             display: 'inline-block',
                             minWidth: 'auto',
-                            margin: '0 15px 30px'
+                            margin: '0 5px 5px',
+                            width: '256px',
+                            textAlign: 'center',
+                            fontSize: 0,
+                            //border: '1px solid rgba(238, 238, 238, 0.2)'
                           }}
                         >
-                          <img
+                          <Img
                             style={{
-                              width: 'auto',
-                              height: '256px'
+                              width: '256px',
+                              height: '256px',
+                              marginBottom: 0
                             }}
-                            src={photo.node.media}
-                            //sizes={{ src: photo.node.media }}
+                            // src={photo.node.media}
+                            customAspect={{ height: '256px' }}
+                            objectPosition={'center center'}
+                            objectFit={'cover'}
+                            sizes={{ src: photo.node.media }}
                           />
                         </div>
                       )

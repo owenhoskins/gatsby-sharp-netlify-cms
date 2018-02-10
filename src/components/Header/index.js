@@ -1,18 +1,18 @@
 import React from 'react'
 import Headroom from 'react-headroom'
-import { Headline, Subline } from '../Styled'
+import { HeaderMD, HeaderSM } from '../Styled'
 
 const Header = ({ name, instagram, enquire, isCover }) => (
     <Headroom disableInlineStyles>
-      <Headline
+      <HeaderMD
         style={{
           display: 'inline-block',
           opacity: isCover ? 0 : 1,
         }}>
         {name}
-      </Headline>
+      </HeaderMD>
       <div css={{ float: 'right', opacity: isCover ? 0 : 1, }}>
-        <Subline
+        <HeaderSM
           style={{
             display: 'inline-block',
             marginRight: '3rem'
@@ -21,8 +21,8 @@ const Header = ({ name, instagram, enquire, isCover }) => (
           <a href={`https://instagram.com/${instagram}`} target='_blank'>
             {`Instagram`}
           </a>
-        </Subline>
-        <Subline
+        </HeaderSM>
+        <HeaderSM
           style={{
             display: 'inline-block'
           }}
@@ -30,7 +30,7 @@ const Header = ({ name, instagram, enquire, isCover }) => (
           <a href={`mailto:${enquire}`}>
             {`Email Agent`}
           </a>
-        </Subline>
+        </HeaderSM>
       </div>
   </Headroom>
 )

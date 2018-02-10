@@ -1,99 +1,84 @@
-import React from 'react'
-import Gallery from 'react-photo-gallery'
-import Lightbox from 'react-images'
-import Measure from 'react-measure'
-import { window } from 'global'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ESC_KEY = 27
+import Photo, { photoPropType } from './Photo';
+import { computeSizes } from './utils';
 
-
-export default class PhotoGallery extends React.Component {
+class Gallery extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentImage: 0,
-      width: -1
+      containerWidth: 0,
     };
-    this.closeLightbox = this.closeLightbox.bind(this);
-    this.openLightbox = this.openLightbox.bind(this);
-    this.gotoNext = this.gotoNext.bind(this);
-    this.gotoPrevious = this.gotoPrevious.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
-
-  handleKeyDown = (evt) => {
-    if (evt.keyCode === ESC_KEY) {
-      if (this.state.lightboxIsOpen) {
-        this.closeLightbox()
-      }
+  componentDidMount() {
+    this.setState({ containerWidth: Math.floor(this._gallery.clientWidth) });
+    window.addEventListener('resize', this.handleResize);
+  }
+  componentDidUpdate() {
+    if (this._gallery.clientWidth !== this.state.containerWidth) {
+      this.setState({ containerWidth: Math.floor(this._gallery.clientWidth) });
     }
   }
-
-  componentWillMount() {
-    if (typeof window !== 'undefined') {
-      window.document.addEventListener('keydown', this.handleKeyDown)
-    }
-  }
-
   componentWillUnmount() {
-    if (typeof window !== 'undefined') {
-      window.document.removeEventListener('keydown', this.handleKeyDown)
-    }
+    window.removeEventListener('resize', this.handleResize, false);
+  }
+  handleResize(e) {
+    this.setState({ containerWidth: Math.floor(this._gallery.clientWidth) });
+  }
+  handleClick(event, { index }) {
+    const { photos, onClick } = this.props;
+    //console.log('Gallery handleClick: ', photos[index].imageIndex,)
+    onClick(event, {
+      index: photos[index].imageIndex,
+      //index,
+      photo: photos[index],
+      previous: photos[index - 1] || null,
+      next: photos[index + 1] || null,
+    });
   }
 
-  openLightbox(event, obj) {
-    this.setState({
-      currentImage: obj.index,
-      lightboxIsOpen: true,
-    });
-  }
-  closeLightbox() {
-    this.setState({
-      currentImage: 0,
-      lightboxIsOpen: false,
-    });
-  }
-  gotoPrevious() {
-    this.setState({
-      currentImage: this.state.currentImage - 1,
-    });
-  }
-  gotoNext() {
-    this.setState({
-      currentImage: this.state.currentImage + 1,
-    });
-  }
   render() {
-    const { photos, renderImage } = this.props
-    const { width } = this.state
+    const { ImageComponent = Photo } = this.props;
+    // subtract 1 pixel because the browser may round up a pixel
+    const width = this.state.containerWidth - 1;
+    const { photos, columns, margin, onClick } = this.props;
+    const thumbs = computeSizes({ width, columns, margin, photos });
     return (
-      <div>
-        <Measure bounds onResize={
-          (contentRect) => this.setState({ width: contentRect.bounds.width })
-        }>
-          {
-            ({ measureRef }) =>
-              <div ref={measureRef} style={{ marginLeft: '250px' }}>
-                {width > 1 &&
-                <Gallery
-                  margin={15}
-                  columns={
-                    width < 500 ? 1 : width < 760 ? 2 : width < 1024 ? 3 : 4
-                  }
-                  ImageComponent={renderImage}
-                  photos={photos} onClick={this.openLightbox}
-                />
-                }
-              </div>
-          }
-        </Measure>
-        <Lightbox images={photos}
-          onClose={this.closeLightbox}
-          onClickPrev={this.gotoPrevious}
-          onClickNext={this.gotoNext}
-          currentImage={this.state.currentImage}
-          isOpen={this.state.lightboxIsOpen}
-        />
+      <div className="react-photo-gallery--gallery">
+        <div ref={c => (this._gallery = c)}>
+          {thumbs.map((photo, index) => {
+            const { width, height } = photo;
+            return (
+              <ImageComponent
+                key={photo.key || photo.src}
+                margin={margin}
+                index={index}
+                photo={photo}
+                onClick={onClick ? this.handleClick : null}
+              />
+            );
+          })}
+        </div>
+        <div style={{ content: '', display: 'table', clear: 'both' }} />
       </div>
-    )
+    );
   }
 }
+
+Gallery.propTypes = {
+  photos: PropTypes.arrayOf(photoPropType).isRequired,
+  onClick: PropTypes.func,
+  columns: PropTypes.number,
+  margin: PropTypes.number,
+  ImageComponent: PropTypes.func,
+};
+
+Gallery.defaultProps = {
+  columns: 3,
+  margin: 2,
+};
+
+export default Gallery;

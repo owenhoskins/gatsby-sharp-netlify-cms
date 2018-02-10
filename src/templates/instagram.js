@@ -33,6 +33,7 @@ export const pageQuery = graphql`
       id
       username
       media
+      follows
     }
   }
 `;

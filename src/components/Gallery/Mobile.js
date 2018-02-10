@@ -152,14 +152,13 @@ class MobileGallery extends Component {
           }
         </Tabs>
         <SwipeableViews
-          enableMouseEvents={true}
           index={viewIndex}
           onChangeIndex={this.handleChangeIndex}
           style={{
             padding: '0 2rem',
           }}
           slideStyle={{
-            padding: '0 0.3rem'
+            padding: '0 0.3rem',
           }}
         >
           {
@@ -167,12 +166,14 @@ class MobileGallery extends Component {
               if (view) {
                 const { image, video, instagram, biography } = view
                 if (image) {
+
                   return (
                     <Img
                       key={index}
                       style={{
-                        width: 'auto',
-                        height: '70vh'
+                        //width: 'auto',
+                        //height: '70vh'
+                        // 1.4925595238095237
                       }}
                       sizes={image}
                     />
@@ -180,6 +181,7 @@ class MobileGallery extends Component {
                 }
                 if (video) {
                   return <Video
+                    key={index}
                     url={video.url}
                     title={video.title}
                   />

@@ -22,6 +22,7 @@ export default function Template({ data }) {
   } = artist
   const { html: biography } = artist
   const { instagram: { edges: insta = [] } } = data
+  const { follows: { follows } } = data
 
   return (
     <section>
@@ -45,6 +46,7 @@ export default function Template({ data }) {
             portfolios={portfolios}
             videos={videos}
             instagram={insta}
+            follows={follows}
             biography={biography}
             portrait={portrait}
             instagram_handle={instagram_handle}
@@ -58,14 +60,15 @@ export default function Template({ data }) {
 
 export const pageQuery = graphql`
   query ArtistByPath($path: String!, $instagram_handle: String!) {
+    follows: instagramPhoto(username: {eq: $instagram_handle}) {
+      follows
+    }
     instagram: allInstagramPhoto(filter: {username: {eq: $instagram_handle}}) {
       edges {
         node {
           id
-          time
           media
-          text
-          username
+          follows
         }
       }
     }

@@ -103,7 +103,7 @@ const noscriptImg = props => {
 }
 
 const Img = props => {
-  const { style, objectFit, opacity, onLoad, transitionDelay = ``, ...otherProps } = props
+  const { style, objectFit, objectPosition, opacity, onLoad, transitionDelay = ``, ...otherProps } = props
   return (
     <img
       {...otherProps}
@@ -118,7 +118,7 @@ const Img = props => {
         width: `100%`,
         height: `100%`,
         objectFit: objectFit ? objectFit : `contain`,
-        objectPosition: `top center`,
+        objectPosition: objectPosition ? objectPosition : `top center`,
         ...style
       }}
     />
@@ -191,6 +191,7 @@ class Image extends React.Component {
       resolutions,
       backgroundColor,
       objectFit,
+      objectPosition,
       customAspect
     } = convertProps(this.props)
 
@@ -296,6 +297,7 @@ class Image extends React.Component {
                 src={image.src}
                 sizes={image.sizes}
                 objectFit={objectFit}
+                objectPosition={objectPosition}
                 opacity={
                   this.state.imgLoaded || this.props.fadeIn === false ? 1 : 0
                 }

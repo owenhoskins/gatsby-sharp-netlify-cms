@@ -71,12 +71,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             node {
               username
               id
-              code
-              time
-              type
-              text
               media
-              image
             }
           }
         }

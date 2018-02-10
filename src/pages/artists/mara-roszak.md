@@ -10,12 +10,12 @@ enquire: 'alexandra.feldman@starworksgroup.com'
 instagram_handle: mararoszak
 portfolios:
   - gallery:
+      - image: /img/06_2015-05_MRK_INTERVIEW_04.jpg
       - image: /img/01_2018-01_MRK_WMAGa_01.jpg
       - image: /img/02_2018-01_MRK_WMAGa_02.jpg
       - image: /img/03_2018-01_MRK_WMAGb_01.jpg
       - image: /img/04_2018-01_MRK_WMAGb_02.jpg
       - image: /img/05_2015-05_MRK_INTERVIEW_01.jpg
-      - image: /img/06_2015-05_MRK_INTERVIEW_04.jpg
       - image: /img/07_2015-05_MRK_INTERVIEW_12.jpg
       - image: /img/08_2015-05_MRK_INTERVIEW_06.jpg
       - image: /img/09_2017-01_MRK_RGN_WMAG_01.jpg
