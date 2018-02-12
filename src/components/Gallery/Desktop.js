@@ -264,19 +264,21 @@ class Desktop extends Component {
                         </div>
                       {
                         portfolio.gallery && portfolio.gallery.map(({image}, index) => {
-                          const { childImageSharp: { sizes }} = image
-                          const { aspectRatio, src, srcSet } = sizes
-                          sizes.sizes = '500px'
-                          images.push({src, srcSet: srcSet.split(',')})
-                          photos.push({
-                            width: aspectRatio,
-                            height: 1,
-                            src,
-                            srcSet: srcSet.split(","),
-                            sizes: [sizes.sizes],
-                            originalSizes: sizes,
-                            imageIndex: images.length - 1
-                          })
+                          if (image) {
+                            const { childImageSharp: { sizes }} = image
+                            const { aspectRatio, src, srcSet } = sizes
+                            sizes.sizes = '500px'
+                            images.push({src, srcSet: srcSet.split(',')})
+                            photos.push({
+                              width: aspectRatio,
+                              height: 1,
+                              src,
+                              srcSet: srcSet.split(","),
+                              sizes: [sizes.sizes],
+                              originalSizes: sizes,
+                              imageIndex: images.length - 1
+                            })
+                          }
                         })
 
                         /*if (image && image.childImageSharp) {

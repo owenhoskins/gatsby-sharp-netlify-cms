@@ -31,7 +31,7 @@ export default function Template({ data }) {
         <MobileGallery
           title={title}
           cover={cover}
-          portfolios={portfolios}
+          portfolios={portfolios || []}
           videos={videos}
           instagram={insta}
           biography={biography}
@@ -44,7 +44,7 @@ export default function Template({ data }) {
             title={title}
             cover={cover}
             type={type}
-            portfolios={portfolios}
+            portfolios={portfolios || []}
             videos={videos}
             instagram={insta}
             follows={follows}
