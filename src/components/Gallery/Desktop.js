@@ -10,7 +10,7 @@ import { Grid, Row, Col } from '../Grid'
 import Img from '../Image'
 import Video from '../Video'
 import Menu from '../Menu'
-import Header from '../Header'
+import { HeaderDesktop } from '../Header'
 import Cover from '../Cover'
 
 import { HeaderLG, HeaderSM } from '../Styled'
@@ -94,6 +94,7 @@ const Model = ({
 class Desktop extends Component {
 
   state = {
+    currentSection: 0,
     currentImage: 0,
     isVisible: false,
     isCover: true
@@ -144,27 +145,29 @@ class Desktop extends Component {
   }
 
   scrollToSection = (i, key) => {
+    const index = this.props.sections.findIndex(section => section.key === key)
     this.setState({isVisible: false})
     setTimeout(()=> {
       ScrollTo(this[key], {duration: 0, offset: 0, align: 'top'})
-      this.setState({isVisible: true})
+      setTimeout(()=> {
+        this.setState({isVisible: true, currentSection: index})
+      }, 200)
     }, 800)
-
   }
-
-  scrollComplete = () => console.log('scroll complete!!')
-
-/*
-  handleSectionEnter = (key) => {
-    // console.log('handleSectionEnter: ', key)
-    this.setState({currentSection: key})
-  }
-  */
 
   onPositionChange = ({currentPosition}, key) => {
-    //console.log('onPositionChange: ', currentPosition, key)
-    if (currentPosition === 'inside') {
-      this.setState({currentSection: key})
+    if (!this.state.isCover) {
+      console.log('onPositionChange: ', currentPosition, key)
+      const index = this.props.sections.findIndex(section => section.key === key)
+      if (currentPosition === 'inside') {
+        this.setState({currentSection: index})
+      } else if (currentPosition === 'above') {
+        // if it is "above", the active section it is to the right
+        this.setState({currentSection: index + 1})
+      } else if (currentPosition === 'below') {
+        // if it is "below", the active section it is to the left
+        this.setState({currentSection: index - 1})
+      }
     }
   }
 
@@ -221,7 +224,7 @@ class Desktop extends Component {
             marginLeft: '18rem',
             pointerEvents: this.state.isCover ? 'none' : 'auto'
           }}>
-            <Header
+            <HeaderDesktop
               isCover={this.state.isCover}
               name={biography.name}
               instagram={biography.instagram}
@@ -244,11 +247,13 @@ class Desktop extends Component {
                       onPositionChange={(props) => this.onPositionChange(props, refKey) }
                       key={index}
                       ref={(section) => { this[refKey] = section; }}
+                      topOffset={-50}
+                      botttomOffset={-50}
                     >
                       <div
                         css={{
                           paddingTop: '5rem',
-                          paddingBottom: '10rem',
+                          marginBottom: '10rem',
                           textAlign: 'center'
                         }}
                       >
@@ -320,8 +325,9 @@ class Desktop extends Component {
                 videos && (
                   <Waypoint
                     ref={(section) => { this.Videos = section; }}
-                    //onEnter={() => this.handleSectionEnter(`Videos`)}
-                    onPositionChange={this.onPositionChange}
+                    topOffset={-50}
+                    botttomOffset={-50}
+                    onPositionChange={(props) => this.onPositionChange(props, `Videos`) }
                   >
                     <div
                       css={{
@@ -352,6 +358,8 @@ class Desktop extends Component {
                 instagram && (
                   <Waypoint
                     ref={(section) => { this.Instagram = section; }}
+                    topOffset={-50}
+                    botttomOffset={-50}
                     //onEnter={() => this.handleSectionEnter(`Instagram`)}
                     onPositionChange={(props) => this.onPositionChange(props, `Instagram`) }
                   >
@@ -410,6 +418,8 @@ class Desktop extends Component {
                 biography && (
                   <Waypoint
                     ref={(section) => { this.Biography = section; }}
+                    topOffset={-50}
+                    botttomOffset={-50}
                     //onEnter={() => this.handleSectionEnter(`Biography`)}
                     onPositionChange={(props) => this.onPositionChange(props, `Biography`) }
                   >

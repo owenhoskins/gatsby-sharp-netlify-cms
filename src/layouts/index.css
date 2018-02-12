@@ -14,6 +14,14 @@ body {
   margin: 0;
 }
 
+.overflow-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+.overflow-touch::-webkit-scrollbar {
+  display: none;
+}
+
 .show-grid:before {
   position: fixed;
   bottom: 0;

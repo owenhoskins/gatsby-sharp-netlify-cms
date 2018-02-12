@@ -24,7 +24,8 @@ const Cover = ({
             cursor: 'pointer',
             opacity: isCover ? 1 : 0,
             pointerEvents: isCover ? 'auto' : 'none',
-            transition: '1s opacity ease-in-out'
+            transition: '1s opacity ease-in-out',
+            textAlign: 'center'
           }}
         >{name}</HeaderXL>
         <div

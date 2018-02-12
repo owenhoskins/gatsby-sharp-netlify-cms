@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import Waypoint from 'react-waypoint'
 
+import Cover from '../Cover'
 import ScrollHorizontal from '../ScrollHorizontal'
-
+import { HeaderMobile } from '../Header'
 import { Tabs, Tab } from '../UI'
-import Img from '../Image'
-import Video from '../Video'
-import { Headline } from '../Styled'
+
+import {
+  Portfolios,
+  Videos,
+  Instagram,
+  Biography
+} from '../Sections/Mobile'
 
 const Model = ({
   cover,
@@ -68,19 +73,20 @@ const Model = ({
 class MobileGallery extends Component {
   state = {
     tabIndex: 0,
-    isVisible: true
+    isVisible: false,
+    isCover: true
   }
 
-  scrollToSection = (sectionKey) => {
+  scrollToSection = (tabIndex, sectionKey) => {
+    console.log('scrollToSection: ', tabIndex, sectionKey)
     this.setState({isVisible: false})
     setTimeout(()=> {
-      ScrollHorizontal(this[sectionKey], {duration: 0, offset: -20, align: 'top'})
-      this.setState({isVisible: true})
+      ScrollHorizontal(this[sectionKey], {duration: 0, offset: -16, align: 'top'})
+      setTimeout(() => this.setState({tabIndex: tabIndex, isVisible: true}), 200)
     }, 1000)
   }
 
-  handleChangeTabIndex = tabIndex => {
-    //page.scrollLeft = tabIndex * 10000
+  handleChangeTabIndex = (tabIndex) => {
     console.log('tabIndex: ', tabIndex)
     this.setState({
       tabIndex: tabIndex
@@ -88,19 +94,27 @@ class MobileGallery extends Component {
   }
 
   onPositionChange = ({currentPosition}, key) => {
-    console.log('onPositionChange: ', currentPosition, key)
-    const index = this.props.sections.findIndex(section => section.key === key)
-    // var obj = objArray.find(function (obj) { return obj.id === 3; });
-    if (currentPosition === 'inside') {
-      this.setState({tabIndex: index})
+    if (!this.state.isCover) {
+      console.log('onPositionChange: ', currentPosition, key)
+      const index = this.props.sections.findIndex(section => section.key === key)
+      // var obj = objArray.find(function (obj) { return obj.id === 3; });
+      if (currentPosition === 'inside') {
+        this.setState({tabIndex: index})
+      } else if (currentPosition === 'above') {
+        // if it is "above", the active section it is to the right
+        this.setState({tabIndex: index + 1})
+      } else if (currentPosition === 'below') {
+        // if it is "below", the active section it is to the left
+        this.setState({tabIndex: index - 1})
+      }
     }
   }
 
-  handleSectionEnter = (obj, key) => {
-    const index = this.props.sections.findIndex(section => section.key === key)
-    console.log('handleSectionEnter: ', obj, key)
-    this.setState({tabIndex: index})
+  gotoPortfolios = () => {
+    this.setState({isVisible: !this.state.isVisible, isCover: !this.state.isCover})
   }
+
+  returnRef = (ref, refKey) => this[refKey] = ref
 
   render() {
     const { tabIndex } = this.state;
@@ -108,170 +122,90 @@ class MobileGallery extends Component {
 
     return (
       <div>
-        <Headline
-          style={{
-            position: 'fixed',
-            top: '2rem',
-            left: '2.3rem'
-          }}
-        >
-          {biography.name}
-        </Headline>
+        <Cover
+          name={biography.name}
+          cover={cover}
+          isCover={this.state.isCover}
+          onClick={this.gotoPortfolios}
+        />
+
+        <HeaderMobile
+          isCover={this.state.isCover}
+          biography={biography}
+        />
+
         <div
           css={{
             position: 'fixed',
-            top: '4rem',
+            top: '5rem',
             left: 0,
+            transition: 'opacity 1000ms ease-out',
+            opacity: !this.state.isCover ? 1 : 0,
+            transform: !this.state.isCover ? 'translate3d(0,0,0)' : 'translate3d(20px,0,0)',
+            transition: 'opacity 1000ms ease-out, transform 800ms ease-out, 800ms filter ease-out',
           }}
         >
-          <Tabs
-            scrollToSection={this.scrollToSection}
-            tabIndex={tabIndex}
-            onChangeTabIndex={this.handleChangeTabIndex}
-            sections={sections}
-          />
+        {
+          sections && (
+            <Tabs
+              scrollToSection={this.scrollToSection}
+              tabIndex={tabIndex}
+              onChangeTabIndex={this.handleChangeTabIndex}
+              sections={sections}
+              style={{
+                transition: 'opacity 1000ms ease-out',
+                opacity: !this.state.isCover ? 1 : 0
+              }}
+            />
+          )
+        }
         </div>
+
+
+
         <div
+          className={'overflow-touch'}
           css={{
-            marginTop: `10rem`,
+            marginTop: `11rem`,
             height: `26rem`,
-            display: `inline-flex`,
+            //display: `inline-flex`,
+            display: 'flex',
+            overflowX: 'auto',
             transition: 'opacity 1000ms ease-out, transform 800ms ease-out, 800ms filter ease-out',
             transform: this.state.isVisible ? 'translate3d(0,0,0)' : 'translate3d(20px,0,0)',
-            opacity: this.state.isVisible ? 1 : 0
+            opacity: this.state.isVisible ? 1 : 0,
           }}
         >
           {
-            portfolios && portfolios.map((portfolio, index) => {
-            const refKey = sections[index].key
-            //const refKey = portfolio.title.replace(/ /g, '')
-              return (
-                <Waypoint
-                  horizontal={true}
-                  onEnter={(props) => this.handleSectionEnter(props, refKey)}
-                  onPositionChange={(props) => this.onPositionChange(props, refKey) }
-                  key={index}
-                  ref={(section) => { this[refKey] = section; }}
-                >
-                  <div css={{display: 'inherit'}}>
-                  {
-                    portfolio.gallery && portfolio.gallery.map(({image}, index) => {
-                      const { childImageSharp: { sizes }} = image
-                      const { aspectRatio, src, srcSet } = sizes
-                      sizes.sizes = '500px'
-                      return (
-                        <Img
-                          key={index}
-                          outerCss={{
-                            width: 400 * aspectRatio + 'px',
-                            display: 'block',
-                            float: 'left',
-                            margin: '16px'
-                          }}
-                          sizes={sizes}
-                        />
-                      )
-                    })
-                  }
-                </div>
-              </Waypoint>
-              )
-            })
+            portfolios && (
+              <Portfolios
+                sections={sections}
+                portfolios={portfolios}
+                returnRef={this.returnRef}
+                onPositionChange={this.onPositionChange}
+              />
+            )
           }
           {
-            // VIDEOS
-            videos && (
-              <Waypoint
-                horizontal={true}
-                ref={(section) => { this.Videos = section; }}
-                onEnter={(props) => this.handleSectionEnter(props, `Videos`)}
-                onPositionChange={(props) => this.onPositionChange(props, `Videos`) }
-              >
-                <div css={{display: 'inherit'}}>
-                {
-                  videos.map((video, index) =>
-                    <Video
-                      key={index}
-                      url={video.url}
-                      title={video.title}
-                    />
-                  )
-                }
-                </div>
-              </Waypoint>
-            )
+            videos && <Videos
+              videos={videos}
+              returnRef={this.returnRef}
+              onPositionChange={this.onPositionChange}
+            />
           }
-          { // INSTAGRAM
-            instagram && (
-              <Waypoint
-                horizontal={true}
-                ref={(section) => { this.Instagram = section; }}
-                onEnter={(props) => this.handleSectionEnter(props, `Instagram`)}
-                onPositionChange={(props) => this.onPositionChange(props, `Instagram`) }
-              >
-                <div css={{display: 'inherit'}}>
-                {
-                  instagram.map((photo, index) =>
-                    <div
-                      key={index}
-                      css={{
-                        position: 'relative',
-                        display: 'inline-block',
-                        minWidth: 'auto',
-                        margin: '0 5px 5px',
-                        width: window && window.innerWidth,
-                        textAlign: 'center',
-                        fontSize: 0,
-                      }}
-                    >
-                      <Img
-                        style={{
-                          width: window && window.innerWidth,
-                          height: window && window.innerWidth,
-                          marginBottom: 0
-                        }}
-                        customAspect={{ height: window && window.innerWidth }}
-                        objectPosition={'center center'}
-                        objectFit={'cover'}
-                        sizes={{ src: photo.node.media }}
-                      />
-                    </div>
-                  )
-                }
-                </div>
-              </Waypoint>
-            )
+          {
+            instagram && <Instagram
+              instagram={instagram}
+              returnRef={this.returnRef}
+              onPositionChange={this.onPositionChange}
+            />
           }
-          { // BIOGRAPHY
-            biography && (
-              <Waypoint
-                horizontal={true}
-                ref={(section) => { this.Biography = section; }}
-                onEnter={(props) => this.handleSectionEnter(props, `Biography`)}
-                onPositionChange={(props) => this.onPositionChange(props, `Biography`) }
-              >
-                <div css={{display: 'inherit'}}>
-                {
-                  biography.portrait && (
-                    <Img
-                      style={{
-                        width: window && window.innerWidth * ( biography.portrait.childImageSharp.resolutions.width / biography.portrait.childImageSharp.resolutions.height ) + 'px',
-                        height: window && window.innerWidth
-                      }}
-                      resolutions={biography.portrait.childImageSharp.resolutions}
-                    />
-                  )
-                }
-                <div
-                  css={{
-                    //columnWidth: window && window.innerWidth,
-                    //columnCount: 3
-                  }}
-                  dangerouslySetInnerHTML={{ __html: biography.text }}
-                />
-              </div>
-            </Waypoint>
-            )
+          {
+            biography && <Biography
+              biography={biography}
+              returnRef={this.returnRef}
+              onPositionChange={this.onPositionChange}
+            />
           }
         </div>
       </div>

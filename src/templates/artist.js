@@ -30,6 +30,7 @@ export default function Template({ data }) {
       <Responsive maxWidth={`48em`}>
         <MobileGallery
           title={title}
+          cover={cover}
           portfolios={portfolios}
           videos={videos}
           instagram={insta}

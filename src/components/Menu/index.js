@@ -68,7 +68,8 @@ export default class Menu extends Component {
                 <Item
                   isVisible={this.state.isVisible}
                   title={section.title}
-                  active={currentSection === section.key}
+                  //active={currentSection === section.key}
+                  active={currentSection === i}
                 />
               </li>
             })
