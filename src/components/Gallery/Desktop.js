@@ -154,9 +154,18 @@ class Desktop extends Component {
 
   scrollComplete = () => console.log('scroll complete!!')
 
+/*
   handleSectionEnter = (key) => {
     // console.log('handleSectionEnter: ', key)
     this.setState({currentSection: key})
+  }
+  */
+
+  onPositionChange = ({currentPosition}, key) => {
+    //console.log('onPositionChange: ', currentPosition, key)
+    if (currentPosition === 'inside') {
+      this.setState({currentSection: key})
+    }
   }
 
   gotoPortfolios = () => {
@@ -231,7 +240,8 @@ class Desktop extends Component {
                   const photos = []
                   return (
                     <Waypoint
-                      onEnter={() => this.handleSectionEnter(refKey)}
+                      //onEnter={() => this.handleSectionEnter(refKey)}
+                      onPositionChange={(props) => this.onPositionChange(props, refKey) }
                       key={index}
                       ref={(section) => { this[refKey] = section; }}
                     >
@@ -310,7 +320,8 @@ class Desktop extends Component {
                 videos && (
                   <Waypoint
                     ref={(section) => { this.Videos = section; }}
-                    onEnter={() => this.handleSectionEnter(`Videos`)}
+                    //onEnter={() => this.handleSectionEnter(`Videos`)}
+                    onPositionChange={this.onPositionChange}
                   >
                     <div
                       css={{
@@ -341,7 +352,8 @@ class Desktop extends Component {
                 instagram && (
                   <Waypoint
                     ref={(section) => { this.Instagram = section; }}
-                    onEnter={() => this.handleSectionEnter(`Instagram`)}
+                    //onEnter={() => this.handleSectionEnter(`Instagram`)}
+                    onPositionChange={(props) => this.onPositionChange(props, `Instagram`) }
                   >
                     <div
                       css={{
@@ -398,7 +410,8 @@ class Desktop extends Component {
                 biography && (
                   <Waypoint
                     ref={(section) => { this.Biography = section; }}
-                    onEnter={() => this.handleSectionEnter(`Biography`)}
+                    //onEnter={() => this.handleSectionEnter(`Biography`)}
+                    onPositionChange={(props) => this.onPositionChange(props, `Biography`) }
                   >
                     <div>
                       <Grid fluid>

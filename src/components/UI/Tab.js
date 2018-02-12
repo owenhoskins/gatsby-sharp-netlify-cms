@@ -10,7 +10,7 @@ const Tab = ({ label, active }) => (
       letterSpacing: '3px',
       textTransform: 'lowercase',
       whiteSpace: 'nowrap',
-      marginBottom: '2.5rem',
+      marginBottom: '0',
       ...basekick({
         typeSizeModifier: 0.875,
         typeRowSpan: 3,

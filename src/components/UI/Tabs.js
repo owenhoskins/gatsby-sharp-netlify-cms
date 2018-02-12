@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import { InlineBlock } from 'glamor/jsxstyle'
 import SwipeableViews from 'react-swipeable-views'
 
+import Tab from './Tab'
+
 const Tabs = ({
-  children,
-  onChange,
+  sections,
   onChangeTabIndex,
   tabIndex,
-  viewIndexes
+  scrollToSection
 }) => {
 
-  const handleChange = (tabIndex, tabStartIndex) => {
+  const handleChange = (tabIndex, sectionKey) => {
     if (onChangeTabIndex) {
       onChangeTabIndex(tabIndex)
     }
-    if (onChange)
-      onChange(tabStartIndex)
+    if (scrollToSection) {
+      scrollToSection(sectionKey)
+    }
   };
 
   const handleChangeIndex = index => {
@@ -26,30 +28,36 @@ const Tabs = ({
 
   return (
     <SwipeableViews
+      hysteresis={0.2}
+      resistance={true}
       index={tabIndex}
       onChangeIndex={handleChangeIndex}
       style={{
-        padding: '0 60vw 0 0'
+        padding: '0 10rem 0 0',
+        width: window && window.innerWidth
       }}
       slideStyle={{
         padding: '0 0'
       }}
     >
-    {
-      children.map((child, tabIndex) => {
-        return (
-          <InlineBlock
-            key={tabIndex}
-            onClick={() => handleChange(tabIndex, viewIndexes[tabIndex])}
-            css={{
-              padding: '0 2.3rem',
-            }}
-          >
-            { child }
-          </InlineBlock>
-        )
-      })
-    }
+      {
+        sections.map((section, index) => {
+          return (
+            <InlineBlock
+              key={index}
+              onClick={() => handleChange(tabIndex, section.key)}
+              css={{
+                padding: '2rem 2.3rem',
+              }}
+            >
+              <Tab
+                label={section.title}
+                active={tabIndex === index}
+              />
+            </InlineBlock>
+          )
+        })
+      }
     </SwipeableViews>
   )
 }
