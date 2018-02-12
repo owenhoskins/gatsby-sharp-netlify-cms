@@ -1,7 +1,7 @@
 backend:
   name: git-gateway
   repo: owenhoskins/gatsby-sharp-netlify-cms
-  branch: master # Branch to update (optional; defaults to master)
+  branch: artist-theme # Branch to update (optional; defaults to master)
 
 media_folder: 'static/img' # this is where netlify cms places images.
 public_folder: '/img' # this is where gatsby places images
