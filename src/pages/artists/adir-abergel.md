@@ -2,7 +2,7 @@
 kind: artist
 templateKey: artist
 title: Adir Abergel
-path: "/artist/adir-abergel"
+path: '/artist/adir-abergel'
 type: hair
 order: '1'
 cover: /img/AAL_HEADER_02.jpg
@@ -105,7 +105,7 @@ portfolios:
       - image: /img/93_2008-04_AAL_MQH_JALOUSE_04.jpg
       - image: /img/94_2009-12_AAL_MCLAIRERU_01.jpg
       - image: /img/95_2014-05_AAL_MCLAIRE_07.jpg
-    title: 'Editorials'
+    title: 'Editorial'
   - gallery:
       - image: /img/01_2017-09_AAL_CHANEL_02.jpg
       - image: /img/02_2017-05_AAL_CHANEL_06.jpg
@@ -194,8 +194,24 @@ portfolios:
       - image: /img/52_AAL_RC_37.jpg
     title: 'Red Carpet'
 videos:
-  - title: 'Chanel: Gabrielle featuring Kristen Stewart'
-    url: 'https://vimeo.com/231705685'
+  - title: '2016 Cannes Festival: Kristen Stewart for Chanel'
+    url: '255787587'
+  - title: 'Boss by Hugo Boss featuring Sienna Miller'
+    url: '255787651'
+  - title: 'Capital One Featuring Jennifer Garner'
+    url: '255787648'
+  - title: 'ALICIA KEYS, “TEARS ALWAYS WIN”'
+    url: '255787627'
+  - title: 'Acuvue Ask Your Parents featuring Demi Lovato'
+    url: '255787595'
+  - title: 'ACUVUE®: #ACUVUE1DAY CONTEST FEATURING DEMI LOVATO'
+    url: '255787590'
+  - title: 'CANON: CANON POWERSHOT FEATURING MARIA SHARAPOVA'
+    url: '255787658'
+  - title: 'CAPITAL ONE VENTURE: BOOK THAT VACATION FEATURING JENNIFER GARNER'
+    url: '255787671'
+  - title: 'CAPITAL ONE VENTURE: DAD FEATURING JENNIFER GARNER'
+    url: '255787676'
 portrait: /img/adir-abergel-headshot.jpg
 ---
 A visual artist first and foremost, Adir Abergel fuses the boundaries between fashion, art and celebrity in a way that few Hollywood hairstylists have managed to do. Using hair as his principal medium, Adir challenges red carpet conventions to exquisite effect, integrating beauty and originality into a single expression. He is the creative force behind some of the most memorable moments in celebrity hairstyling, and has been instrumental in constructing the distinctive styles of such influential talent as Rooney Mara, Kristen Stewart, Marion Cotillard, Gwyneth Paltrow, Kirsten Dunst, Anne Hathaway and Reese Witherspoon.

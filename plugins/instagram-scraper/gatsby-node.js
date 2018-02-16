@@ -6,12 +6,21 @@ const { get } = require(`lodash`)
 // Convert timestamp to ISO 8601.
 const toISO8601 = timestamp => new Date(timestamp * 1000).toJSON()
 
+// Convert followers to k format if a thousand or more
+// https://stackoverflow.com/a/9461657/497344
+const kFormatter = num => num > 999 ? (num/1000).toFixed(0) + 'k' : num
+
+
 exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
     const { createNode } = boundActionCreators
 
     return Promise.all(usernames.map(username => {
 
-        return axios.get(`https://www.instagram.com/${username}/?__a=1`).then(res => {
+        return axios.get(`https://www.instagram.com/${username}/?__a=1`).then((res, err) => {
+
+            if (err) {
+              console.log('Instagram get error: ', username, err)
+            }
 
             res.data.user.media.nodes.map(item => {
 
@@ -24,7 +33,7 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
                 text: get(item, `caption`),
                 media: get(item, `display_src`),
                 image: `images/${item.code}.jpg`,
-                follows: res.data.user.follows.count
+                followers: kFormatter(res.data.user.followed_by.count)
               }
 
               const digest = crypto
@@ -45,13 +54,11 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
                   }
               )
 
-              //console.log(`instagram-scraper node: `, node)
-
               createNode(node)
               return true;
             })
         })
     })).catch(error => {
-        console.log(error);
+      console.log('Instagram sourceNodes catch error:', error);
     });
 }

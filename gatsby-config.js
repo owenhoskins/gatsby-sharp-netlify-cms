@@ -19,13 +19,18 @@ module.exports = {
         name: 'images'
       }
     },
+    'vimeo-thumbnail',
     {
       resolve: `instagram-scraper`,
       options: {
         usernames: [
           `allanface`,
           `hairbyadir`,
-          `mararoszak`
+          `mararoszak`,
+          `marktownsend1`,
+          `jennychohair`,
+          `jilliandempsey`,
+          `karayoshimotobua`
         ]
       }
     },

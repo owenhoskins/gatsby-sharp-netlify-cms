@@ -20,6 +20,7 @@
     "gatsby-source-filesystem": "^1.5.8",
     "gatsby-transformer-remark": "^1.7.17",
     "gatsby-transformer-sharp": "^1.6.13",
+    "gray-matter": "^3.0.0",
     "lodash": "^4.16.4",
     "mousetrap": "^1.6.0",
     "netlify-cms": "owenhoskins/netlify-cms#image-preview-pica",
@@ -39,7 +40,8 @@
     "scroll": "^2.0.1",
     "scroll-doc": "^0.2.1",
     "slug": "^0.9.1",
-    "typography": "^0.16.6"
+    "typography": "^0.16.6",
+    "vimeo": "^2.0.0"
   },
   "keywords": [
     "gatsby"

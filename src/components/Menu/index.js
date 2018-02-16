@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Link from 'gatsby-link'
+
 import Item from './Item'
 import Toggle from './Toggle'
 
@@ -50,7 +52,7 @@ export default class Menu extends Component {
               marginBottom: '10rem'
             }}
           >
-            <Toggle>{type}</Toggle>
+            <Link to='/'><Toggle>{type}</Toggle></Link>
           </li>
           {
             sections.map((section, i) => {

@@ -24,7 +24,7 @@ const Model = ({
   title,
   type,
   instagram_handle,
-  follows,
+  followers,
   enquire
 }) => {
 
@@ -37,7 +37,7 @@ const Model = ({
   }) : []
 
   if (videos && videos.length > 0) {
-    sections.push({title: 'Videos', key: 'Videos', count: videos.length})
+    sections.push({title: 'Video', key: 'Videos', count: videos.length})
   }
 
   if (instagram && instagram.length > 0) {
@@ -62,7 +62,7 @@ const Model = ({
         portrait: portrait,
         enquire: enquire,
         instagram: instagram_handle,
-        follows: follows
+        followers: followers
       }}
     />
   )

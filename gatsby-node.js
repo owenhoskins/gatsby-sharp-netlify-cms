@@ -17,7 +17,7 @@ const adjustImagePath = nodePath => image => {
           image.substr(adminConfig.public_folder.length)
         )
       )
-      console.log('Adjusted image path', nextImage)
+      //console.log('Adjusted image path', nextImage)
       return nextImage
     }
   }
@@ -40,12 +40,6 @@ exports.onCreateNode = ({
     if (cover) {
       node.frontmatter.cover = adjust(cover)
     }
-    const { images } = frontmatter
-    if (images) {
-      node.frontmatter.images.forEach(obj => {
-        obj.image = adjust(obj.image)
-      })
-    }
     const { portfolios } = frontmatter
     if (portfolios) {
       node.frontmatter.portfolios.forEach(obj => {
@@ -62,52 +56,61 @@ exports.onCreateNode = ({
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
+
   return new Promise((resolve, reject) => {
 
     graphql(`
       {
-        allInstagramPhoto {
+        allMarkdownRemark {
           edges {
             node {
-              username
-              id
-              media
+              frontmatter {
+                path
+                title
+                instagram_handle
+              }
             }
           }
         }
       }
-      `).then(result => {
-        if (result.errors) {
-          result.errors.forEach(e => console.error(e.toString()))
-          return reject(result.errors);
-        }
-        result.data.allInstagramPhoto.edges.forEach(({ node }) => {
-          //console.log('allInstagramPhoto node: ', node)
-          createPage({
-            path: `/${slug(node.username)}/`,
-            component: path.resolve(`src/templates/instagram.js`),
-            context: {
-              id: node.id,
-              username: node.username
-            }
-          });
+    `).then(result => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()))
+        return reject(result.errors);
+      }
+      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
+        console.log('allMarkdownRemark node.frontmatter: ', node.frontmatter)
+
+        const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
+        // we can't pass the permalink into the graphql data.
+        // how can we automatically set the path in the md file?
+
+        createPage({
+          path: permalink,
+          component: path.resolve(`src/templates/artist.js`),
+          context: {
+            instagram_handle: node.frontmatter.instagram_handle,
+            permalink: permalink,
+            title: node.frontmatter.title
+          }
         });
+
+      });
+      resolve()
     })
-    // ==== END INSTAGRAM ====
+    // ==== END ARTISTS ====
     .then(() => {
+
       graphql(`
         {
-          allMarkdownRemark {
+          allVimeoThumbnail {
             edges {
               node {
-                excerpt(pruneLength: 400)
-                html
-                id
-                frontmatter {
-                  templateKey
-                  path
-                  title
-                  instagram_handle
+                title
+                videos {
+                  name
+                  poster
                 }
               }
             }
@@ -115,30 +118,62 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         }
       `).then(result => {
         if (result.errors) {
-          result.errors.forEach(e => console.error(e.toString()))
-          return reject(result.errors);
+          console.log('allVimeoThumbnail: errors:', result.errors)
+          reject(result.errors)
         }
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-
-          //console.log('allMarkdownRemark node: ', node)
-
-          const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
-          //console.log("permalink: ", permalink)
-          // we can't pass the permalink into the graphql data.
-          // how can we automatically set the path in the md file?
-
-          createPage({
-            path: permalink,
-            component: path.resolve(`src/templates/${String(node.frontmatter.templateKey)}.js`),
-            context: {
-              instagram_handle: node.frontmatter.instagram_handle,
-              permalink: permalink
-            }
-          });
-        });
-        resolve()
+        // Create Vimeo pages for each Artist
+        result.data.allVimeoThumbnail.edges.forEach(node => {
+          console.log('allVimeoThumbnail node: ', node)
+          if (node.videos) {
+            createPage({
+              path: `/vimeo/${slug(node.title)}/`,
+              component: path.resolve(`src/templates/vimeo.js`),
+              context: {
+                title: node.title
+              }
+            });
+          }
+        })
       })
+      // === END VIMEO ===
+      .then(result => {
+
+        graphql(`
+          {
+            allInstagramPhoto {
+              edges {
+                node {
+                  username
+                  id
+                  media
+                }
+              }
+            }
+          }
+        `).then(result => {
+          if (result.errors) {
+            result.errors.forEach(e => console.error(e.toString()))
+            return reject(result.errors);
+          }
+          result.data.allInstagramPhoto.edges.forEach(({ node }) => {
+            //console.log('allInstagramPhoto node: ', node)
+            createPage({
+              path: `/${slug(node.username)}/`,
+              component: path.resolve(`src/templates/instagram.js`),
+              context: {
+                id: node.id,
+                username: node.username
+              }
+            });
+          });
+        })
+        resolve()
+
+      })
+      // ==== END INSTAGRAM ====
+
     })
-    // ==== END ARTISTS ====
+
   })
-};
+
+}

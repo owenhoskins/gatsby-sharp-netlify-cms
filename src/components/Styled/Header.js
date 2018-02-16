@@ -30,7 +30,7 @@ export const HeaderLG = ({ children, style }) => (
       fontWeight: 400,
       ...basekick({
         typeSizeModifier: 2,
-        typeRowSpan: 4,
+        typeRowSpan: 5,
       }),
       ...style
   }}

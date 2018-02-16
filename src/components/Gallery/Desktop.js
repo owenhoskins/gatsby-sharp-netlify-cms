@@ -47,7 +47,7 @@ const Model = ({
   title,
   type,
   instagram_handle,
-  follows,
+  followers,
   enquire
 }) => {
 
@@ -60,7 +60,7 @@ const Model = ({
   }) : []
 
   if (videos && videos.length > 0) {
-    sections.push({title: 'Videos', key: 'Videos', count: videos.length})
+    sections.push({title: 'Video', key: 'Videos', count: videos.length})
   }
 
   if (instagram && instagram.length > 0) {
@@ -85,7 +85,7 @@ const Model = ({
         portrait: portrait,
         enquire: enquire,
         instagram: instagram_handle,
-        follows: follows
+        followers: followers
       }}
     />
   )
@@ -335,20 +335,31 @@ class Desktop extends Component {
                       css={{
                         paddingTop: '5rem',
                         paddingBottom: '10rem',
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        margin: '0 auto',
+                        maxWidth: '40rem'
                       }}
                     >
-                    <div css={{margin: '5rem 0 5rem'}}>
+                    <div
+                      css={{
+                        margin: '5rem 0 5rem',
+                      }}
+                    >
                       <HeaderLG>
-                        {`Videos`}
+                        {`Video`}
                       </HeaderLG>
                     </div>
                     {
                       videos.map((video, index) =>
                         <Video
                           key={index}
-                          url={video.url}
-                          title={video.title}
+                          url={`https://vimeo.com/${video.id}`}
+                          poster={video.poster}
+                          title={video.name}
+                          ratio={video.ratio}
+                          style={{
+                            margin: '0 0rem 3rem',
+                          }}
                         />
                       )
                     }
@@ -374,10 +385,10 @@ class Desktop extends Component {
                     >
                     <div css={{margin: '5rem 0 5rem'}}>
                       <HeaderLG>
-                        {`@${biography.instagram}`}
+                        <a href={`https://instagram.com/${biography.instagram}`} target='_blank'>{`${biography.instagram}`}</a>
                       </HeaderLG>
                       <HeaderSM>
-                        {`${biography.follows} following`}
+                        {`${biography.followers} followers`}
                       </HeaderSM>
                     </div>
                     {

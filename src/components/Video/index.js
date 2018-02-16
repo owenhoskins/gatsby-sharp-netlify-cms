@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Player from 'react-player'
 
+import { HeaderLG } from '../Styled'
+
 export default class Video extends Component {
 
   state = {
@@ -18,9 +20,10 @@ export default class Video extends Component {
       <div // wrapper
         css={{
           position: 'relative',
-          paddingBottom: '56.25%', /* 16:9 */
-          paddingTop: 0,
-          height: 0,
+          paddingBottom: this.props.ratio || '56.25%', /* 16:9 */
+          //paddingTop: 0,
+          //height: 0,
+          ...this.props.style
         }}
       >
         <div // cover
@@ -33,15 +36,28 @@ export default class Video extends Component {
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '50%',
-            backgroundColor: 'transparent',
             display: this.state.playing ? 'none' : 'flex',
-            //backgroundImage: `url(${this.props.poster})`
+            overflow: 'hidden',
+            backgroundColor: '#F9E8CE'
           }}
           onClick={this.handleClick}
         >
+          <div
+            css={{
+              position: 'absolute',
+              top: '-6px',
+              right: '-6px',
+              bottom: '-6px',
+              left: '-6px',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: 'transparent',
+              backgroundImage: `url(${this.props.poster})`,
+              backgroundPosition: 'center center',
+              backgroundSize: 'cover',
+              filter: 'blur(3px)',
+              opacity: 0.5
+            }}
+          />
           {/*
           <Svg
             path={ 'static/assets/icons/play.svg' }
@@ -52,12 +68,18 @@ export default class Video extends Component {
             }}
           />
           */}
-          <h3>{this.props.title}</h3>
+          <HeaderLG style={{ maxWidth: '30rem' }}>{this.props.title}</HeaderLG>
         </div>
         <Player
-          css={{ height: '0px !important' }}
-          { ...this.props }
-          playing={ this.state.playing }
+          css={{
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+          width='40rem'
+          height='100%'
+          url={this.props.url}
+          playing={this.state.playing}
         />
       </div>
     )

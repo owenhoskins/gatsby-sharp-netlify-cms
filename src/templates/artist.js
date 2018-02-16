@@ -11,7 +11,6 @@ export default function Template({ data }) {
   const {
     frontmatter: {
       portfolios = [],
-      videos = [],
       portrait,
       instagram_handle,
       type,
@@ -22,7 +21,8 @@ export default function Template({ data }) {
   } = artist
   const { html: biography } = artist
   const { instagram: { edges: insta = [] } } = data
-  const { follows: { follows } } = data
+  const { followers: { followers } } = data
+  const { vimeo: { videos = [] } } = data
 
   return (
     <section>
@@ -47,7 +47,7 @@ export default function Template({ data }) {
             portfolios={portfolios || []}
             videos={videos}
             instagram={insta}
-            follows={follows}
+            followers={followers}
             biography={biography}
             portrait={portrait}
             instagram_handle={instagram_handle}
@@ -60,17 +60,25 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
-  query ArtistByPath($path: String!, $instagram_handle: String!) {
-    follows: instagramPhoto(username: {eq: $instagram_handle}) {
-      follows
+  query ArtistByPath($path: String!, $instagram_handle: String!, $title: String!) {
+    followers: instagramPhoto(username: {eq: $instagram_handle}) {
+      followers
     }
     instagram: allInstagramPhoto(filter: {username: {eq: $instagram_handle}}) {
       edges {
         node {
           id
           media
-          follows
+          followers
         }
+      }
+    }
+    vimeo: vimeoThumbnail(title: {eq: $title}) {
+      videos {
+        name
+        poster
+        id
+        ratio
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
@@ -81,6 +89,7 @@ export const pageQuery = graphql`
         type
         order
         instagram_handle
+        enquire
         cover {
           childImageSharp {
             sizes(maxWidth: 2600, quality: 100) {
@@ -93,16 +102,12 @@ export const pageQuery = graphql`
           gallery {
             image {
               childImageSharp {
-                sizes(maxWidth: 1000, quality: 100) {
+                sizes(maxWidth: 1600, quality: 60) {
                   ...GatsbyImageSharpSizes
                 }
               }
             }
           }
-        }
-        videos {
-          title
-          url
         }
         portrait {
           childImageSharp {
