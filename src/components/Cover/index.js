@@ -6,13 +6,23 @@ const Cover = ({
   cover,
   isCover,
   name,
-  onClick
+  onClick,
+  images,
+  currentImage
 }) => {
   if (cover && cover.childImageSharp) {
     const { childImageSharp: { sizes }} = cover
-    const { aspectRatio, src, srcSet } = sizes
+    //const { aspectRatio, src, srcSet } = sizes
+
+    let coverImage
+    if (currentImage) {
+      coverImage = images[currentImage].sizes
+    } else {
+      coverImage = sizes
+    }
+
     return (
-      <div>
+      <div id="cover">
         <HeaderXL
           onClick={onClick}
           style={{
@@ -36,7 +46,7 @@ const Cover = ({
             bottom: 0,
             left: 0,
             zIndex: -1,
-            opacity: isCover ? 1 : 0.2,
+            opacity: isCover ? 1 : 0,
             transition: '2s opacity ease-in-out, 2s filter ease-in-out, 2s transform ease-in-out',
             filter: isCover ? 'blur(0)' : 'blur(50px)',
             transform: isCover ? 'scale(1)' : 'scale(1.1)'
@@ -45,7 +55,7 @@ const Cover = ({
           <Img
             customAspect={{ height: '100vh' }}
             objectFit={`cover`}
-            sizes={sizes}
+            sizes={coverImage}
           />
         </div>
     </div>

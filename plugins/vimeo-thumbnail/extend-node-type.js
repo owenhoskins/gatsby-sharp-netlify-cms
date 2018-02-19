@@ -32,7 +32,7 @@ module.exports = (
 
       const ast = new Promise((resolve, reject) => {
 
-        const videos = vimeoNode.videos.map(video => {
+        const videos = vimeoNode.videos ? vimeoNode.videos.map(video => {
           return new Promise(resolve => {
             client.request({
               path: `/videos/${video.url}`,
@@ -57,7 +57,7 @@ module.exports = (
               }
             });
           });
-        })
+        }) : []
 
         Promise.all(videos).then((res) => {
           console.log("PROMISE ALL RES NEW: ", res)

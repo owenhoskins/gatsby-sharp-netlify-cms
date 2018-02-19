@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Lightbox from 'react-images'
+import Lightbox from '../Lightbox'
 import Waypoint from 'react-waypoint'
 import EventListener, { withOptions } from 'react-event-listener'
 import Gallery from './'
@@ -97,7 +97,8 @@ class Desktop extends Component {
     currentSection: 0,
     currentImage: 0,
     isVisible: false,
-    isCover: true
+    isCover: true,
+    lightboxIsOpen: false
   }
 
 /*
@@ -126,7 +127,7 @@ class Desktop extends Component {
 
   closeLightbox = () => {
     this.setState({
-      currentImage: 0,
+      //currentImage: 0,
       lightboxIsOpen: false,
       isVisible: true
     });
@@ -148,7 +149,7 @@ class Desktop extends Component {
     const index = this.props.sections.findIndex(section => section.key === key)
     this.setState({isVisible: false})
     setTimeout(()=> {
-      ScrollTo(this[key], {duration: 0, offset: 0, align: 'top'})
+      ScrollTo(this[key], {duration: 0, offset: -80, align: 'top'})
       setTimeout(()=> {
         this.setState({isVisible: true, currentSection: index})
       }, 200)
@@ -198,19 +199,13 @@ class Desktop extends Component {
           target={ 'window' }
           onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}
         />
-        <Cover
-          name={biography.name}
-          cover={cover}
-          isCover={this.state.isCover}
-          onClick={this.gotoPortfolios}
-        />
         <div>
           <div css={{
             width: '10rem',
             marginLeft: '6rem'
           }}>
             <Menu
-              isCover={this.state.isCover}
+              isCover={this.state.isCover || this.state.lightboxIsOpen}
               type={biography.type}
               sections={sections}
               scrollToSection={this.scrollToSection}
@@ -222,10 +217,10 @@ class Desktop extends Component {
             float: 'left',
             width: 'calc(100% - 18rem)',
             marginLeft: '18rem',
-            pointerEvents: this.state.isCover ? 'none' : 'auto'
+            pointerEvents: this.state.isCover || this.state.lightboxIsOpen ? 'none' : 'auto'
           }}>
             <HeaderDesktop
-              isCover={this.state.isCover}
+              isCover={this.state.isCover || this.state.lightboxIsOpen}
               name={biography.name}
               instagram={biography.instagram}
               enquire={biography.enquire}
@@ -257,7 +252,7 @@ class Desktop extends Component {
                           textAlign: 'center'
                         }}
                       >
-                        <div css={{margin: '5rem 0 5rem'}}>
+                        <div css={{margin: '0rem 0 0rem', opacity: 0}}>
                           <HeaderLG>
                             {sections[index].title}
                           </HeaderLG>
@@ -267,13 +262,20 @@ class Desktop extends Component {
                           if (image) {
                             const { childImageSharp: { sizes }} = image
                             const { aspectRatio, src, srcSet } = sizes
+                            const srcSetArray = srcSet.split(',')
                             sizes.sizes = '500px'
-                            images.push({src, srcSet: srcSet.split(',')})
+                            images.push({
+                              src,
+                              srcSet: srcSetArray,
+                              biggest: srcSetArray[srcSetArray.length - 1],
+                              sizes,
+                              orientation: aspectRatio > 1 ? 'landscape' : 'portrait'
+                            })
                             photos.push({
                               width: aspectRatio,
                               height: 1,
                               src,
-                              srcSet: srcSet.split(","),
+                              srcSet: srcSetArray,
                               sizes: [sizes.sizes],
                               originalSizes: sizes,
                               imageIndex: images.length - 1
@@ -342,7 +344,8 @@ class Desktop extends Component {
                     >
                     <div
                       css={{
-                        margin: '5rem 0 5rem',
+                        margin: '0rem 0 0rem',
+                        opacity: 0
                       }}
                     >
                       <HeaderLG>
@@ -461,15 +464,23 @@ class Desktop extends Component {
                 </Waypoint>
                 )
               }
-              <Lightbox
-                images={images}
-                onClose={this.closeLightbox}
-                onClickPrev={this.gotoPrevious}
-                onClickNext={this.gotoNext}
-                currentImage={this.state.currentImage}
-                isOpen={this.state.lightboxIsOpen}
-              />
             </div>
+            <Lightbox
+              images={images}
+              onClose={this.closeLightbox}
+              onClickPrev={this.gotoPrevious}
+              onClickNext={this.gotoNext}
+              currentImage={this.state.currentImage}
+              isOpen={this.state.lightboxIsOpen}
+            />
+            <Cover
+              name={biography.name}
+              cover={cover}
+              //currentImage={this.state.currentImage}
+              //images={images}
+              isCover={this.state.isCover}
+              onClick={this.gotoPortfolios}
+            />
           </div>
         </div>
       </div>

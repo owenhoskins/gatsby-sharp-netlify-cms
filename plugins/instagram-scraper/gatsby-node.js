@@ -20,45 +20,44 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
 
             if (err) {
               console.log('Instagram get error: ', username, err)
+            } else {
+              res.data.user.media.nodes.map(item => {
+
+                const datum = {
+                  username: username,
+                  id: get(item, `id`),
+                  code: get(item, `code`),
+                  time: toISO8601(get(item, `date`)),
+                  type: get(item, `__typename`),
+                  text: get(item, `caption`),
+                  media: get(item, `display_src`),
+                  image: `images/${item.code}.jpg`,
+                  followers: kFormatter(res.data.user.followed_by.count)
+                }
+
+                const digest = crypto
+                    .createHash(`md5`)
+                    .digest(`hex`)
+                    //.update(JSON.stringify(datum))
+
+                const node = Object.assign(
+                    datum,
+                    {
+                      parent: `__SOURCE__`,
+                      children: [],
+                      internal: {
+                        type: `InstagramPhoto`,
+                        contentDigest: digest,
+                        mediaType: `application/json`
+                      },
+                    }
+                )
+
+                createNode(node)
+                return true;
+              })
             }
 
-            res.data.user.media.nodes.map(item => {
-
-              const datum = {
-                username: username,
-                id: get(item, `id`),
-                code: get(item, `code`),
-                time: toISO8601(get(item, `date`)),
-                type: get(item, `__typename`),
-                text: get(item, `caption`),
-                media: get(item, `display_src`),
-                image: `images/${item.code}.jpg`,
-                followers: kFormatter(res.data.user.followed_by.count)
-              }
-
-              const digest = crypto
-                  .createHash(`md5`)
-                  .digest(`hex`)
-                  //.update(JSON.stringify(datum))
-
-              const node = Object.assign(
-                  datum,
-                  {
-                    parent: `__SOURCE__`,
-                    children: [],
-                    internal: {
-                      type: `InstagramPhoto`,
-                      contentDigest: digest,
-                      mediaType: `application/json`
-                    },
-                  }
-              )
-
-              createNode(node)
-              return true;
-            })
         })
-    })).catch(error => {
-      console.log('Instagram sourceNodes catch error:', error);
-    });
+    }))//.catch(error => { console.log('Instagram sourceNodes catch error:', error);});
 }

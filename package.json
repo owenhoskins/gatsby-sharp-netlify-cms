@@ -34,6 +34,7 @@
     "react-player": "^1.1.1",
     "react-responsive": "^1.2.6",
     "react-scroll-horizontal": "^1.2.0",
+    "react-scrolllock": "^2.0.1",
     "react-swipeable-views": "^0.12.8",
     "react-typography": "^0.16.6",
     "react-waypoint": "^8.0.0",
