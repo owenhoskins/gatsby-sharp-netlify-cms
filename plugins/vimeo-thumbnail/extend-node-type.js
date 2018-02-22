@@ -57,10 +57,10 @@ module.exports = (
               }
             });
           });
-        }) : []
+        }) : [{}]
 
         Promise.all(videos).then((res) => {
-          console.log("PROMISE ALL RES NEW: ", res)
+          //console.log("PROMISE ALL RES NEW: ", res)
           resolve(res)
         })
 
@@ -76,8 +76,11 @@ module.exports = (
 
   async function getArray(vimeoNode) {
     return getAST(vimeoNode).then(ast => {
-      //console.log('getAST: ', ast)
+      console.log('getAST value: ', ast)
       return ast
+    }, reason => {
+      console.log('getAST rejection: ', reason)
+      return []
     })
   }
 
@@ -117,7 +120,8 @@ module.exports = (
       videos: {
         type: new GraphQLList(ListType),
         resolve(vimeoNode) {
-          return getArray(vimeoNode) || []
+          return getArray(vimeoNode)
+          //return getAST(vimeoNode).then(ast => ast)
         },
       }
     })

@@ -119,21 +119,26 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       `).then(result => {
         if (result.errors) {
           console.log('allVimeoThumbnail: errors:', result.errors)
-          reject(result.errors)
+
+          // does reject here kill the build unneededly?
+
+          // it could be just that running `result.data.allVimeoThumbnail.edges.forEach` when there where no edges was breaking the build.
+          //reject(result.errors)
+        } else {
+          // Create Vimeo pages for each Artist
+          result.data.allVimeoThumbnail.edges.forEach(node => {
+            console.log('allVimeoThumbnail node: ', node)
+            if (node.videos) {
+              createPage({
+                path: `/vimeo/${slug(node.title)}/`,
+                component: path.resolve(`src/templates/vimeo.js`),
+                context: {
+                  title: node.title
+                }
+              });
+            }
+          })
         }
-        // Create Vimeo pages for each Artist
-        result.data.allVimeoThumbnail.edges.forEach(node => {
-          console.log('allVimeoThumbnail node: ', node)
-          if (node.videos) {
-            createPage({
-              path: `/vimeo/${slug(node.title)}/`,
-              component: path.resolve(`src/templates/vimeo.js`),
-              context: {
-                title: node.title
-              }
-            });
-          }
-        })
       })
       // === END VIMEO ===
       .then(result => {
