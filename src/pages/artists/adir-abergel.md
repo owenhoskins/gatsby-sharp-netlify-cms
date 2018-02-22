@@ -1,6 +1,5 @@
 ---
 kind: artist
-templateKey: artist
 title: Adir Abergel
 path: '/artist/adir-abergel'
 type: hair

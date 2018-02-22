@@ -17,7 +17,6 @@ collections:
       - {label: "SEO Description", name: "description", widget: "text"}
     fields:
       - {name: kind, widget: hidden, default: 'artist'}
-      - {label: 'Template', name: 'templateKey', widget: 'hidden', default: artist }
       - {label: "Name", name: "title", widget: "string", tagname: "h1"}
       - {label: 'Path', name: 'path', widget: 'string', pattern: ['^\/[a-z0-9\-]+$', 'Must begin with "/" and may only consist of lowercase letters (except umlauts), numbers and "-"']}
       - {label: "Type", name: "type", widget: "select", options: ["hair", "makeup", "stylist", "grooming", "manicurist", "color"]}
@@ -48,4 +47,3 @@ collections:
           - {label: 'Title', name: 'title', widget: 'string'}
           - {label: 'URL', name: 'url', widget: 'string'}
       - {label: "Biography Text", name: "body", widget: "markdown"}
-      - {label: "Portrait Image", name: "image", widget: "image", required: false, tagname: ""}

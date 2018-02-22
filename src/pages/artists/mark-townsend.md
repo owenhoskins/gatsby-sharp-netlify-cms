@@ -4,7 +4,7 @@ templateKey: artist
 title: Mark Townsend
 path: '/artist/mark-townsend'
 type: hair
-order: '3'
+order: '14'
 cover: /img/2018-02_MTD_HEADER.jpg
 enquire: 'noelle.keshishian@starworksgroup.com'
 instagram_handle: 'marktownsend1'

@@ -82,6 +82,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
         // console.log('allMarkdownRemark node.frontmatter: ', node.frontmatter)
 
+        // here we would check the field "kind" for the type of page
+        // and output to artist template or to the Services, About, etc.
+
         const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
         // we can't pass the permalink into the graphql data.
         // how can we automatically set the path in the md file?
@@ -161,7 +164,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         `).then(result => {
           if (result.errors) {
             result.errors.forEach(e => console.error('allInstagramPhoto: ', e.toString()))
-            return reject(result.errors);
+            // this reject probably also caused the instagram errors to kill the build
+            //return reject(result.errors);
           }
           result.data.allInstagramPhoto.edges.forEach(({ node }) => {
             //console.log('allInstagramPhoto node: ', node)

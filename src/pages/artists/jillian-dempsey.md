@@ -2,8 +2,8 @@
 kind: artist
 title: Jillian Dempsey
 path: '/artist/jillian-dempsey'
-type: hair
-order: '0'
+type: makeup
+order: '6'
 cover: /img/JDY_HEADER.jpg
 enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: jilliandempsey

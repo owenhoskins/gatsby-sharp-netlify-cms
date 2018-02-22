@@ -1,9 +1,9 @@
 ---
 kind: artist
-title: Kara Yoshimoto
-path: '/artist/kara-yoshimoto'
+title: Kara Yoshimoto Bua
+path: '/artist/kara-yoshimoto-bua'
 type: makeup
-order: '5'
+order: '7'
 cover: '/img/KYB_HEADER.jpg'
 enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: 'karayoshimotobua'

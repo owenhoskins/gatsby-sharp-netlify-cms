@@ -442,8 +442,8 @@ class Desktop extends Component {
                     <div>
                       <Grid fluid>
                         <Row>
+                          {/*
                           <Col xs={ 3 }>
-                          {
                             biography.portrait && (
                               <Img
                                 style={{
@@ -453,8 +453,8 @@ class Desktop extends Component {
                                 resolutions={biography.portrait.childImageSharp.resolutions}
                               />
                             )
-                          }
                           </Col>
+                          */}
                           <Col xs={ 7 }>
                             <div dangerouslySetInnerHTML={{ __html: biography.text }} />
                           </Col>

@@ -3,7 +3,7 @@ kind: artist
 title: Molly R. Stern
 path: '/artist/molly-r-stern'
 type: makeup
-order: '9'
+order: '13'
 # cover:
 enquire: 'alexandra.feldman@starworksgroup.com'
 instagram_handle: mollyrstern

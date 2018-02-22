@@ -4,7 +4,7 @@ templateKey: artist
 title: Mara Roszak
 path: '/artist/mara-roszak'
 type: hair
-order: '3'
+order: '12'
 cover: /img/2015-05_MRK_INTERVIEW_06.jpg
 enquire: 'alexandra.feldman@starworksgroup.com'
 instagram_handle: mararoszak

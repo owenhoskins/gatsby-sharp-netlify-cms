@@ -358,7 +358,7 @@ export class Biography extends Component {
         onPositionChange={this.handlePositionChange}
       >
         <div css={{display: 'inherit'}}>
-          {
+          {/*
             biography.portrait && (
               <Img
                 style={{
@@ -369,7 +369,7 @@ export class Biography extends Component {
                 resolutions={biography.portrait.childImageSharp.resolutions}
               />
             )
-          }
+          */}
           <div
             css={{
               //columnWidth: window && window.innerWidth,
