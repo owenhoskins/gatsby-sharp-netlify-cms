@@ -80,7 +80,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 
-        console.log('allMarkdownRemark node.frontmatter: ', node.frontmatter)
+        // console.log('allMarkdownRemark node.frontmatter: ', node.frontmatter)
 
         const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
         // we can't pass the permalink into the graphql data.
@@ -123,8 +123,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           // does reject here kill the build unneededly?
 
           // it could be just that running `result.data.allVimeoThumbnail.edges.forEach` when there where no edges was breaking the build.
-          //reject(result.errors)
+          // we weren't returning the reject so it was continuing on
+          //return reject(result.errors)
         } else {
+
           // Create Vimeo pages for each Artist
           result.data.allVimeoThumbnail.edges.forEach(node => {
             console.log('allVimeoThumbnail node: ', node)
@@ -138,6 +140,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               });
             }
           })
+
         }
       })
       // === END VIMEO ===
@@ -157,7 +160,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           }
         `).then(result => {
           if (result.errors) {
-            result.errors.forEach(e => console.error(e.toString()))
+            result.errors.forEach(e => console.error('allInstagramPhoto: ', e.toString()))
             return reject(result.errors);
           }
           result.data.allInstagramPhoto.edges.forEach(({ node }) => {

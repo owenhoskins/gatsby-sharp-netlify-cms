@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export default function Template({ data: { photos } }) {
+export default function Template() {
   return (
     <div>
     </div>

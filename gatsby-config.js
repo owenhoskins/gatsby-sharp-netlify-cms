@@ -30,7 +30,9 @@ module.exports = {
           `marktownsend1`,
           `jennychohair`,
           `jilliandempsey`,
-          `karayoshimotobua`
+          `karayoshimotobua`,
+          `mollyrstern`,
+          `elkin`
         ]
       }
     },

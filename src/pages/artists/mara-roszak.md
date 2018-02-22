@@ -2,7 +2,7 @@
 kind: artist
 templateKey: artist
 title: Mara Roszak
-path: "/artist/mara-roszak"
+path: '/artist/mara-roszak'
 type: hair
 order: '3'
 cover: /img/2015-05_MRK_INTERVIEW_06.jpg

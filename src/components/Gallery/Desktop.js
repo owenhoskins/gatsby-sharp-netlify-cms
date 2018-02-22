@@ -259,7 +259,7 @@ class Desktop extends Component {
                         </div>
                       {
                         portfolio.gallery && portfolio.gallery.map(({image}, index) => {
-                          if (image) {
+                          if (image && image.childImageSharp) {
                             const { childImageSharp: { sizes }} = image
                             const { aspectRatio, src, srcSet } = sizes
                             const srcSetArray = srcSet.split(',')
