@@ -8,7 +8,8 @@ const headerStyle = css({
   justifyContent: 'space-between',
   position: 'absolute',
   right: '1rem',
-  top: '1rem'
+  top: '1rem',
+  zIndex: 2000
 })
 const closeStyle = css({
   background: 'none',

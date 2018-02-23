@@ -127,6 +127,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
           // it could be just that running `result.data.allVimeoThumbnail.edges.forEach` when there where no edges was breaking the build.
           // we weren't returning the reject so it was continuing on
+          // actually. clearing the `rm -rf .cache` also cleared up this error.
           //return reject(result.errors)
         } else {
 

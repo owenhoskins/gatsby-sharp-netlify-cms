@@ -3,15 +3,21 @@ import Headroom from 'react-headroom'
 import { HeaderMD, HeaderSM } from '../Styled'
 
 const Header = ({ name, instagram, enquire, isCover }) => (
-    <Headroom disableInlineStyles>
+    <Headroom
+      disableInlineStyles
+      style={{
+        opacity: isCover ? 0 : 1,
+        transition: 'opacity 500ms ease-out',
+        pointerEvents: isCover ? 'none' : 'auto'
+      }}
+    >
       <HeaderMD
         style={{
-          display: 'inline-block',
-          opacity: isCover ? 0 : 1,
+          display: 'inline-block'
         }}>
         {name}
       </HeaderMD>
-      <div css={{ float: 'right', opacity: isCover ? 0 : 1, }}>
+      <div css={{ float: 'right' }}>
         <HeaderSM
           style={{
             display: 'inline-block',

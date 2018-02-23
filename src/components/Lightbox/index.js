@@ -6,6 +6,8 @@ import Footer from './Footer';
 import Header from './Header';
 import DefaultSpinner from './Spinner';
 
+import pixelRatio from '../../utils/pixelRatio'
+
 import Img from '../Image'
 
 import canUseDom from '../../utils/canUseDom';
@@ -305,9 +307,14 @@ class Lightbox extends Component {
     const widthFromArray = biggest.split(' ')
     const widthNum = widthFromArray[widthFromArray.length - 1].slice(0, -1)
 
+    const dpr = pixelRatio()
+
+
     const setWidth = (window && window.innerWidth) < widthNum ? window.innerWidth : widthNum
-    image.sizes.sizes = setWidth
+    image.sizes.sizes = setWidth + 'px'
     console.log('biggest: ', biggest, widthNum, setWidth)
+
+    const dprWidth = dpr === 2 ? (setWidth * 0.75) : setWidth
 
     //console.log('prevImage, nextImage: ', prevImage, nextImage)
 
@@ -328,7 +335,7 @@ class Lightbox extends Component {
         */}
 
         <Img
-          outerCss={{width: setWidth + 'px'}}
+          outerCss={{width: dprWidth + 'px'}}
           customAspect={{height: '100vh'}}
           //objectFit={image.sizes.aspectRatio > 1 ? `cover` : `contain`}
           objectFit={objectFit}

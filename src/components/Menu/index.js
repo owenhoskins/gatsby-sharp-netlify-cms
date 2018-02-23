@@ -32,7 +32,9 @@ export default class Menu extends Component {
       <div
         css={{
           position: 'fixed',
-          zIndex: 2000
+          zIndex: 2000,
+          opacity: isCover ? 0 : 1,
+          transition: 'opacity 1000ms ease-out'
         }}
       >
 
