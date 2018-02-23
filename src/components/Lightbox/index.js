@@ -302,6 +302,8 @@ class Lightbox extends Component {
       width = `100vw`
       height = `100vh`
     }
+
+    objectFit = `contain`
     const objectPosition = `center center`
     const biggest = image.biggest.split(/\s(.+)/)[1]
     const widthFromArray = biggest.split(' ')
@@ -312,7 +314,7 @@ class Lightbox extends Component {
 
     const setWidth = (window && window.innerWidth) < widthNum ? window.innerWidth : widthNum
     image.sizes.sizes = setWidth + 'px'
-    console.log('biggest: ', biggest, widthNum, setWidth)
+    //console.log('biggest: ', biggest, widthNum, setWidth)
 
     const dprWidth = dpr === 2 ? (setWidth * 0.75) : setWidth
 
