@@ -21,17 +21,18 @@ export const HeaderXL = ({ children, style, onClick }) => (
   </h1>
 )
 
-export const HeaderLG = ({ children, style }) => (
+export const HeaderLG = ({ children, style, uppercase, blur }) => (
   <h2
     css={{
       letterSpacing: '2px',
-      filter: 'blur(1px)',
-      textTransform: 'uppercase',
+      filter: blur ? 'blur(1px)' : 'blur(0)',
+      textTransform: uppercase ? 'uppercase' : 'none',
       fontWeight: 400,
       ...basekick({
         typeSizeModifier: 2,
         typeRowSpan: 5,
       }),
+      marginBottom: 0,
       ...style
   }}
   >

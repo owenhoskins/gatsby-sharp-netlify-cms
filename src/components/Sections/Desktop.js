@@ -226,7 +226,7 @@ export class Instagram extends Component {
           }}
         >
         <div css={{margin: '5rem 0 5rem'}}>
-          <HeaderLG>
+          <HeaderLG blur uppercase>
             <a href={`https://instagram.com/${biography.instagram}`} target='_blank'>{`${biography.instagram}`}</a>
           </HeaderLG>
           <HeaderSM>

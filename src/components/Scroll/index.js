@@ -83,3 +83,7 @@ class Scroll extends React.Component {
 
 export default Scroll
 
+
+export { default as ScrollHorizontal } from './ScrollHorizontal'
+export { default as ScrollLeft } from './ScrollLeft'
+export { default as ScrollTop } from './ScrollTop'

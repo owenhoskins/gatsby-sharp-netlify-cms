@@ -68,7 +68,13 @@ export default class Video extends Component {
             }}
           />
           */}
-          <HeaderLG style={{ maxWidth: '30rem' }}>{this.props.title}</HeaderLG>
+          <HeaderLG
+            style={{ maxWidth: '30rem' }}
+            blur
+            uppercase
+          >
+            {this.props.title}
+          </HeaderLG>
         </div>
         <Player
           css={{

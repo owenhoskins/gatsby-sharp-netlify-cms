@@ -2,7 +2,7 @@ import React from 'react'
 
 import { basekick } from '../../utils/typography'
 
-const Item = ({ title, active, isVisible }) => {
+const Item = ({ title, active, isVisible, onClick, index }) => {
 
   let opacity
   if (isVisible) {
@@ -17,8 +17,15 @@ const Item = ({ title, active, isVisible }) => {
     }
   }
 
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick(index)
+    }
+  }
+
   return (
     <div
+      onClick={handleOnClick}
       css={{
         transition: 'opacity 300ms ease-in-out',
         //opacity: active ? 1 : 0.3,

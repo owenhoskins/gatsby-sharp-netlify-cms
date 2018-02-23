@@ -32,7 +32,9 @@ module.exports = {
           `jilliandempsey`,
           `karayoshimotobua`,
           `mollyrstern`,
-          `elkin`
+          `elkin`,
+          `deborahlippmann`,
+          `fionastiles`
         ]
       }
     },

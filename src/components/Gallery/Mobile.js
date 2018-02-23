@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views'
 import Waypoint from 'react-waypoint'
 
 import Cover from '../Cover'
-import ScrollHorizontal from '../ScrollHorizontal'
+import { ScrollLeft } from '../Scroll'
 import { HeaderMobile } from '../Header'
 import { Tabs, Tab } from '../UI'
 
@@ -81,7 +81,7 @@ class MobileGallery extends Component {
     console.log('scrollToSection: ', tabIndex, sectionKey)
     this.setState({isVisible: false})
     setTimeout(()=> {
-      ScrollHorizontal(this[sectionKey], {duration: 0, offset: -16, align: 'top'})
+      ScrollLeft(this[sectionKey], {duration: 0, offset: -16, align: 'top'})
       setTimeout(() => this.setState({tabIndex: tabIndex, isVisible: true}), 200)
     }, 1000)
   }

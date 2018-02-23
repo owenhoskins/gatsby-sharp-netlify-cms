@@ -1,0 +1,203 @@
+---
+kind: artist
+title: Fiona Stiles
+path: '/artist/fiona-stiles'
+type: makeup
+order: '4'
+cover: /img/FSS_HEADER.jpg
+enquire: 'alexandra.feldman@starworksgroup.com'
+instagram_handle: fionastiles
+portfolios:
+  - gallery:
+      - image: /img/01_2017-08_FSS_JRO_HARPERSBAZAARART_01.jpg
+      - image: /img/02_2017-08_FSS_JRO_HARPERSBAZAARART_03.jpg
+      - image: /img/03_2017-08_FSS_JRO_HARPERSBAZAARART_06.jpg
+      - image: /img/04_2017-08_FSS_JRO_HARPERSBAZAARART_07.jpg
+      - image: /img/05_2017-04_FSS_HBBEAUTY_02.jpg
+      - image: /img/06_2017-05_FSS_JRO_HARPERSBAZAARSG_03.jpg
+      - image: /img/07_2017-05_FSS_JRO_HARPERSBAZAARSG_04.jpg
+      - image: /img/08_2017-05_FSS_JRO_HARPERSBAZAARSG_01.jpg
+      - image: /img/09_2017-07_FSS_JRO_HARPERSBAZAARSG_02.jpg
+      - image: /img/10_2017-07_FSS_JRO_HARPERSBAZAARSG_03.jpg
+      - image: /img/11_2017-07_FSS_JRO_HARPERSBAZAARSG_04.jpg
+      - image: /img/12_201511_VOGUETH_YTSAI_FS_01.jpg
+      - image: /img/13_201511_VOGUETH_YTSAI_FS_05.jpg
+      - image: /img/14_201511_VOGUETH_YTSAI_FS_03.jpg
+      - image: /img/15_201505_SPORTSILLUSTRATEDCOM_YTSAI_FS_05.jpg
+      - image: /img/16_201505_SPORTSILLUSTRATEDCOM_YTSAI_FS_08.jpg
+      - image: /img/17_201601_VOGUETH_YTSAI_JA_FS_01.jpg
+      - image: /img/18_201601_VOGUETH_YTSAI_JA_FS_08.jpg
+      - image: /img/19_201601_VOGUETH_YTSAI_JA_FS_09.jpg
+      - image: /img/20_201508_VOGUETH_YTSAI_FS_01.jpg
+      - image: /img/21_201508_VOGUETH_YTSAI_FS_15.jpg
+      - image: /img/22_201508_VOGUETH_YTSAI_FS_16.jpg
+      - image: /img/23_201606_ELLEAU_SUPTON_AJ_FS_MA_01.jpg
+      - image: /img/24_201606_ELLEAU_SUPTON_AJ_FS_MA_03.jpg
+      - image: /img/25_201606_ELLEAU_SUPTON_AJ_FS_MA_09.jpg
+      - image: /img/26_201405_VOGUEMX_YTSAI_FS_11.jpg
+      - image: /img/27_201405_VOGUEMX_YTSAI_FS_01.jpg
+      - image: /img/28_201405_VOGUEMX_YTSAI_FS_15.jpg
+      - image: /img/29_201309_ELLE_LBARTLEY_AJ_FS_GM_MA_04.jpg
+      - image: /img/30_201309_ELLE_LBARTLEY_AJ_FS_GM_MA_03.jpg
+      - image: /img/31_201309_ELLE_LBARTLEY_AJ_FS_GM_MA_08.jpg
+      - image: /img/32_201110_GLAMOURFR_YTSAI_FS_02.jpg
+      - image: /img/33_201110_GLAMOURFR_YTSAI_FS_07.jpg
+      - image: /img/34_201110_GLAMOURFR_YTSAI_FS_24.jpg
+      - image: /img/35_201204_HARPERSBAZAARTR_KBIRAND_FS_01.jpg
+      - image: /img/36_201204_HARPERSBAZAARTR_KBIRAND_FS_09.jpg
+      - image: /img/37_201204_HARPERSBAZAARTR_KBIRAND_FS_21.jpg
+      - image: /img/38_FS_NET-A-PORTERMAGAZINE_KORAYBIRAND_MODEL_JUN212.jpg
+      - image: /img/39_201206_EDIT_KBIRAND_FS_GC_02.jpg
+      - image: /img/40_201206_EDIT_KBIRAND_FS_GC_12.jpg
+      - image: /img/41_201508_GLAMOURUK_DKETTELA_EG_FS_06.jpg
+      - image: /img/42_201508_GLAMOURUK_DKETTELA_EG_FS_09.jpg
+      - image: /img/43_201508_GLAMOURUK_DKETTELA_EG_FS_10.jpg
+      - image: /img/44_201307_GLAMOURUK_CCRAYMER_EG_FS_05.jpg
+      - image: /img/45_201212_GLAMOURUK_CCRAYMER_FS_03.jpg
+      - image: /img/46_201306_GLAMOURUK_CCRAYMER_EG_FS_02.jpg
+      - image: /img/47_201108_GLAMOURUK_DGUBERT_FS_KC_05.jpg
+      - image: /img/48_201108_GLAMOURUK_DGUBERT_FS_KC_02.jpg
+      - image: /img/49_201511_ELLE_DBELLEMERE_AJ_FS_02.jpg
+      - image: /img/50_201511_ELLE_DBELLEMERE_AJ_FS_05.jpg
+      - image: /img/51_201511_ELLE_DBELLEMERE_AJ_FS_10.jpg
+      - image: /img/52_201604_GLAMOURIT_CCRAYMER_FS_11.jpg
+      - image: /img/53_201604_GLAMOURIT_CCRAYMER_FS_04.jpg
+      - image: /img/54_201604_GLAMOURIT_CCRAYMER_FS_10.jpg
+      - image: /img/55_201603_GLAMOUR_WDAVIDSON_FS_MA_06.jpg
+      - image: /img/56_201603_GLAMOUR_WDAVIDSON_FS_MA_03.jpg
+      - image: /img/57_2017-08_FSS_HARPERSBAZAARSG_01.jpg
+      - image: /img/58_2017-08_FSS_HARPERSBAZAARSG_10.jpg
+      - image: /img/59_2017-08_FSS_HARPERSBAZAARSG_08.jpg
+      - image: /img/60_2017-09_FSS_NYLON_01.jpg
+      - image: /img/61_2017-09_FSS_NYLON_06.jpg
+      - image: /img/62_2017-09_FSS_NYLON_03.jpg
+      - image: /img/63_2017-12-05_FSS_VANITYFAIR_03.jpg
+      - image: /img/64_2017-12-05_FSS_VANITYFAIR_04.jpg
+      - image: /img/65_2017-12-05_FSS_VANITYFAIR_02.jpg
+      - image: /img/66_2017-06-29_FSS_THEEDIT_01.jpg
+      - image: /img/67_2017-06-29_FSS_THEEDIT_07.jpg
+      - image: /img/68_2017-06-29_FSS_THEEDIT_05.jpg
+      - image: /img/69_2017-10_FSS_JCO_MALIBU_05.jpg
+      - image: /img/70_2017-10_FSS_JCO_MALIBU_02.jpg
+      - image: /img/71_2017-10_FSS_JCO_MALIBU_06.jpg
+      - image: /img/72_2017-08_FSS_MRK_LULA_01.jpg
+      - image: /img/73_2017-08_FSS_MRK_LULA_09.jpg
+      - image: /img/74_2017-08_FSS_MRK_LULA_03.jpg
+      - image: /img/75_2017-07_FSS_GLAMOURMX_01.jpg
+      - image: /img/76_2017-07_FSS_GLAMOURMX_03.jpg
+      - image: /img/77_2017-07_FSS_GLAMOURMX_07.jpg
+      - image: /img/78_2017-06_FSS_INSTYLE_06.jpg
+      - image: /img/79_2017-06_FSS_INSTYLE_10.jpg
+      - image: /img/80_2018-03_FSS_ELLECA_01.jpg
+      - image: /img/81_2018-03_FSS_ELLECA_04.jpg
+      - image: /img/82_2018-03_FSS_ELLECA_02.jpg
+      - image: /img/83_201511_ELLE_PKUDACKI_FS_JC_01.jpg
+      - image: /img/84_201511_ELLE_PKUDACKI_FS_JC_02.jpg
+      - image: /img/85_201601_JUSTJARED_JCAMPBELL_FS_05.jpg
+      - image: /img/86_201601_JUSTJARED_JCAMPBELL_FS_01.jpg
+      - image: /img/87_201607_GLAMOURUK_MVRIENSMCGRATH_AJ_FS_01.jpg
+      - image: /img/88_201607_GLAMOURUK_MVRIENSMCGRATH_AJ_FS_09.jpg
+      - image: /img/89_201505_TEST_YTSAI_FS_08.jpg
+      - image: /img/90_201509_PORTRAIT_YTSAI_FS_11.jpg
+      - image: /img/91_2017-02_FSS_NYMAG_01.jpg
+      - image: /img/92_2017-02_FSS_NYMAG_07.jpg
+      - image: /img/93_2017-02_FSS_NYMAG_02.jpg
+      - image: /img/94_2016-11_FSS_DUJOUR_17.jpg
+      - image: /img/95_2016-11_FSS_DUJOUR_08.jpg
+      - image: /img/96_2017-01_FSS_MRK_MTD_RGN_VANITYFAIR_02.jpg
+      - image: /img/97_2017-01_FSS_VANITYFAIR_02.jpg
+      - image: /img/98_201508_NEWYORK_NJEANROY_FS_04.jpg
+      - image: /img/99_201508_NEWYORK_NJEANROY_FS_05.jpg
+      - image: /img/100_201203_T_CBIRD_FS_MA_04.jpg
+      - image: /img/101_201203_T_CBIRD_FS_MA_01.jpg
+    title: 'Editorial'
+  - gallery:
+      - image: /img/01_201303_GUESS_YTSAI_FS_04.jpg
+      - image: /img/02_201303_GUESS_YTSAI_FS_GPS_09.jpg
+      - image: /img/03_201303_GUESS_YTSAI_FS_03.jpg
+      - image: /img/04_201103_GUESS_YTSAI_FS_06.jpg
+      - image: /img/05_201009_GUESS_YTSAI_FS_03.jpg
+      - image: /img/06_201009_GUESS_YTSAI_FS_04.jpg
+      - image: /img/07_200403_TOMMYHILFIGER_EVONUNWERTH_FS_03.jpg
+      - image: /img/08_200403_TOMMYHILFIGER_EVONUNWERTH_FS_01.jpg
+      - image: /img/09_201503_NETWORK_KBIRAND_FS_11.jpg
+      - image: /img/10_201503_NETWORK_KBIRAND_FS_01.jpg
+      - image: /img/11_201303_BEYMENCOLLECTION_KBIRAND_FS_07.jpg
+      - image: /img/12_201303_BEYMENCOLLECTION_KBIRAND_FS_03.jpg
+      - image: /img/13_201303_BEYMEN_KBIRAND_FS_01.jpeg
+      - image: /img/14_201303_BEYMEN_KBIRAND_FS_07.jpeg
+      - image: /img/15_201500_NELLY.COM_GAROCH_FS_GA_08_q.jpg
+      - image: /img/16_201500_NELLY.COM_GAROCH_FS_GA_01.jpg
+      - image: /img/17_2017-06_FSS_KHH_TORYBURCH_01.jpg
+      - image: /img/18_2017-06_FSS_KHH_TORYBURCH_02.jpg
+      - image: /img/19_201303_ELLIBROAMARILLO_DROEMER_FS_JC_01.jpg
+      - image: /img/20_201303_ELLIBROAMARILLO_DROEMER_FS_JC_07.jpg
+      - image: /img/21_201503_SANCTUARY_DROEMER_FS_01.jpg
+      - image: /img/22_201503_SANCTUARY_DROEMER_FS_10.jpg
+      - image: /img/23_201003_FREESOUL_YTSAI_FS_13.jpg
+      - image: /img/24_201009_FREESOUL_YTSAI_FS_02.jpg
+      - image: /img/25_201009_FREESOUL_YTSAI_FS_01.jpg
+      - image: /img/26_201103_FREESOUL_YTSAI_FS_GA_02.jpg
+      - image: /img/27_201103_FREESOUL_YTSAI_FS_GA_07.jpg
+      - image: /img/28_2017-03_FSS_GUESS_02.jpg
+      - image: /img/29_2017-01_FSS_GUESS_04.jpg
+      - image: /img/30_2017-01_FSS_GUESS_05.jpg
+      - image: /img/31_201603_DYNAMITECA_DROEMER_FS_30.jpg
+      - image: /img/32_201603_DYNAMITECA_DROEMER_FS_11.jpg
+      - image: /img/33_201003_BEACHBUNNY_YTSAIa_FS_08.jpg
+      - image: /img/34_201003_BEACHBUNNY_YTSAIa_FS_06.jpg
+      - image: /img/35_201003_BEACHBUNNY_YTSAIb_FS_01.jpg
+      - image: /img/36_201003_BEACHBUNNY_YTSAIb_FS_03.jpg
+      - image: /img/37_FS_GA_VINCE-CAMUTO-FRAGRANCE_YU-TSAI_AW-11_01.jpg
+      - image: /img/38_201309_BEBE_DROEMER_ESW_FS_01.jpg
+      - image: /img/39_201509_MOVADO_YTSAI_FS_02.jpg
+      - image: /img/40_200900_REVLON_UNKNOWN_FS_01.jpg
+      - image: /img/41_201409_PANTENE_KPOWERS_FS_02.jpg
+    title: 'Advertising'
+  - gallery:
+      - image: /img/01_FSS_RC_01.jpg
+      - image: /img/02_FSS_RC_02.jpg
+      - image: /img/03_FSS_RC_03.jpg
+      - image: /img/04_FSS_RC_04.jpg
+      - image: /img/05_FSS_RC_05.jpg
+      - image: /img/06_FSS_RC_06.jpg
+      - image: /img/07_FSS_RC_07.jpg
+      - image: /img/08_FSS_RC_08.jpg
+      - image: /img/09_FSS_RC_09.jpg
+      - image: /img/10_FSS_KHH_RC_01.jpg
+      - image: /img/11_FSS_RC_34.jpg
+      - image: /img/12_FSS_RC_10.jpg
+      - image: /img/13_FSS_RC_11.jpg
+      - image: /img/14_FSS_RC_12.jpg
+      - image: /img/15_FSS_RC_13.jpg
+      - image: /img/16_FSS_RC_14.jpg
+      - image: /img/17_FSS_RC_15.jpg
+      - image: /img/18_FSS_RC_16.jpg
+      - image: /img/19_AAL_FSS_RC_01.jpg
+      - image: /img/20_FSS_RC_17.jpg
+      - image: /img/21_AAL_FSS_RC_02.jpg
+      - image: /img/22_FSS_RC_18.jpg
+      - image: /img/23_FSS_RC_19.jpg
+      - image: /img/24_FSS_RC_20.jpg
+      - image: /img/25_FSS_RC_21.jpg
+      - image: /img/26_FSS_RC_22.jpg
+      - image: /img/27_FSS_RC_23.jpg
+      - image: /img/28_FSS_RC_24.jpg
+      - image: /img/29_FSS_RC_25.jpg
+      - image: /img/30_FSS_RC_26.jpg
+      - image: /img/31_FSS_RC_27.jpg
+      - image: /img/32_FSS_RC_28.jpg
+      - image: /img/33_FSS_RC_29.jpg
+      - image: /img/34_FSS_RC_30.jpg
+      - image: /img/35_FSS_RC_31.jpg
+      - image: /img/36_FSS_RC_32.jpg
+      - image: /img/37_FSS_RC_33.jpg
+    title: 'Red Carpet'
+---
+Makeup artist Fiona Stiles brings a fresh, instinctive approach to creating beautiful faces for publications and global media outlets across the fashion and entertainment industries. Some of the world’s most recognizable faces trust her implicitly, as do a roster of internationally-celebrated photographers and directors.
+
+Fiona developed her creative talent early as a photography student at the Rhode Island School of Design. Since transferring her refined aesthetic eye to makeup artistry, she has built a distinguished, decades-long career comprised of collaborations with renowned photographers, fashion and commercial brands, top fashion magazines, and celebrities. Fiona’s approach relies on a matrix of colorful inspiration and masterful technique. Her work is characterized by her emphasis on natural skin and show-stopping eyes and lips. In 2016, Stiles launched a 120-piece color collection called Fiona Stiles Beauty for Ulta.
+
+Fiona is an Emmy nominated makeup artist and a regular insider for top Hollywood talent including Jennifer Garner, Gwyneth Paltrow, Natalie Portman, Jessica Chastain, Elizabeth Banks, and Gabrielle Union. She has worked with hundreds of entertainment, music and fashion icons, and regularly creates looks for leading brands such as Victoria’s Secret, Levis, Calvin Klein, Gap, L’Oréal, Ralph Lauren, and Revlon. Fiona is revered by some of the world’s top photographers including Cliff Watts, Yu Tsai, Kenneth Willardt, David Bellemere, Paola Kudacki, and Ben Watts and has been published in Vogue, Harper’s Bazaar, ELLE, W, InStyle and Vanity Fair.
+
+Fiona lives in Los Angeles.

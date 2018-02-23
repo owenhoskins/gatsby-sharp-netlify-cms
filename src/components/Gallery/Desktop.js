@@ -4,7 +4,7 @@ import Lightbox from '../Lightbox'
 import Waypoint from 'react-waypoint'
 import EventListener, { withOptions } from 'react-event-listener'
 
-import ScrollTo from '../ScrollTo'
+import { ScrollTop } from '../Scroll'
 import Menu from '../Menu'
 import { HeaderDesktop } from '../Header'
 import Cover from '../Cover'
@@ -81,21 +81,6 @@ class Desktop extends Component {
     lightboxIsOpen: false
   }
 
-/*
-  static contextTypes = {
-    scrolled: PropTypes.bool
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    if (
-      nextContext.scrolled &&
-      this.context.scrolled !== nextContext.scrolled
-    ) {
-      this.setState({isCover: false, isVisible: true})
-    }
-  }
-
-*/
   openLightbox = (event, obj) => {
     // console.log('openLightbox: ', obj)
     this.setState({
@@ -129,7 +114,7 @@ class Desktop extends Component {
     const index = this.props.sections.findIndex(section => section.key === key)
     this.setState({isVisible: false})
     setTimeout(()=> {
-      ScrollTo(this[key], {duration: 0, offset: -80, align: 'top'})
+      ScrollTop(this[key], {duration: 0, offset: -80, align: 'top'})
       setTimeout(()=> {
         this.setState({isVisible: true, currentSection: index})
       }, 200)
