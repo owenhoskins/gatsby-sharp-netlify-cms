@@ -13,6 +13,7 @@ export default class Menu extends Component {
 
   render() {
     const {
+      title,
       sections,
       scrollToSection,
       currentSection
@@ -23,8 +24,8 @@ export default class Menu extends Component {
     return (
       <div
         css={{
-          width: '10rem',
-          marginLeft: '6rem',
+          width: '14rem',
+          marginLeft: '2rem',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -50,7 +51,7 @@ export default class Menu extends Component {
               marginBottom: '10rem'
             }}
           >
-            <Link to='/'><Toggle>{`artists`}</Toggle></Link>
+            <Link to='/'><Toggle>{title}</Toggle></Link>
           </li>
           {
             sections.map((section, i) => {

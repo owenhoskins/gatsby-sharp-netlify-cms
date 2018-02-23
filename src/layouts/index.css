@@ -87,15 +87,16 @@ body {
   right: 0;
   z-index: 1;
   padding: 0 2rem;
+  transition: opacity 500ms ease-in-out;
 }
 .headroom--unfixed {
   position: relative;
   transform: translateY(0);
 }
 .headroom--scrolled {
-  transition: transform 200ms ease-in-out;
   left: 18rem;
   top: 3rem;
+  transition: transform 200ms ease-in-out, opacity 500ms ease-in-out;
 }
 .headroom--unpinned {
   position: fixed;

@@ -39,6 +39,7 @@ export default class IndexPage extends Component {
       >
 
         <Menu
+          title={`artists`}
           sections={[
             'hair',
             'makeup',
@@ -55,17 +56,18 @@ export default class IndexPage extends Component {
           pageLock
           reverseScroll
           currentSection={this.state.currentSection}
+          distance={336}
         >
           <div css={{width: `21rem`, height: `100%`}}>
             {/*<HeaderMD>{`Hair`}</HeaderMD>*/}
             {
               hair && hair.edges.map(
-                ({ node: { frontmatter }}) => {
+                ({ node: { fields, frontmatter }}) => {
                   return (
                     <HeaderLG
-                      key={ frontmatter.path }
+                      key={fields.slug}
                     >
-                      <Link to={frontmatter.path}>{frontmatter.title}</Link>
+                      <Link to={fields.slug}>{frontmatter.title}</Link>
                     </HeaderLG>
                   )
                 }
@@ -76,12 +78,12 @@ export default class IndexPage extends Component {
             {/*<HeaderMD>{`Makeup`}</HeaderMD>*/}
             {
               makeup && makeup.edges.map(
-                ({ node: { frontmatter }}) => {
+                ({ node: { fields, frontmatter }}) => {
                   return (
                     <HeaderLG
-                      key={ frontmatter.path }
+                      key={fields.slug}
                     >
-                      <Link to={frontmatter.path}>{frontmatter.title}</Link>
+                      <Link to={fields.slug}>{frontmatter.title}</Link>
                     </HeaderLG>
                   )
                 }
@@ -92,12 +94,12 @@ export default class IndexPage extends Component {
             {/*<HeaderMD>{`Stylist`}</HeaderMD>*/}
             {
               stylist && stylist.edges.map(
-                ({ node: { frontmatter }}) => {
+                ({ node: { fields, frontmatter }}) => {
                   return (
                     <HeaderLG
-                      key={ frontmatter.path }
+                      key={fields.slug}
                     >
-                      <Link to={frontmatter.path}>{frontmatter.title}</Link>
+                      <Link to={fields.slug}>{frontmatter.title}</Link>
                     </HeaderLG>
                   )
                 }
@@ -108,8 +110,8 @@ export default class IndexPage extends Component {
             <HeaderLG>{`Grooming`}</HeaderLG>
             {
               grooming && grooming.edges.map(
-                ({ node: { frontmatter }}) => {
-                  return <div key={ frontmatter.path } style={{display: 'block'}}><Link to={frontmatter.path}>{frontmatter.title}</Link></div>
+                ({ node: { fields, frontmatter }}) => {
+                  return <div key={fields.slug} style={{display: 'block'}}><Link to={fields.slug}>{frontmatter.title}</Link></div>
                 }
               )
             }
@@ -117,12 +119,12 @@ export default class IndexPage extends Component {
           <div css={{width: `21rem`, height: `100%`}}>
             {
               manicurist && manicurist.edges.map(
-                ({ node: { frontmatter }}) => {
+                ({ node: { fields, frontmatter }}) => {
                   return (
                     <HeaderLG
-                      key={ frontmatter.path }
+                      key={fields.slug}
                     >
-                      <Link to={frontmatter.path}>{frontmatter.title}</Link>
+                      <Link to={fields.slug}>{frontmatter.title}</Link>
                     </HeaderLG>
                   )
                 }
@@ -133,8 +135,8 @@ export default class IndexPage extends Component {
             <HeaderLG>{`Color`}</HeaderLG>
             {
               color && color.edges.map(
-                ({ node: { frontmatter }}) => {
-                  return <div key={ frontmatter.path } style={{display: 'block'}}><Link to={frontmatter.path}>{frontmatter.title}</Link></div>
+                ({ node: { fields, frontmatter }}) => {
+                  return <div key={fields.slug} style={{display: 'block'}}><Link to={fields.slug}>{frontmatter.title}</Link></div>
                 }
               )
             }
@@ -152,13 +154,16 @@ export const query = graphql`
   query IndexQuery {
     hair: allMarkdownRemark(
       filter: {
-        id: { regex: "/pages/"},
+        id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "hair"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             path
             title
@@ -169,13 +174,16 @@ export const query = graphql`
     }
     makeup: allMarkdownRemark(
       filter: {
-        id: { regex: "/pages/"},
+        id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "makeup"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             path
             title
@@ -186,13 +194,16 @@ export const query = graphql`
     }
     stylist: allMarkdownRemark(
       filter: {
-        id: { regex: "/pages/"},
+        id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "stylist"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             path
             title
@@ -203,13 +214,16 @@ export const query = graphql`
     }
     manicurist: allMarkdownRemark(
       filter: {
-        id: { regex: "/pages/"},
+        id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "manicurist"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             path
             title

@@ -7,7 +7,6 @@ const Header = ({ name, instagram, enquire, isCover }) => (
       disableInlineStyles
       style={{
         opacity: isCover ? 0 : 1,
-        transition: 'opacity 500ms ease-out',
         pointerEvents: isCover ? 'none' : 'auto'
       }}
     >

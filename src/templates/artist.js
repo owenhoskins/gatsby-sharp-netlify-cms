@@ -60,7 +60,7 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
-  query ArtistByPath($path: String!, $instagram_handle: String!, $title: String!) {
+  query ArtistByPath($slug: String!, $instagram_handle: String!, $title: String!) {
     followers: instagramPhoto(username: {eq: $instagram_handle}) {
       followers
     }
@@ -81,13 +81,11 @@ export const pageQuery = graphql`
         ratio
       }
     }
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
-        path
         title
         type
-        order
         instagram_handle
         enquire
         cover {

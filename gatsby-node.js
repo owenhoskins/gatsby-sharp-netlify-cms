@@ -4,6 +4,9 @@ const Promise = require(`bluebird`)
 const loadYaml = require('./loadYaml')
 const slug = require(`slug`)
 
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+
 const adminConfig = loadYaml('./static/admin/config.yml')
 
 const adjustImagePath = nodePath => image => {
@@ -52,6 +55,22 @@ exports.onCreateNode = ({
       })
     }
   }
+
+  const { createNodeField } = boundActionCreators
+  if (node.internal.type === `MarkdownRemark`) {
+    //console.log(node.internal.type)
+    //const fileNode = getNode(node.parent)
+    //console.log(`\n`, fileNode.relativePath)
+
+    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    // console.log(slug)
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    })
+  }
+
 }
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
@@ -64,8 +83,12 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         allMarkdownRemark {
           edges {
             node {
+              fields {
+                slug
+              }
               frontmatter {
                 path
+                kind
                 title
                 instagram_handle
               }
@@ -80,24 +103,32 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       }
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
 
-        // console.log('allMarkdownRemark node.frontmatter: ', node.frontmatter)
+        // here we can inspect node.fields.slug for
+        // `artist`, `service`, or `about`
 
-        // here we would check the field "kind" for the type of page
-        // and output to artist template or to the Services, About, etc.
+        if (node.frontmatter.kind === `artist`) {
 
-        const permalink = `/artist/${slug(node.frontmatter.title).toLowerCase()}`
-        // we can't pass the permalink into the graphql data.
-        // how can we automatically set the path in the md file?
+          createPage({
+            path: node.fields.slug,
+            component: path.resolve(`src/templates/artist.js`),
+            context: {
+              instagram_handle: node.frontmatter.instagram_handle,
+              title: node.frontmatter.title,
+              slug: node.fields.slug
+            }
+          });
 
-        createPage({
-          path: permalink,
-          component: path.resolve(`src/templates/artist.js`),
-          context: {
-            instagram_handle: node.frontmatter.instagram_handle,
-            permalink: permalink,
-            title: node.frontmatter.title
-          }
-        });
+        } else {
+
+          createPage({
+            path: node.fields.slug,
+            component: path.resolve(`src/templates/service.js`),
+            context: {
+              slug: node.fields.slug
+            }
+          });
+
+        }
 
       });
       resolve()

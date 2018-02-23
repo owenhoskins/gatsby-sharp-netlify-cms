@@ -11,14 +11,13 @@ collections:
   - name: artists
     label: Artists
     folder: 'src/pages/artists'
-    slug: "/artists/{{slug}}"
+    slug: '/artists/{{slug}}'
     create: true
     meta:
       - {label: "SEO Description", name: "description", widget: "text"}
     fields:
       - {name: kind, widget: hidden, default: 'artist'}
       - {label: "Name", name: "title", widget: "string", tagname: "h1"}
-      - {label: 'Path', name: 'path', widget: 'string', pattern: ['^\/[a-z0-9\-]+$', 'Must begin with "/" and may only consist of lowercase letters (except umlauts), numbers and "-"']}
       - {label: "Type", name: "type", widget: "select", options: ["hair", "makeup", "stylist", "grooming", "manicurist", "color"]}
       - {name: order, label: Position, widget: number, default: 0}
       - {label: "Cover Image", name: "cover", widget: "image", required: true, tagname: ""}
@@ -47,3 +46,15 @@ collections:
           - {label: 'Title', name: 'title', widget: 'string'}
           - {label: 'URL', name: 'url', widget: 'string'}
       - {label: "Biography Text", name: "body", widget: "markdown"}
+
+  - name: services
+    label: Services
+    folder: 'src/pages/services'
+    slug: '/services/{{slug}}'
+    create: true
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}
+    fields:
+      - {name: kind, widget: hidden, default: 'service'}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Description", name: "description", widget: "text"}

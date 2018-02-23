@@ -87,7 +87,7 @@ export default class HorizontalScroll extends Component {
       console.log('nextProps.currentSection: ', nextProps.currentSection)
 
       // 20 rem = 320px
-      const increment = nextProps.currentSection * -336
+      const increment = nextProps.currentSection * -this.props.distance
       this.setState({ animValues: increment })
 
       // when 'sections' are wider then one column, how do we calculate?
