@@ -23,7 +23,8 @@ const renderImage = (props) => {
       style={{
         width,
         height,
-        float: 'left',
+        //float: 'left',
+        display: 'inline-block',
         margin,
         cursor: 'pointer'
       }}
@@ -306,15 +307,13 @@ export class Biography extends Component {
         botttomOffset={-50}
         onPositionChange={this.handlePositionChange}
       >
-        <div>
-          <Grid fluid>
-            <Row>
-              <Col xs={ 7 }>
-                <div dangerouslySetInnerHTML={{ __html: biography.text }} />
-              </Col>
-            </Row>
-          </Grid>
-        </div>
+        <div
+          css={{
+            maxWidth: '33rem',
+            margin: '0 auto'
+          }}
+          dangerouslySetInnerHTML={{ __html: biography.text }}
+        />
       </Waypoint>
     )
   }

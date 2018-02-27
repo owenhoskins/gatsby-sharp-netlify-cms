@@ -32,7 +32,10 @@ export default function (ref, options, callback) {
   var element = ReactDOM.findDOMNode(ref);
   if (element === null) return 0;
 
-  return page.scrollTop = calculateScrollOffset(element, options.offset, options.align)
+  if (options.duration === 0) {
+    return page.scrollTop = calculateScrollOffset(element, options.offset, options.align)
+  } else {
+    return scroll.top(page, calculateScrollOffset(element, options.offset, options.align), options, callback);
+  }
 
-  //return scroll.top(page, calculateScrollOffset(element, options.offset, options.align), options, callback);
 };

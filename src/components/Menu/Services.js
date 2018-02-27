@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Link from 'gatsby-link'
 
-import Item from './Item'
+import Item from './ServicesItem'
 import Toggle from './Toggle'
 
 export default class Menu extends Component {
@@ -76,8 +76,7 @@ export default class Menu extends Component {
               >
                 <Item
                   index={i}
-                  //isVisible={this.state.isVisible}
-                  isVisible
+                  isVisible={this.state.isVisible}
                   title={section}
                   onClick={scrollToSection}
                   active={currentSection === i}

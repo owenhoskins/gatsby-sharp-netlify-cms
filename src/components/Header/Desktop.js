@@ -1,6 +1,6 @@
 import React from 'react'
 import Headroom from 'react-headroom'
-import { HeaderMD, HeaderSM } from '../Styled'
+import { HeaderMD, HeaderXS } from '../Styled'
 
 const Header = ({ name, instagram, enquire, isCover }) => (
     <Headroom
@@ -11,13 +11,15 @@ const Header = ({ name, instagram, enquire, isCover }) => (
       }}
     >
       <HeaderMD
+        uppercase
         style={{
           display: 'inline-block'
         }}>
         {name}
       </HeaderMD>
       <div css={{ float: 'right' }}>
-        <HeaderSM
+        <HeaderXS
+          uppercase
           style={{
             display: 'inline-block',
             marginRight: '3rem'
@@ -26,8 +28,9 @@ const Header = ({ name, instagram, enquire, isCover }) => (
           <a href={`https://instagram.com/${instagram}`} target='_blank'>
             {`Instagram`}
           </a>
-        </HeaderSM>
-        <HeaderSM
+        </HeaderXS>
+        <HeaderXS
+          uppercase
           style={{
             display: 'inline-block'
           }}
@@ -35,7 +38,7 @@ const Header = ({ name, instagram, enquire, isCover }) => (
           <a href={`mailto:${enquire}`}>
             {`Email Agent`}
           </a>
-        </HeaderSM>
+        </HeaderXS>
       </div>
   </Headroom>
 )

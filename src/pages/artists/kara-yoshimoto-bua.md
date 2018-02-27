@@ -103,6 +103,7 @@ portfolios:
       - image: /img/90_2011-07_KYB_REVLONb_01.jpg
       - image: /img/91_2013-02_KYB_REVLON_01.jpg
       - image: /img/92_2012-08_KYB_REVLON_01.jpg
+      - image: /img/92_2012-08_KYB_REVLON_01.jpg
     title: 'Portfolio'
   - gallery:
       - image: /img/01_AAL_KYB_RC_14.jpg

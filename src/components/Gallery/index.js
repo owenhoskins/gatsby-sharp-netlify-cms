@@ -32,7 +32,7 @@ class Gallery extends React.Component {
     const { photos, onClick } = this.props;
     //console.log('Gallery handleClick: ', photos[index].imageIndex,)
     onClick(event, {
-      index: photos[index].imageIndex,
+      index: photos[index].imageIndex, // use the saved index when we built the array
       //index,
       photo: photos[index],
       previous: photos[index - 1] || null,
@@ -47,7 +47,13 @@ class Gallery extends React.Component {
     const { photos, columns, margin, onClick } = this.props;
     const thumbs = computeSizes({ width, columns, margin, photos });
     return (
-      <div className="react-photo-gallery--gallery">
+      <div
+        className="react-photo-gallery--gallery"
+        css={{
+          textAlign: 'center',
+          //fontSize: 0
+        }}
+      >
         <div ref={c => (this._gallery = c)}>
           {thumbs.map((photo, index) => {
             const { width, height } = photo;

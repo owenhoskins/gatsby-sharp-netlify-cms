@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Lightbox from '../Lightbox'
-import Waypoint from 'react-waypoint'
 import EventListener, { withOptions } from 'react-event-listener'
 
 import { ScrollTop } from '../Scroll'

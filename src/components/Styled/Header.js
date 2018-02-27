@@ -24,7 +24,7 @@ export const HeaderXL = ({ children, style, onClick }) => (
 export const HeaderLG = ({ children, style, uppercase, blur }) => (
   <h2
     css={{
-      letterSpacing: '2px',
+      letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
       fontWeight: 400,
@@ -40,11 +40,12 @@ export const HeaderLG = ({ children, style, uppercase, blur }) => (
   </h2>
 )
 
-export const HeaderMD = ({ children, style }) => (
+export const HeaderMD = ({ children, style, uppercase, blur }) => (
   <h2
     css={{
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
+      letterSpacing: uppercase ? '2px' : 0,
+      filter: blur ? 'blur(1px)' : 'blur(0)',
+      textTransform: uppercase ? 'uppercase' : 'none',
       fontWeight: 400,
       ...basekick({
         typeSizeModifier: 1.125,
@@ -53,7 +54,7 @@ export const HeaderMD = ({ children, style }) => (
       [MIN_MOBILE_MQ]: {
         ...basekick({
           typeSizeModifier: 1.5,
-          typeRowSpan: 3,
+          typeRowSpan: 4.5,
         }),
       },
       ...style
@@ -63,11 +64,36 @@ export const HeaderMD = ({ children, style }) => (
   </h2>
 )
 
-export const HeaderSM = ({ children, style }) => (
+export const HeaderSM = ({ children, style, uppercase, blur }) => (
   <h3
     css={{
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
+      letterSpacing: uppercase ? '2px' : 0,
+      filter: blur ? 'blur(1px)' : 'blur(0)',
+      textTransform: uppercase ? 'uppercase' : 'none',
+      fontWeight: 400,
+      ...basekick({
+        typeSizeModifier: 1,
+        typeRowSpan: 2,
+      }),
+      [MIN_MOBILE_MQ]: {
+        ...basekick({
+          typeSizeModifier: 1.125,
+          typeRowSpan: 2.5,
+        }),
+      },
+      ...style
+    }}
+  >
+    {children}
+  </h3>
+)
+
+export const HeaderXS = ({ children, style, uppercase, blur }) => (
+  <h3
+    css={{
+      letterSpacing: uppercase ? '2px' : 0,
+      filter: blur ? 'blur(1px)' : 'blur(0)',
+      textTransform: uppercase ? 'uppercase' : 'none',
       fontWeight: 400,
       ...basekick({
         typeSizeModifier: 0.875,
