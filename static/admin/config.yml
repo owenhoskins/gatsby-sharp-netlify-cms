@@ -58,3 +58,57 @@ collections:
       - {name: kind, widget: hidden, default: 'service'}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Description", name: "description", widget: "text"}
+
+  - name: agency
+    label: Agency
+    folder: 'src/pages/agency'
+    slug: '/agency'
+    create: true
+    meta:
+      - {label: "SEO Description", name: "description", widget: "text"}
+    fields:
+      - {name: kind, widget: hidden, default: 'agency'}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Description", name: "description", widget: "text"}
+      - name: contact
+        label: Contact
+        widget: list
+        required: false
+        fields:
+          - {label: Header, name: header, widget: string}
+          - {label: Name, name: name, widget: string}
+          - {label: Url, name: url, widget: string}
+      - name: addresses
+        label: Addresses
+        widget: list
+        required: false
+        fields:
+          - {label: Header, name: header, widget: string}
+          - {label: Address, name: address, widget: text}
+
+  - name: settings
+    label: Settings
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: metadata
+        label: Global Settings
+        file: data/site-metadata.yml
+        description: "Settings"
+        fields:
+          - {label: "Name of website", name: title, widget: "string"}
+          - {label: "Google Analytics UA-Code", name: trackingId, widget: "string"}
+          - label: "Meta"
+            name: meta
+            widget: object
+            fields:
+              - label: Description
+                name: description
+                widget: text
+                required: false
+              - label: Keywords
+                name: keywords
+                widget: text
+                required: false
+

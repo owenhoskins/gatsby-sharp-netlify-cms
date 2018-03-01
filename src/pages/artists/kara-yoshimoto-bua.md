@@ -2,7 +2,7 @@
 kind: artist
 title: Kara Yoshimoto Bua
 path: '/artist/kara-yoshimoto-bua'
-type: makeup
+type: grooming
 order: '7'
 cover: '/img/KYB_HEADER.jpg'
 enquire: 'samantha.jeudy@starworksgroup.com'

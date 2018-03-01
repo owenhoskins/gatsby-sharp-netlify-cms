@@ -26,6 +26,7 @@ module.exports = (
   async function getAST(vimeoNode) {
 
     const cachedAST = await cache.get(astCacheKey(vimeoNode))
+    //const cachedAST = false;
     if (cachedAST) {
       return cachedAST
     } else {
