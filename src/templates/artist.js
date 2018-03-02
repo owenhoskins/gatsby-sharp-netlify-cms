@@ -20,7 +20,9 @@ export default function Template({ data }) {
     }
   } = artist
   const { html: biography } = artist
-  const { instagram: { edges: insta = [] } } = data
+  //const { instagram: { edges: insta = [] } } = data
+  const { instagram = {} } = data
+  const insta = instagram ? instagram.edges : []
   const { followers: { followers } } = data
   const { vimeo: { videos = [] } } = data
 

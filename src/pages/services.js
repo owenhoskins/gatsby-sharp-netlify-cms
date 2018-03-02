@@ -17,7 +17,7 @@ export default class ServicesPage extends Component {
   }
 
   scrollToSection = (i, key) => {
-    ScrollTop(this[key], {duration: 2000, offset: 0, align: 'top'})
+    ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
   }
 
   handleChange = ({percentage, inView, index, refKey}) => {
@@ -135,7 +135,7 @@ export default class ServicesPage extends Component {
                           //opacity: percentage > 0.55 ? 0.6 - percentage.toPrecision(2) : percentage.toPrecision(2),
                           opacity: opacity,
                           transform: `translate3d(${-(percentage * 100) + 'vw'}, 0px, 0px)`,
-                          filter: percentage < 0.30 || percentage > 0.55 ? `blur(1px)` : `blur(0)`
+                          //filter: percentage < 0.30 || percentage > 0.55 ? `blur(1px)` : `blur(0)`
                         }}
                       >
                         <HeaderMD style={{maxWidth: `40rem`}}>{frontmatter.description}</HeaderMD>

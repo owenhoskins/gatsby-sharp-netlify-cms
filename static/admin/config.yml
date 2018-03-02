@@ -55,36 +55,9 @@ collections:
     meta:
       - {label: "SEO Description", name: "description", widget: "text"}
     fields:
-      - {name: kind, widget: hidden, default: 'service'}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
       - {label: "Description", name: "description", widget: "text"}
 
-  - name: agency
-    label: Agency
-    folder: 'src/pages/agency'
-    slug: '/agency'
-    create: true
-    meta:
-      - {label: "SEO Description", name: "description", widget: "text"}
-    fields:
-      - {name: kind, widget: hidden, default: 'agency'}
-      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Description", name: "description", widget: "text"}
-      - name: contact
-        label: Contact
-        widget: list
-        required: false
-        fields:
-          - {label: Header, name: header, widget: string}
-          - {label: Name, name: name, widget: string}
-          - {label: Url, name: url, widget: string}
-      - name: addresses
-        label: Addresses
-        widget: list
-        required: false
-        fields:
-          - {label: Header, name: header, widget: string}
-          - {label: Address, name: address, widget: text}
 
   - name: settings
     label: Settings
@@ -111,4 +84,29 @@ collections:
                 name: keywords
                 widget: text
                 required: false
+
+      - name: agency
+        label: Agency
+        folder: 'data/agency.yml'
+        fields:
+          - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+          - {label: "Description", name: "description", widget: "text"}
+          - name: contact
+            label: Contact
+            widget: list
+            required: false
+            fields:
+              - {label: Header, name: header, widget: string}
+              - {label: Name, name: name, widget: string}
+              - {label: Url, name: url, widget: string}
+          - name: addresses
+            label: Addresses
+            widget: list
+            required: false
+            fields:
+              - {label: Header, name: header, widget: string}
+              - {label: Address, name: address, widget: text}
+
+
+
 

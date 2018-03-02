@@ -95,7 +95,7 @@ body {
 }
 .headroom--scrolled {
   left: 18rem;
-  top: 3rem;
+  top: 2.5rem;
   transition: transform 200ms ease-in-out, opacity 500ms ease-in-out;
 }
 .headroom--unpinned {
@@ -110,7 +110,7 @@ body {
 .headroom--pinned::before {
   content: " ";
   position: fixed;
-  top: -3rem;
+  top: -2.5rem;
   left: -18rem;
   right: 0;
   height: 8rem;

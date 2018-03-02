@@ -4,7 +4,7 @@ title: Molly R. Stern
 path: '/artist/molly-r-stern'
 type: makeup
 order: '13'
-# cover:
+cover: /img/MSN_HEADER.jpg
 enquire: 'alexandra.feldman@starworksgroup.com'
 instagram_handle: mollyrstern
 portfolios:

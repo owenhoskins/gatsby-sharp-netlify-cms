@@ -201,7 +201,7 @@ class Desktop extends Component {
             />
           </div>
           <div css={{
-            marginTop: '3rem',
+            marginTop: '2.5rem',
             float: 'left',
             width: 'calc(100% - 18rem)',
             marginLeft: '18rem',
