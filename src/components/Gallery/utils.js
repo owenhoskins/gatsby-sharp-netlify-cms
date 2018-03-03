@@ -23,7 +23,7 @@ export function computeSizes({ photos, columns, width, margin }) {
     return acc;
   }, []);
 
-  console.log('photos reduce into rows: ', rows)
+  //console.log('photos reduce into rows: ', rows)
   // at this point we could iterate through the array and compare the image formats, and potentially push the last image into the next row.
 
   // how would you push items around in the array

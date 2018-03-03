@@ -57,7 +57,7 @@ export class Portfolios extends Component {
       //currentImage,
       //isOpen,
     } = this.props
-    console.log("Portfolios render method called!")
+    //console.log("Portfolios render method called!")
 
     const images = []
 
@@ -145,7 +145,7 @@ export class Videos extends Component {
     const {
       videos
     } = this.props
-    console.log("Videos render method called!")
+    //console.log("Videos render method called!")
 
     return (
       <Waypoint
@@ -209,7 +209,7 @@ export class Instagram extends Component {
       instagram,
       biography
     } = this.props
-    console.log("Instagram render method called!")
+    //console.log("Instagram render method called!")
 
 
     return (
@@ -297,7 +297,7 @@ export class Biography extends Component {
     const {
       biography
     } = this.props
-    console.log("Biography render method called!")
+    //console.log("Biography render method called!")
 
 
     return (

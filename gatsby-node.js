@@ -58,12 +58,17 @@ exports.onCreateNode = ({
 
   const { createNodeField } = boundActionCreators
   if (node.internal.type === `MarkdownRemark`) {
-    //console.log(node.internal.type)
-    //const fileNode = getNode(node.parent)
-    //console.log(`\n`, fileNode.relativePath)
 
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
-    // console.log(slug)
+    let slug
+    const { frontmatter } = node
+    const relativeFilePath = createFilePath({ node, getNode, basePath: `pages` })
+
+    if (frontmatter) {
+      slug = relativeFilePath.replace(/artists/g,`${node.frontmatter.type}`);
+    } else {
+      slug = relativeFilePath
+    }
+
     createNodeField({
       node,
       name: `slug`,

@@ -16,7 +16,8 @@ export default class ArtistsPage extends Component {
 
   state = {
     inViewIndex: 0,
-    inView: ''
+    inView: '',
+    to: ''
   }
 
   scrollToSection = (i, key) => {
@@ -32,6 +33,18 @@ export default class ArtistsPage extends Component {
       this.setState({inView: refKey, inViewIndex: index})
     }
 
+  }
+
+  handleClick(e, to, type) {
+    e.preventDefault()
+    console.log('handleClick: ', to, type)
+    this.setState({to: type})
+    // here we could set the state
+    // the menu component would be passed that state
+    // and could animate the
+    setTimeout( () => {
+      window.___navigateTo(to)
+    }, 1000)
   }
 
   returnRef = (ref, refKey) => this[refKey] = ref
@@ -114,7 +127,10 @@ export default class ArtistsPage extends Component {
                                 <HeaderLG
                                   key={fields.slug}
                                 >
-                                  <Link to={fields.slug}>{frontmatter.title}</Link>
+                                  <Link
+                                    to={fields.slug}
+                                    onClick={e => this.handleClick(e, fields.slug, frontmatter.type)}
+                                  >{frontmatter.title}</Link>
                                 </HeaderLG>
                               )
                             })

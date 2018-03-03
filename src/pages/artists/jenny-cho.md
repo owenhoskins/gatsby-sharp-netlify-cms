@@ -18,8 +18,6 @@ portfolios:
       - image: /img/07_2017-04_JCO_DIOR_09.jpg
       - image: /img/08_2017-04_JCO_DIOR_02.jpg
       - image: /img/09_201402_W_JTELLER_AT_JC_01.jpg
-      - image: /img/100_201601_BOLON_KZFENG_JC_06.jpg
-      - image: /img/101_2017-06_JCO_DIORADDICT_01.jpg
       - image: /img/10_201402_W_JTELLER_AT_JC_06.jpg
       - image: /img/11_201402_W_JTELLER_AT_JC_04.jpg
       - image: /img/12_2016-09_JCO_RGN_ELLEBR_02.jpg

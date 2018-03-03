@@ -54,7 +54,7 @@ export default class Menu extends Component {
               marginBottom: '10rem'
             }}
           >
-            <Link to='/'><Toggle>{type}</Toggle></Link>
+            <Link to='/artists'><Toggle>{type}</Toggle></Link>
           </li>
           {
             sections.map((section, i) => {
