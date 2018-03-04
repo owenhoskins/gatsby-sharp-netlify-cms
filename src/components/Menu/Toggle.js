@@ -13,19 +13,13 @@ const Toggle = ({ children }) => (
       ...basekick({
         typeSizeModifier: 0.875,
         typeRowSpan: 3,
-      })
+      }),
+      paddingRight: '6rem',
+      width: '16rem',
+      textAlign: 'right',
     }}
   >
     {children}
-    <span
-      css={{
-        display: 'inline-block',
-        marginLeft: '3rem',
-        letterSpacing: '-1px'
-      }}
-    >
-     {`——`}
-    </span>
   </div>
 )
 

@@ -1087,3 +1087,104 @@ body {
   }
 }
 
+
+/**
+ * Toggle Switch Globals
+ *
+ * All switches should take on the class `c-hamburger` as well as their
+ * variant that will give them unique properties. This class is an overview
+ * class that acts as a reset for all versions of the icon.
+ */
+.burger {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 20px;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  background-color: transparent;
+  z-index: 31; }
+
+.burger:focus {
+  outline: none; }
+
+.burger span {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #000; }
+
+.burger span::before,
+.burger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  content: ""; }
+
+.burger span::before {
+  top: -8px; }
+
+.burger span::after {
+  bottom: -8px; }
+
+/**
+ * Style 2
+ *
+ * Hamburger to "x" (htx). Takes on a hamburger shape, bars slide
+ * down to center and transform into an "x".
+ */
+.burger span {
+  transition: background-color 0.2s 0s; }
+
+.burger span::before,
+.burger span::after {
+  transition-duration: 0.2s, 0.2s;
+  transition-delay: 0.2s, 0s; }
+
+.burger span::before {
+  transition-property: top, -webkit-transform;
+  transition-property: top, transform;
+  transition-property: top, transform, -webkit-transform;
+  -webkit-transition-property: top, -webkit-transform; }
+
+.burger span::after {
+  transition-property: bottom, -webkit-transform;
+  transition-property: bottom, transform;
+  transition-property: bottom, transform, -webkit-transform;
+  -webkit-transition-property: bottom, -webkit-transform; }
+
+/* active state, i.e. menu open */
+.burger.active span {
+  background-color: transparent !important; }
+
+.burger.active span::before {
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 0; }
+
+.burger.active span::after {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  bottom: 0; }
+
+.burger.active span::before,
+.burger.active span::after {
+  transition-delay: 0s, 0.2s; }
+

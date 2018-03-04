@@ -13,7 +13,6 @@ export default class IndexPage extends Component {
           marginLeft: '21rem'
         }}
       >
-
         <Menu
           title={`menu`}
           sections={[

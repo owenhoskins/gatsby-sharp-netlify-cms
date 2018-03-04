@@ -105,3 +105,22 @@ export const HeaderXS = ({ children, style, uppercase, blur }) => (
     {children}
   </h3>
 )
+
+export const Blurry = ({ children, style, inline, opacity }) => (
+  <div
+    css={{
+      opacity: opacity || 1,
+      display: inline ? 'inline-block' : 'block',
+      filter: 'blur(1px)',
+      letterSpacing: '3px',
+      textTransform: 'lowercase',
+      ...basekick({
+        typeSizeModifier: 0.875,
+        typeRowSpan: 3,
+      }),
+      ...style
+    }}
+  >
+    {children}
+  </div>
+)

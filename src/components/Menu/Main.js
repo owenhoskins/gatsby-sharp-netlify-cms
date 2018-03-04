@@ -4,11 +4,43 @@ import Link from 'gatsby-link'
 
 import Item from './MainItem'
 import Toggle from './Toggle'
+import Burger from '../Burger'
 
 export default class Menu extends Component {
 
   state = {
-    isVisible: true
+    isVisible: true,
+    startingYs: [],
+    ready: false
+  }
+
+  returnRef = (ref, refKey) => this[refKey] = ref
+
+  componentDidMount() {
+
+    // we only know where the Y position is on mount
+    // so how to start collapsed?
+    const startingYs = this.props.sections.map((section, i) => {
+      return this[section].getBoundingClientRect().y
+    })
+
+    this.setState({startingYs, collapsed: true})
+
+    console.log('startingYs: ', startingYs)
+    setTimeout(() => {
+      this.setState({ready: true})
+    }, 300)
+
+    // on resize we need to reset the startingYs.
+  }
+
+  handleClick = (bool) => {
+
+    if (typeof bool != undefined) {
+      this.setState({collapsed: !this.state.collapsed})
+    } else {
+      this.setState({collapsed: bool })
+    }
   }
 
   render() {
@@ -24,33 +56,34 @@ export default class Menu extends Component {
     return (
       <div
         css={{
+          display: 'flex',
           width: '14rem',
-          marginLeft: '2rem',
+          //marginLeft: '2rem',
           position: 'fixed',
           top: 0,
+          bottom: 0,
           left: 0,
           zIndex: 2000,
           opacity: isCover ? 0 : 1,
-          transition: 'opacity 1000ms ease-out'
+          transition: 'opacity 1000ms ease-out',
+          //paddingTop: '16rem'
         }}
       >
 
+        <Burger onClick={this.handleClick}/>
+
         <ul
           css={{
+            opacity: this.state.ready ? 1 : 0,
+            transition: 'opacity 100ms ease-out',
             marginLeft: 0,
             marginTop: '3rem',
             marginBottom: 0,
             listStyle: 'none',
             textAlign: 'right',
+            alignSelf: 'center'
           }}
         >
-          <li
-            css={{
-              marginBottom: '10rem'
-            }}
-          >
-            <Link to='/'><Toggle>{title}</Toggle></Link>
-          </li>
           {
             sections.map((section, i) => {
               return <li
@@ -64,11 +97,14 @@ export default class Menu extends Component {
                 }}
               >
                 <Item
+                  returnRef={this.returnRef}
                   index={i}
+                  collapsed={this.state.collapsed}
+                  startingYs={this.state.startingYs}
+                  onClick={this.handleClick}
                   //isVisible={this.state.isVisible}
                   isVisible
                   title={section}
-                  onClick={scrollToSection}
                   active={currentSection === i}
                 />
               </li>
