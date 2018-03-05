@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Owen Hoskins <owen.hoskins@gmail.com>",
   "dependencies": {
+    "@jacobmischka/gatsby-plugin-react-svg": "^1.1.0",
     "axios": "^0.17.1",
     "bluebird": "^3.5.1",
     "gatsby": "^1.9.165",

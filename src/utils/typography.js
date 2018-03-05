@@ -34,8 +34,8 @@ export const options = {
   baseFontSize: `16px`,
   baseLineHeight: `32px`,
   scaleRatio: 2,
-  headerColor: `#575483`,
-  bodyColor: `#575483`,
+  headerColor: `inherit`,
+  bodyColor: `inherit`,
   blockMarginBottom: 0.75,
   headerFontFamily: [`neuzeit`, `sans-serif`],
   bodyFontFamily: [`neuzeit`, `sans-serif`],
@@ -48,7 +48,7 @@ export const options = {
 
       },
       a: {
-        color: `#575483`,
+        color: `inherit`,
         textDecoration: 'none'
       },
     }

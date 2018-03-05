@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import { Grid, Row, Col } from '../components/Grid'
 import { HeaderXS, HeaderSM, HeaderMD, HeaderLG } from '../components/Styled'
-import Toggle from '../components/Menu/Toggle'
+import Burger from '../components/Burger'
 
 
 export default class AgencyPage extends Component {
@@ -22,58 +23,12 @@ export default class AgencyPage extends Component {
             }
           }
         }
-      }
+      },
+      transition
     } = this.props
 
     return (
-      <div>
-
-        <div
-          css={{
-            width: '14rem',
-            marginLeft: '2rem',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 2000,
-            opacity: 1,
-            transition: 'opacity 1000ms ease-out'
-          }}
-        >
-
-          <ul
-            css={{
-              marginLeft: 0,
-              marginTop: '3rem',
-              marginBottom: 0,
-              listStyle: 'none',
-              textAlign: 'right',
-            }}
-          >
-            <li
-              css={{
-                marginBottom: '10rem'
-              }}
-            >
-              <Link to='/'><Toggle>{title}</Toggle></Link>
-            </li>
-          </ul>
-        </div>
-
-        <div css={{
-          top: '2.5rem',
-          position: 'fixed',
-          width: 'calc(100% - 18rem)',
-          left: '18rem'
-        }}>
-          <HeaderSM
-            uppercase
-            style={{ display: 'inline-block' }}
-          >
-            {siteTitle}
-          </HeaderSM>
-        </div>
-
+      <div style={transition && transition.style}>
         <div
           css={{
             marginTop: `14rem`,
@@ -81,7 +36,6 @@ export default class AgencyPage extends Component {
             maxWidth: `50rem`
           }}
         >
-
           <Grid fluid>
             <Row>
               <Col xs={12} md={10}>
@@ -124,16 +78,14 @@ export default class AgencyPage extends Component {
             </Row>
           </Grid>
         </div>
-
-        <div>
-        </div>
-
       </div>
-
     )
-
   }
+}
 
+AgencyPage.contextTypes = {
+  collapsed: PropTypes.bool,
+  toggleCollapse: PropTypes.func
 }
 
 export const agencyFragment = graphql`

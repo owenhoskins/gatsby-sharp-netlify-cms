@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Link from 'gatsby-link'
 
 import Item from './MainItem'
 import Toggle from './Toggle'
-import Burger from '../Burger'
+
 
 export default class Menu extends Component {
 
@@ -16,6 +17,10 @@ export default class Menu extends Component {
 
   returnRef = (ref, refKey) => this[refKey] = ref
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    // console.log('Menu context: ', this.context, nextContext)
+  }
+
   componentDidMount() {
 
     // we only know where the Y position is on mount
@@ -24,7 +29,8 @@ export default class Menu extends Component {
       return this[section].getBoundingClientRect().y
     })
 
-    this.setState({startingYs, collapsed: true})
+    this.setState({startingYs})
+    //this.context.toggleCollapse(true)
 
     console.log('startingYs: ', startingYs)
     setTimeout(() => {
@@ -32,15 +38,6 @@ export default class Menu extends Component {
     }, 300)
 
     // on resize we need to reset the startingYs.
-  }
-
-  handleClick = (bool) => {
-
-    if (typeof bool != undefined) {
-      this.setState({collapsed: !this.state.collapsed})
-    } else {
-      this.setState({collapsed: bool })
-    }
   }
 
   render() {
@@ -70,8 +67,6 @@ export default class Menu extends Component {
         }}
       >
 
-        <Burger onClick={this.handleClick}/>
-
         <ul
           css={{
             opacity: this.state.ready ? 1 : 0,
@@ -99,9 +94,8 @@ export default class Menu extends Component {
                 <Item
                   returnRef={this.returnRef}
                   index={i}
-                  collapsed={this.state.collapsed}
+                  collapsed={this.context.collapsed}
                   startingYs={this.state.startingYs}
-                  onClick={this.handleClick}
                   //isVisible={this.state.isVisible}
                   isVisible
                   title={section}
@@ -114,4 +108,10 @@ export default class Menu extends Component {
       </div>
     )
   }
+}
+
+
+Menu.contextTypes = {
+  collapsed: PropTypes.bool,
+  toggleCollapse: PropTypes.func
 }

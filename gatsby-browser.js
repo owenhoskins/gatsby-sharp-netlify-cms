@@ -4,9 +4,12 @@ import React, { createElement } from "react"
 import { Transition } from "react-transition-group"
 import createHistory from "history/createBrowserHistory"
 
+import Interstitcher from './src/components/Interstitcher'
+
 import getTransitionStyle from "./src/utils/getTransitionStyle"
 
-const timeout = 250
+const transform = true
+const timeout = 500
 const historyExitingEventType = `history::exiting`
 
 const getUserConfirmation = (pathname, callback) => {
@@ -60,21 +63,27 @@ class ReplaceComponentRenderer extends React.Component {
       in: !this.state.exiting,
       key: this.props.location.key,
     }
+
     return (
-      <Transition {...transitionProps}>
-      {
-        (status) => createElement(this.props.pageResources.component, {
-          ...this.props,
-          ...this.props.pageResources.json,
-          transition: {
-            status,
-            timeout,
-            style: getTransitionStyle({ status, timeout }),
-            nextPageResources: this.state.nextPageResources,
-          },
-        })
-      }
-      </Transition>
+      <Interstitcher
+        {...this.props}
+        exiting={ this.state.exiting }
+      >
+        <Transition {...transitionProps}>
+        {
+          (status) => createElement(this.props.pageResources.component, {
+            ...this.props,
+            ...this.props.pageResources.json,
+            transition: {
+              status,
+              timeout,
+              style: getTransitionStyle({ status, timeout, transform }),
+              nextPageResources: this.state.nextPageResources,
+            },
+          })
+        }
+        </Transition>
+      </Interstitcher>
     )
   }
 }

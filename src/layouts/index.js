@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import slug from 'slug'
-
 import { Baseline } from '../components/Layout'
-import Interstitcher from '../components/Interstitcher'
 
 //import Scroll from '../components/Scroll'
 
@@ -31,7 +29,6 @@ const TemplateWrapper = ({
   ...props
 }) => (
   <div>
-    <Interstitcher location={location} />
     <Helmet
       title="Gallery pages"
       meta={[

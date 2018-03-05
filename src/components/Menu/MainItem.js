@@ -32,7 +32,7 @@ export default class Item extends Component {
           })
         }
       } else {
-        this.setState({y: 0, opacity: 0.3})
+        this.setState({y: 0, opacity: 0.6})
       }
     }
 
@@ -55,18 +55,6 @@ export default class Item extends Component {
     if (!this.props.collapsed) {
       this.setState({opacity: 0.3})
     }
-  }
-
-  handleLinkClick = (e) => {
-    e.preventDefault()
-
-    if (this.props.onClick) {
-      this.props.onClick(true)
-    }
-
-    setTimeout( () => {
-      window.___navigateTo(`/${this.props.title}`)
-    }, 500)
   }
 
   innerRef = (ref) => {
@@ -109,7 +97,6 @@ export default class Item extends Component {
             }}
             >
               <Link
-                onClick={this.handleLinkClick}
                 to={`/${title}`}
               >
                 {title}

@@ -47,17 +47,18 @@ export default class ArtistsPage extends Component {
     }, 1000)
   }
 
+
   returnRef = (ref, refKey) => this[refKey] = ref
 
   render() {
 
-    const { data } = this.props
+    const { data, transition } = this.props
     const dataArray = data ? Object.values(data) : []
 
     return (
-      <div>
+      <div style={transition && transition.style}>
+
         <Menu
-          title={`artists`}
           sections={[
             'hair',
             'makeup',
@@ -103,7 +104,7 @@ export default class ArtistsPage extends Component {
                     >
                       <div
                         css={{
-                          transition: `opacity 200ms linear, 800ms filter linear`,
+                          //transition: `opacity 200ms linear, 800ms filter linear`,
                           position: `fixed`,
                           top: `14rem`,
                           left: `calc(100vw)`,
@@ -111,7 +112,7 @@ export default class ArtistsPage extends Component {
                         }}
                         style={{
                           opacity: opacity,
-                          transform: `translate3d(${-(percentage * 100) + 'vw'}, 0px, 0px)`,
+                          transform: `translateX(${-(percentage * 100) + 'vw'})`,
                           filter: percentage < rightEdge || percentage > leftEdge ? `blur(1px)` : `blur(0)`
                         }}
                       >

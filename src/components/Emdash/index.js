@@ -1,28 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { basekick } from '../../utils/typography'
+import { EASE } from '../../utils/presets'
 
-// http://easings.net/#easeInOutQuad
-// const ease = `cubic-bezier(0.6, 0.04, 0.98, 0.335)` // easeInCirc
-const ease = `cubic-bezier(0.455, 0.03, 0.515, 0.955)` // easeInOutQuad
-
-const Emdash = ({ opacity, y, top }) => {
+const Emdash = ({ opacity, y, top }, { color }) => {
 
   return (
     <span
       css={{
-        opacity,
-        position: 'absolute',
-        right: 0,
         top: top,
-        transition: `opacity 300ms ease-in-out, transform 300ms ${ease}`,
+        opacity,
+        backgroundColor: color,
+        position: `absolute`,
+        right: 0,
+        transition: `opacity 300ms ${EASE}, transform 300ms ${EASE}, backgroundColor 300ms ${EASE}`,
         transform: `translate3d(0px, ${y}px, 0px)`, // x, y, z
-        display: 'inline-block',
-        marginLeft: '3rem',
-        letterSpacing: '-1px',
-        filter: 'blur(1px)',
-        width: '1rem',
-        height: 0,
-        borderTop: `2px solid #575483`
+        display: `inline-block`,
+        marginLeft: `3rem`,
+        letterSpacing: `-1px`,
+        filter: `blur(1px)`,
+        width: `1rem`,
+        height: `2px`
       }}
     >
      {` `}
@@ -37,3 +35,8 @@ Emdash.defaultProps = {
 }
 
 export default Emdash
+
+
+Emdash.contextTypes = {
+  color: PropTypes.string
+}

@@ -27,6 +27,9 @@ const Item = ({ title, active, isVisible, onClick, index }) => {
     <div
       onClick={handleOnClick}
       css={{
+        width: '16rem',
+        textAlign: 'right',
+        paddingRight: '3rem',
         transition: 'opacity 300ms ease-in-out',
         //opacity: active ? 1 : 0.3,
         opacity,

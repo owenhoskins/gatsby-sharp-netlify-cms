@@ -14,6 +14,7 @@ module.exports = {
     agency: loadYaml('./data/agency.yml'),
   },
   plugins: [
+    `@jacobmischka/gatsby-plugin-react-svg`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-glamor',
     {

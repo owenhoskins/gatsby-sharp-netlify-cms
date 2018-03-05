@@ -33,4 +33,9 @@ export const MIN_DEFAULT_MQ = `@media (min-width:${DEFAULT_WIDTH})`
 export const MIN_TABLET_MQ = `@media (min-width:${TABLET_WIDTH})`
 export const MIN_MOBILE_MQ = `@media (min-width:${MOBILE_WIDTH})`
 
+export const PURPLE = `#575483`
+export const YELLOW = `#F9E8CE`
 
+// http://easings.net/#easeInOutQuad
+// const ease = `cubic-bezier(0.6, 0.04, 0.98, 0.335)` // easeInCirc
+export const EASE = `cubic-bezier(0.455, 0.03, 0.515, 0.955)` // easeInOutQuad
