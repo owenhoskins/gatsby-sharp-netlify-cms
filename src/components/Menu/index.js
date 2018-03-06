@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 
 import Item from './Item'
-import Toggle from './Toggle'
 
 export default class Menu extends Component {
 
@@ -31,8 +30,13 @@ export default class Menu extends Component {
     return (
       <div
         css={{
+          display: 'flex',
+          width: '14rem',
           position: 'fixed',
-          zIndex: 2000,
+          top: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 1999,
           opacity: isCover ? 0 : 1,
           transition: 'opacity 1000ms ease-out'
         }}
@@ -47,15 +51,9 @@ export default class Menu extends Component {
             marginBottom: 0,
             listStyle: 'none',
             textAlign: 'right',
+            alignSelf: 'center'
           }}
         >
-          <li
-            css={{
-              marginBottom: '10rem'
-            }}
-          >
-            <Link to='/artists'><Toggle>{type}</Toggle></Link>
-          </li>
           {
             sections.map((section, i) => {
               return <li

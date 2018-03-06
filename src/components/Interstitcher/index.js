@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
-
-import { Blurry } from '../Styled'
 
 import Background from '../Background'
-
-import Burger from '../Burger'
+import Breadcrumbs from '../Breadcrumbs'
 import Menu from '../Menu/Main'
-
 
 import { YELLOW, PURPLE, EASE } from '../../utils/presets'
 
@@ -17,22 +12,41 @@ function breadcrumber(pathname) {
   if (pathArray.length > 1) {
     return {
       breadcrumbs: [
-        pathArray[0],
-        pathArray[1].replace(/-/g, ' ')
+        {
+          path: 'artists',
+          name: 'artists'
+        },
+        {
+          path: `artists?${pathArray[0]}`,
+          name: pathArray[0]
+        },
+        {
+          path: `${pathArray[0]}/${pathArray[1]}`,
+          name: pathArray[1].replace(/-/g, ' ')
+        }
       ],
       page: 'artist'
     }
   } else {
+    const pathObject = {
+      path: pathArray[0],
+      name: pathArray[0]
+    }
     return {
-      breadcrumbs: pathArray[0].length > 0 ? [pathArray[0]] : [],
+      breadcrumbs: pathArray[0].length > 0 ? [pathObject] : [],
       page: pathArray[0].length > 0 ? pathArray[0] : 'home'
     }
   }
 }
 
-function colorways(page) {
+function colorways(page, collapsed) {
   if (page === 'home') {
-    return { backgroundColor: YELLOW, color: PURPLE }
+    console.log('collapsed: ', collapsed)
+    if (collapsed) {
+      return { backgroundColor: YELLOW, color: PURPLE }
+    } else {
+      return { backgroundColor: PURPLE, color: YELLOW }
+    }
   }
   if (page === 'services' || page === 'agency') {
     return { backgroundColor: YELLOW, color: PURPLE }
@@ -68,7 +82,7 @@ export default class Interstitcher extends Component {
     this.setState({
       breadcrumbs: pathObject.breadcrumbs,
       page: pathObject.page,
-      ...colorways(pathObject.page)
+      ...colorways(pathObject.page, true)
     })
     this.setState({
       collapsed: true
@@ -76,58 +90,23 @@ export default class Interstitcher extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
     if (this.props.location.key !== nextProps.location.key) {
+
       const pathObject = breadcrumber(nextProps.location.pathname)
+      const collapsed = nextProps.location.pathname === '/' ? false : true
       this.setState({
+        collapsed,
         breadcrumbs: pathObject.breadcrumbs,
         page: pathObject.page,
-        ...colorways(pathObject.page)
+        ...colorways(pathObject.page, true)
       })
+
     }
 
-    // if exiting = true
-    // else
-
-    if (
-      this.props.exiting !== nextProps.exiting
-    ) {
-      if (
-        !nextProps.exiting &&
-        nextProps.location.pathname === '/'
-        ) {
-        console.log('Not exiting and headed home', nextProps)
-        this.setState({collapsed: false})
-      }
-
-      if (
-        !nextProps.exiting &&
-        nextProps.location.pathname !== '/'
-      ) {
-        this.setState({collapsed: true})
-      }
-    }
   }
 
-  toggleCollapse = () => this.setState({collapsed: !this.state.collapsed})
-
-/*
-  toggleCollapse = (bool) => {
-    console.log('is a boolean passed?', bool, typeof(bool) === typeof(true))
-    if (typeof(bool) === typeof(true)) {
-      this.setState({collapsed: bool})
-    } else {
-      this.setState({collapsed: !this.state.collapsed})
-    }
-  }
-*/
-
-  handleBurgerClick = () => {
-    if (this.state.page !== 'home') {
-      window.___navigateTo('/')
-    } else {
-      this.toggleCollapse()
-    }
-  }
+  toggleCollapse = () => this.setState({collapsed: !this.state.collapsed, ...colorways('home', !this.state.collapsed)})
 
   render () {
 
@@ -136,10 +115,6 @@ export default class Interstitcher extends Component {
         css={{color: this.state.color}}
       >
 
-        <Burger
-          onClick={this.handleBurgerClick}
-        />
-
         <Menu
           title={`menu`}
           sections={[
@@ -147,33 +122,14 @@ export default class Interstitcher extends Component {
             'services',
             'agency'
           ]}
+          collapsed={this.state.collapsed}
+          toggleCollapse={this.toggleCollapse}
+          timeout={300}
+          page={this.state.page}
         />
 
-        <div
-          css={{
-            position: `fixed`,
-            top: `2rem`,
-            left: `18rem`,
-            height: `2.5rem`,
-            padding: `0.75rem`,
-          }}
-        >
-          {
-            this.state.breadcrumbs.length > 0 && this.state.breadcrumbs.map((path, i) => {
-              return (
-                <span key={i}>
-                  { i !== 0 && <Blurry inline opacity={0.3} style={{ margin: `0 1rem` }}>{`/`}</Blurry> }
-                  <Blurry
-                    inline
-                    opacity={
-                      this.state.breadcrumbs.length - 1 === i ? 1 : 0.3
-                    }
-                  >{path}</Blurry>
-                </span>
-              )
-            })
-          }
-        </div>
+        <Breadcrumbs breadcrumbs={this.state.breadcrumbs} />
+
         <Background
           page={this.state.page}
           collapsed={this.state.collapsed}

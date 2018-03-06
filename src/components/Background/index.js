@@ -7,37 +7,48 @@ import Video from './Video'
 
 function returnState(props) {
 
-  let isVisible
-  let isBlur
-  let isPlaying
+  let opacity
+  let playing
+  let blur
 
   if (
     props.page === 'home' ||
     props.page === 'agency' ||
     props.page === 'services'
   ) {
-    isVisible = true
-  } else {
-    isVisible = false
-  }
 
-  if (props.page === 'home') {
-    isPlaying = true
+    if (props.page === 'home') {
 
-    if (!props.collapsed) {
-      isBlur = true
+      // home page only
+      playing = true
+      if (!props.collapsed) { // if collapsed is not false
+        blur = true
+        opacity = 0.6
+      } else {
+        opacity = 1
+        blur = false
+      }
+
     } else {
-      isBlur = false
+
+      // services & agency
+      opacity = 0.6
+      blur = true
+      playing = false
+
     }
 
   } else {
-    isBlur = true
+
+    // artists pages
+    opacity = 0
+
   }
 
   return {
-    isPlaying,
-    isBlur,
-    isVisible
+    opacity,
+    playing,
+    blur
   }
 
 }
@@ -45,9 +56,9 @@ function returnState(props) {
 export default class Background extends Component {
 
   state = {
-    isVisible: false,
-    isBlur: false,
-    isPlaying: false
+    blur: false,
+    playing: false,
+    opacity: 1
   }
 
   constructor(props){
@@ -88,11 +99,7 @@ export default class Background extends Component {
         backgroundColor: this.props.backgroundColor,
       }}
     >
-      <Video
-        blur={this.state.isBlur}
-        isVisible={this.state.isVisible}
-        playing={this.state.isPlaying}
-      />
+      <Video {...this.state} />
     </div>
   }
 

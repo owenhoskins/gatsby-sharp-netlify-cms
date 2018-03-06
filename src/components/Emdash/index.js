@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { basekick } from '../../utils/typography'
 import { EASE } from '../../utils/presets'
 
-const Emdash = ({ opacity, y, top }, { color }) => {
+const Emdash = ({ timeout = 300, opacity, y, top, style }, { color }) => {
 
   return (
     <span
@@ -13,14 +13,15 @@ const Emdash = ({ opacity, y, top }, { color }) => {
         backgroundColor: color,
         position: `absolute`,
         right: 0,
-        transition: `opacity 300ms ${EASE}, transform 300ms ${EASE}, backgroundColor 300ms ${EASE}`,
+        transition: `opacity ${timeout}ms ${EASE}, transform ${timeout}ms ${EASE}, backgroundColor ${timeout}ms ${EASE}`,
         transform: `translate3d(0px, ${y}px, 0px)`, // x, y, z
         display: `inline-block`,
         marginLeft: `3rem`,
         letterSpacing: `-1px`,
         filter: `blur(1px)`,
         width: `1rem`,
-        height: `2px`
+        height: `2px`,
+        ...style
       }}
     >
      {` `}

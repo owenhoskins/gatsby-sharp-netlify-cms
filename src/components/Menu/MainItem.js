@@ -53,7 +53,7 @@ export default class Item extends Component {
 
   onMouseLeave = () => {
     if (!this.props.collapsed) {
-      this.setState({opacity: 0.3})
+      this.setState({opacity: 0.6})
     }
   }
 
@@ -65,7 +65,7 @@ export default class Item extends Component {
 
   render() {
 
-    const { title, active } = this.props
+    const { title, active, timeout } = this.props
 
     return (
       <div
@@ -81,7 +81,7 @@ export default class Item extends Component {
       >
           <div
             css={{
-              transition: `opacity 300ms ease-in-out, transform 300ms ${ease}`,
+              transition: `opacity ${timeout}ms ease-in-out, transform ${timeout}ms ${ease}`,
               transform: `translate3d(0px, ${this.state.y}px, 0px)`, // x, y, z
               opacity: this.state.opacity,
             }}
@@ -104,7 +104,9 @@ export default class Item extends Component {
             </div>
           </div>
           <Emdash
-            opacity={ this.props.collapsed ? 0 : 0.3 }
+            timeout={timeout}
+            //opacity={ this.props.collapsed ? 0 : 0.6 }
+            opacity={ 0.6 }
             top={'19px'}
             y={this.state.y}
           />

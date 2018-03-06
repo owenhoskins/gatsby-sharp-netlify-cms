@@ -4,13 +4,12 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
 import Item from './MainItem'
-import Toggle from './Toggle'
+import Close from '../Burger'
 
 
 export default class Menu extends Component {
 
   state = {
-    isVisible: true,
     startingYs: [],
     ready: false
   }
@@ -24,28 +23,31 @@ export default class Menu extends Component {
   componentDidMount() {
 
     // we only know where the Y position is on mount
-    // so how to start collapsed?
-    const startingYs = this.props.sections.map((section, i) => {
-      return this[section].getBoundingClientRect().y
-    })
-
+    const startingYs = this.props.sections.map((section, i) => this[section].getBoundingClientRect().y)
     this.setState({startingYs})
-    //this.context.toggleCollapse(true)
-
     console.log('startingYs: ', startingYs)
-    setTimeout(() => {
-      this.setState({ready: true})
-    }, 300)
 
+    // Item's collapsed state animation completes in this.props.timeout
+    // Wait a tick to fade in the menu items
+    setTimeout(() => this.setState({ready: true}), this.props.timeout)
+
+    // TODO
     // on resize we need to reset the startingYs.
   }
+
+  handleBurgerClick = () => {
+    if (this.props.page !== 'home') {
+      window.___navigateTo('/')
+    } else {
+      this.props.toggleCollapse()
+    }
+  }
+
 
   render() {
     const {
       title,
       sections,
-      scrollToSection,
-      currentSection
     } = this.props
 
     const isCover = false
@@ -55,7 +57,6 @@ export default class Menu extends Component {
         css={{
           display: 'flex',
           width: '14rem',
-          //marginLeft: '2rem',
           position: 'fixed',
           top: 0,
           bottom: 0,
@@ -66,6 +67,13 @@ export default class Menu extends Component {
           //paddingTop: '16rem'
         }}
       >
+
+      { this.state.ready &&
+        <Close
+          collapsed={this.props.collapsed}
+          onClick={this.handleBurgerClick}
+        />
+      }
 
         <ul
           css={{
@@ -94,12 +102,10 @@ export default class Menu extends Component {
                 <Item
                   returnRef={this.returnRef}
                   index={i}
-                  collapsed={this.context.collapsed}
+                  collapsed={this.props.collapsed}
+                  timeout={this.props.timeout}
                   startingYs={this.state.startingYs}
-                  //isVisible={this.state.isVisible}
-                  isVisible
                   title={section}
-                  active={currentSection === i}
                 />
               </li>
             })
@@ -110,8 +116,3 @@ export default class Menu extends Component {
   }
 }
 
-
-Menu.contextTypes = {
-  collapsed: PropTypes.bool,
-  toggleCollapse: PropTypes.func
-}

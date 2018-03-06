@@ -8,7 +8,6 @@ import Interstitcher from './src/components/Interstitcher'
 
 import getTransitionStyle from "./src/utils/getTransitionStyle"
 
-const transform = true
 const timeout = 500
 const historyExitingEventType = `history::exiting`
 
@@ -67,7 +66,7 @@ class ReplaceComponentRenderer extends React.Component {
     return (
       <Interstitcher
         {...this.props}
-        exiting={ this.state.exiting }
+        //exiting={ this.state.exiting }
       >
         <Transition {...transitionProps}>
         {
@@ -77,7 +76,7 @@ class ReplaceComponentRenderer extends React.Component {
             transition: {
               status,
               timeout,
-              style: getTransitionStyle({ status, timeout, transform }),
+              style: getTransitionStyle({ status, timeout }),
               nextPageResources: this.state.nextPageResources,
             },
           })

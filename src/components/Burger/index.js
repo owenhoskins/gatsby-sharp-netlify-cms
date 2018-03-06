@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Emdash from '../Emdash'
+import { EASE } from '../../utils/presets'
 
 export default class Burger extends Component {
   state = {
@@ -39,11 +40,29 @@ export default class Burger extends Component {
         }}
       >
         <div
-          css={{position: `relative`}}
+          css={{
+            transition: `opacity 300ms ${EASE}`,
+            transitionDelay: this.props.collapsed ? `0ms` : `300ms`,
+            opacity: this.props.collapsed ? 0 : 1,
+            position: `relative`,
+          }}
         >
-          <Emdash top={`0`} opacity={this.state.hovered ? 0.7 : 0.6} />
-          <Emdash top={`8px`} opacity={this.state.hovered ? 0.7 : 0.6} />
-          <Emdash top={`16px`} opacity={this.state.hovered ? 0.7 : 0.6} />
+          <Emdash
+            top={`8px`}
+            opacity={this.state.hovered ? 0.7 : 0.6}
+            style={{
+              transitionProperty: `top, transform`,
+              transform: `rotate(45deg)`
+            }}
+          />
+          <Emdash
+            top={`8px`}
+            opacity={this.state.hovered ? 0.7 : 0.6}
+            style={{
+              transitionProperty: `bottom, transform`,
+              transform: `rotate(-45deg)`
+            }}
+          />
         </div>
       </div>
     )

@@ -6,7 +6,7 @@ import { Grid, Row, Col } from '../components/Grid'
 import MobileGallery from '../components/Gallery/Mobile'
 import DesktopGallery from '../components/Gallery/Desktop'
 
-export default function Template({ data }) {
+export default function Template({ data, transition }) {
   const { markdownRemark: artist } = data;
   const {
     frontmatter: {
@@ -27,7 +27,7 @@ export default function Template({ data }) {
   const { vimeo: { videos = [] } } = data
 
   return (
-    <section>
+    <section style={transition && transition.style}>
       <Helmet title={`${title}`} />
       <Responsive maxWidth={`48em`}>
         <MobileGallery

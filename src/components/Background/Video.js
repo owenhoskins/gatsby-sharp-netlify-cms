@@ -20,18 +20,7 @@ export default class Video extends Component {
 
   render () {
 
-    const { blur, isVisible } = this.props
-
-    let opacity
-    if (isVisible) {
-      opacity = 1
-    } else {
-      if (blur) {
-        opacity = 0.3
-      } else {
-        opacity = 0
-      }
-    }
+    const { blur, opacity } = this.props
 
     return <video
       ref={ref => this.video = ref}
