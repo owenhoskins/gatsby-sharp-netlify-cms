@@ -82,25 +82,25 @@ body {
 /* headroom */
 
 .headroom {
-  top: 0;
-  left: 0;
+  left: 18rem;
+  top: 1rem;
   right: 0;
   z-index: 1;
-  padding: 0 2rem;
+  padding: 0 2rem 4rem;
   transition: opacity 500ms ease-in-out;
 }
 .headroom--unfixed {
-  position: relative;
+  position: fixed;
   transform: translateY(0);
 }
 .headroom--scrolled {
   left: 18rem;
-  top: 2.5rem;
+  top: 1rem;
   transition: transform 200ms ease-in-out, opacity 500ms ease-in-out;
 }
 .headroom--unpinned {
   position: fixed;
-  transform: translateY(calc(-100% - 3rem));
+  transform: translateY(calc(-100% + 3rem));
 }
 .headroom--pinned {
   position: fixed;
@@ -110,12 +110,11 @@ body {
 .headroom--pinned::before {
   content: " ";
   position: fixed;
-  top: -2.5rem;
+  top: -1rem;
   left: -18rem;
   right: 0;
-  height: 8rem;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
-  pointer-events: none;
+  height: 10rem;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0));
 }
 
 

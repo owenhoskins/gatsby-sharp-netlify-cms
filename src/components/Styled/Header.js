@@ -1,6 +1,6 @@
 import React from 'react'
 import { basekick } from '../../utils/typography'
-import { MIN_MOBILE_MQ } from '../../utils/presets'
+import { MIN_MOBILE_MQ, EASE } from '../../utils/presets'
 
 export const HeaderXL = ({ children, style, onClick }) => (
   <h1
@@ -24,6 +24,7 @@ export const HeaderXL = ({ children, style, onClick }) => (
 export const HeaderLG = ({ children, style, uppercase, blur }) => (
   <h2
     css={{
+      transform: `color 300ms ${EASE}`,
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
@@ -110,6 +111,7 @@ export const Blurry = ({ children, style, inline, opacity }) => (
   <div
     css={{
       opacity: opacity || 1,
+      transition: `opacity 300ms ${EASE}`,
       display: inline ? 'inline-block' : 'block',
       filter: 'blur(1px)',
       letterSpacing: '3px',

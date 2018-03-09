@@ -13,10 +13,12 @@ export default class ServicesPage extends Component {
 
   state = {
     inViewIndex: 0,
-    inView: ''
+    inView: '',
+    isHovered: true
   }
 
   scrollToSection = (i, key) => {
+    this.setState({isHovered: false})
     ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
   }
 
@@ -31,6 +33,15 @@ export default class ServicesPage extends Component {
 
   }
 
+  onMouseEnter = () => {
+    this.setState({isHovered: true})
+  }
+
+  onMouseLeave = () => {
+    this.setState({isHovered: false})
+  }
+
+
   returnRef = (ref, refKey) => this[refKey] = ref
 
   render() {
@@ -38,13 +49,16 @@ export default class ServicesPage extends Component {
     const {
       data: {
         services
-      }
+      },
+      transition
     } = this.props
 
     return (
-      <div>
+      <div style={transition && transition.style}>
         <Menu
-          title={`services`}
+          isHovered={this.state.isHovered}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
           sections={
             services && services.edges.map(
               ({ node: { fields, frontmatter }}) => frontmatter.title)

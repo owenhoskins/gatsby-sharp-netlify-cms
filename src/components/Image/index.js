@@ -50,6 +50,7 @@ function getIO() {
             if (l[0] === entry.target) {
               // Edge doesn't currently support isIntersecting, so also test for an intersectionRatio > 0
               if (entry.isIntersecting || entry.intersectionRatio > 0) {
+                //console.log('Observer: ', entry, entry.isIntersecting)
                 io.unobserve(l[0])
                 l[1]()
               }
@@ -254,6 +255,7 @@ class Image extends React.Component {
                 opacity={!this.state.imgLoaded ? 1 : 0}
                 transitionDelay={`0.25s`}
                 style={{
+                  opacity: 0.5,
                   filter: 'blur(20px)',
                   transform: 'scale(1.5)'
                 }}

@@ -4,7 +4,7 @@ import Lightbox from '../Lightbox'
 import EventListener, { withOptions } from 'react-event-listener'
 
 import { ScrollTop } from '../Scroll'
-import Menu from '../Menu'
+import Menu from '../Menu/Services'
 import { HeaderDesktop } from '../Header'
 import Cover from '../Cover'
 
@@ -76,25 +76,33 @@ class Desktop extends Component {
     currentSection: 0,
     currentImage: 0,
     isVisible: false,
-    isCover: true,
-    lightboxIsOpen: false
+    //lightboxIsOpen: false,
+    isHovered: true
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (this.context.isCover !== nextContext.isCover) {
+      this.setState({isVisible: !nextContext.isCover})
+    }
   }
 
   openLightbox = (event, obj) => {
     // console.log('openLightbox: ', obj)
     this.setState({
       currentImage: obj.index,
-      lightboxIsOpen: true,
+      //lightboxIsOpen: true,
       isVisible: false,
     });
+    this.context.toggleLightbox(true)
   }
 
   closeLightbox = () => {
     this.setState({
       //currentImage: 0,
-      lightboxIsOpen: false,
+      //lightboxIsOpen: false,
       isVisible: true
     });
+    this.context.toggleLightbox(false)
   }
 
   gotoPrevious = () => {
@@ -121,7 +129,7 @@ class Desktop extends Component {
   }
 
   onPositionChange = ({currentPosition}, key) => {
-    if (!this.state.isCover) {
+    if (!this.context.isCover) {
       console.log('onPositionChange: ', currentPosition, key)
       const index = this.props.sections.findIndex(section => section.key === key)
       if (currentPosition === 'inside') {
@@ -137,22 +145,37 @@ class Desktop extends Component {
   }
 
   gotoPortfolios = () => {
-    this.setState({isVisible: !this.state.isVisible, isCover: !this.state.isCover})
+    this.context.toggleIsCover(!this.context.isCover)
+    //this.setState({isVisible: !this.state.isVisible})
   }
 
   handleScroll = (e) => {
 
-    if (this.state.isCover) {
+    if (this.context.isCover) {
       const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
       if (scrollY > 5) {
-        this.setState({isCover: false, isVisible: true})
+        //this.setState({isVisible: true})
+        this.context.toggleIsCover(false)
       }
     }
 
-    if (this.state.lightboxIsOpen) {
-      this.setState({ lightboxIsOpen: false, isVisible: true })
+    if (this.context.lightboxIsOpen) {
+      this.context.toggleLightbox(false)
+      this.setState({
+        //lightboxIsOpen: false,
+        isVisible: true
+      })
     }
   }
+
+  onMouseEnter = () => {
+    this.setState({isHovered: true})
+  }
+
+  onMouseLeave = () => {
+    this.setState({isHovered: false})
+  }
+
 
   returnRef = (ref, refKey) => this[refKey] = ref
 
@@ -180,22 +203,27 @@ class Desktop extends Component {
   }
 
   render() {
-    const { cover, portfolios, videos, instagram, biography, sections = [] } = this.props
+    const { cover, portfolios, videos, instagram, biography, sections = [], transition } = this.props
     return (
       <div>
         <EventListener
           target={ 'window' }
           onScroll={withOptions(this.handleScroll, {passive: true, capture: false})}
         />
-        <div>
+        <div
+          //style={transition && transition.style}
+        >
           <div css={{
             width: '10rem',
             marginLeft: '6rem'
           }}>
             <Menu
-              isCover={this.state.isCover || this.state.lightboxIsOpen}
+              isHovered={this.state.isHovered}
+              onMouseEnter={this.onMouseEnter}
+              onMouseLeave={this.onMouseLeave}
+              isCover={this.context.isCover || this.context.lightboxIsOpen}
               type={biography.type}
-              sections={sections}
+              sections={sections && sections.map(section => section.title)}
               scrollToSection={this.scrollToSection}
               currentSection={this.state.currentSection}
             />
@@ -205,14 +233,8 @@ class Desktop extends Component {
             float: 'left',
             width: 'calc(100% - 18rem)',
             marginLeft: '18rem',
-            pointerEvents: this.state.isCover || this.state.lightboxIsOpen ? 'none' : 'auto'
+            pointerEvents: this.context.isCover || this.context.lightboxIsOpen ? 'none' : 'auto'
           }}>
-            <HeaderDesktop
-              isCover={this.state.isCover || this.state.lightboxIsOpen}
-              name={biography.name}
-              instagram={biography.instagram}
-              enquire={biography.enquire}
-            />
             <div
               css={{
                 transition: 'opacity 1000ms ease-out, transform 800ms ease-out, 800ms filter ease-out',
@@ -261,20 +283,22 @@ class Desktop extends Component {
                 )
               }
             </div>
-            <Lightbox
-              images={this.images}
-              onClose={this.closeLightbox}
-              onClickPrev={this.gotoPrevious}
-              onClickNext={this.gotoNext}
-              currentImage={this.state.currentImage}
-              isOpen={this.state.lightboxIsOpen}
-            />
+            { !this.context.isCover && (
+              <Lightbox
+                images={this.images}
+                onClose={this.closeLightbox}
+                onClickPrev={this.gotoPrevious}
+                onClickNext={this.gotoNext}
+                currentImage={this.state.currentImage}
+                isOpen={this.context.lightboxIsOpen}
+              />
+            )}
             <Cover
               name={biography.name}
               cover={cover}
               //currentImage={this.state.currentImage}
               //images={images}
-              isCover={this.state.isCover}
+              isCover={this.context.isCover}
               onClick={this.gotoPortfolios}
             />
           </div>
@@ -286,3 +310,10 @@ class Desktop extends Component {
 }
 
 export default Model
+
+Desktop.contextTypes = {
+  isCover: PropTypes.bool,
+  toggleIsCover: PropTypes.func,
+  lightboxIsOpen: PropTypes.bool,
+  toggleLightbox: PropTypes.func
+}

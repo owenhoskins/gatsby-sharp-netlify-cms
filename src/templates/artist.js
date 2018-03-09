@@ -23,11 +23,14 @@ export default function Template({ data, transition }) {
   //const { instagram: { edges: insta = [] } } = data
   const { instagram = {} } = data
   const insta = instagram ? instagram.edges : []
-  const { followers: { followers } } = data
+  //const { followers: { followers } } = data
+  const followers = data.followers && data.followers.followers
   const { vimeo: { videos = [] } } = data
 
   return (
-    <section style={transition && transition.style}>
+    <section
+      //style={transition && transition.style}
+    >
       <Helmet title={`${title}`} />
       <Responsive maxWidth={`48em`}>
         <MobileGallery
@@ -43,6 +46,7 @@ export default function Template({ data, transition }) {
       <Responsive minWidth={`48em`}>
         <div>
           <DesktopGallery
+            transition={transition}
             title={title}
             cover={cover}
             type={type}

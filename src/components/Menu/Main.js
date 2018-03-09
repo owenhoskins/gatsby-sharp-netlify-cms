@@ -62,9 +62,8 @@ export default class Menu extends Component {
           bottom: 0,
           left: 0,
           zIndex: 2000,
-          opacity: isCover ? 0 : 1,
-          transition: 'opacity 1000ms ease-out',
-          //paddingTop: '16rem'
+          pointerEvents: this.props.collapsed ? 'none' : 'auto',
+          ...this.props.style
         }}
       >
 

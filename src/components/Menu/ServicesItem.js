@@ -1,58 +1,95 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { basekick } from '../../utils/typography'
 
-const Item = ({ title, active, isVisible, onClick, index }) => {
+import Emdash from '../Emdash'
 
-  let opacity
-  if (isVisible) {
-    opacity = 0.3
-    if (active) {
+export default class Item extends Component {
+  constructor(props) {
+    super(props)
+
+    let opacity
+    if (props.active) {
       opacity = 1
+    } else {
+      opacity = 0.3
     }
-  } else {
-    opacity = 0
-    if (active) {
-      opacity = 1
+
+    this.state = { opacity }
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    if (
+      this.props.isHovered !== nextProps.isHovered ||
+      this.props.active !== nextProps.active
+    ) {
+
+      let opacity
+      if (nextProps.active) {
+        opacity = 1
+      } else {
+        opacity = 0.3
+        if (typeof(nextProps.isHovered) !== 'undefined') {
+          if (nextProps.isHovered) {
+            opacity = 0.6
+          } else {
+            opacity = 0
+          }
+        }
+      }
+
+      this.setState({opacity})
+
+    }
+
+  }
+
+  handleOnClick = () => {
+    if (this.props.onClick) {
+      this.props.onClick(this.props.index, this.props.title.replace(/\s+/g, ''))
     }
   }
 
-  const handleOnClick = () => {
-    if (onClick) {
-      onClick(index, title.replace(/\s+/g, ''))
-    }
-  }
+  render() {
 
-  return (
-    <div
-      onClick={handleOnClick}
-      css={{
-        width: '16rem',
-        textAlign: 'right',
-        paddingRight: '3rem',
-        transition: 'opacity 300ms ease-in-out',
-        //opacity: active ? 1 : 0.3,
-        opacity,
-        filter: 'blur(1px)',
-        letterSpacing: '3px',
-        textTransform: 'lowercase',
-        ...basekick({
-          typeSizeModifier: 0.875,
-          typeRowSpan: 3,
-        })
-      }}
-    >
-      {title}
-      <span
+    const { title } = this.props
+
+    return (
+      <div
+        onClick={this.handleOnClick}
         css={{
-          display: 'inline-block',
-          marginLeft: '3rem',
-          letterSpacing: '-1px'
+          width: '16rem',
+          textAlign: 'right',
+          padding: '1rem 3rem 1rem 0',
+          position: `relative`,
+          ':hover > .nav-label': {
+            opacity: 1
+          }
         }}
       >
-       {`——`}
-      </span>
-    </div>
-  )
+        <div
+        className={`nav-label`}
+        css={{
+          transition: 'opacity 300ms ease-in-out',
+          opacity: this.state.opacity,
+          filter: 'blur(1px)',
+          letterSpacing: '3px',
+          textTransform: 'lowercase',
+          ...basekick({
+            typeSizeModifier: 0.875,
+            typeRowSpan: 3,
+          })
+        }}
+        >
+          {title}
+        </div>
+        <Emdash
+          opacity={ this.props.active ? 0.6 : 0.3 }
+          top={'35px'}
+        />
+      </div>
+    )
+  }
+
 }
-export default Item

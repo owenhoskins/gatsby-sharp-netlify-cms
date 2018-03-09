@@ -29,10 +29,11 @@ export default class Burger extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         css={{
+          pointerEvents: 'auto',
           cursor: `pointer`,
           position: `fixed`,
-          zIndex: 2000,
-          top: `47px`,
+          zIndex: 200,
+          top: `20px`,
           left: `14.25rem`,
           height: `2.5rem`,
           width: `2.5rem`,

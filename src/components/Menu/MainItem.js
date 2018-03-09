@@ -22,7 +22,7 @@ export default class Item extends Component {
       if (nextProps.collapsed) {
 
         if (nextProps.startingYs.length > 0) {
-          const marginTop = 40
+          const marginTop = 12
           const startingY = nextProps.startingYs[this.props.index]
           console.log('startingY: ', this.props.index, ' starts at ', startingY)
           const y = -startingY + marginTop + (this.props.index * 8)

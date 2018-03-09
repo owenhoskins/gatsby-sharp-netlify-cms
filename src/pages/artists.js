@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 import { ScrollHorizontal, ScrollTop } from '../components/Scroll'
 import { HeaderXS, HeaderSM, HeaderMD, HeaderLG } from '../components/Styled'
 
-import Menu from '../components/Menu/Artists'
+import Menu from '../components/Menu/Services'
 
 import ScrollPercentage from 'react-scroll-percentage'
 
@@ -20,7 +20,14 @@ export default class ArtistsPage extends Component {
     to: ''
   }
 
+  componentDidMount() {
+    if (this.props.location.hash) {
+      this.scrollToSection(0, this.props.location.hash.replace('#', ''))
+    }
+  }
+
   scrollToSection = (i, key) => {
+    console.log('scrollToSection: ', this[key])
     ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
   }
 

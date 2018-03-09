@@ -5,12 +5,12 @@ const getTransitionStyles = (timeout) => {
       filter: `blur(50px)`
     },
     entered: {
-      transition: `opacity ${timeout}ms ease-in-out, transform ${timeout}ms ease-out, filter ${timeout * 2}ms ease-out`,
+      transition: `opacity ${timeout}ms ease-in-out, filter ${timeout * 2}ms ease-out`,
       opacity: 1,
       filter: `blur(0)`
     },
     exiting: {
-      transition: `opacity ${timeout}ms ease-in-out, transform ${timeout}ms ease-out, filter ${timeout * 2}ms ease-out`,
+      transition: `opacity ${timeout}ms ease-in-out, filter ${timeout * 2}ms ease-out`,
       opacity: 0,
       filter: `blur(50px)`,
     },

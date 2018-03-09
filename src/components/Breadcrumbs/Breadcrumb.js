@@ -8,6 +8,7 @@ import getTransitionStyle from "../../utils/getTransitionStyle"
 const timeout = 300
 
 export default class Breadcrumb extends Component {
+/*
   state = {
     show: false
   }
@@ -16,7 +17,7 @@ export default class Breadcrumb extends Component {
     //setTimeout(() => this.setState({show: true}), 500)
     this.setState({show: true})
   }
-
+*/
   render () {
     const { path, name, opacity, prepend } = this.props
 
@@ -46,6 +47,12 @@ export default class Breadcrumb extends Component {
               inline
               opacity={opacity}
               status={status}
+              style={{
+                opacity: opacity,
+                ':hover': {
+                  opacity: 1
+                }
+              }}
             >
               <Link to={`/${path}`}>{name}</Link>
             </Blurry>
@@ -60,12 +67,3 @@ export default class Breadcrumb extends Component {
     )
   }
 }
-
-/*
-transition: {
-  status,
-  timeout,
-  style: getTransitionStyle({ status, timeout, transform }),
-  nextPageResources: this.state.nextPageResources,
-},
-*/
