@@ -47,7 +47,7 @@ export default class Item extends Component {
 
   handleOnClick = () => {
     if (this.props.onClick) {
-      this.props.onClick(this.props.index, this.props.title.replace(/\s+/g, ''))
+      this.props.onClick(this.props.index, this.props.title.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() }))
     }
   }
 
@@ -82,7 +82,7 @@ export default class Item extends Component {
           })
         }}
         >
-          {title}
+          {title.replace(/-/g, ' ')}
         </div>
         <Emdash
           opacity={ this.props.active ? 0.6 : 0.3 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import { ScrollHorizontal, ScrollTop } from '../components/Scroll'
-import { HeaderXS, HeaderSM, HeaderMD, HeaderLG } from '../components/Styled'
+import { HeaderXS, Blurry, HeaderMD } from '../components/Styled'
 
 import Menu from '../components/Menu/Services'
 
@@ -72,40 +72,19 @@ export default class ServicesPage extends Component {
           width: '14rem',
           paddingRight: '2rem',
           position: 'fixed',
-          bottom: '1rem',
+          bottom: '3rem',
           left: 0,
           zIndex: 2000,
           opacity: 1,
           transition: 'opacity 1000ms ease-out'
         }}
       >
-        <HeaderXS uppercase style={{ display: 'inline-block' }}>
+        <Blurry>
           <a href={`mailto:enquire@starworksartists.com`}>
-            {`ENQUIRE`}
+            {`Enquire`}
           </a>
-        </HeaderXS>
+        </Blurry>
       </div>
-
-        {/*<div css={{
-          top: '3rem',
-          position: 'fixed',
-          width: 'calc(100% - 18rem)',
-          left: '18rem'
-        }}>
-          <HeaderSM
-            uppercase
-            style={{ display: 'inline-block' }}
-          >
-            {`Starworks Artists`}
-          </HeaderSM>
-          <div css={{ float: 'right', marginRight: '1rem' }}>
-            <HeaderXS uppercase style={{ display: 'inline-block' }}>
-              <a href={`mailto:enquire@starworksartists.com`}>
-                {`ENQUIRE`}
-              </a>
-            </HeaderXS>
-          </div>
-        </div>*/}
 
         {
           services && services.edges.map(

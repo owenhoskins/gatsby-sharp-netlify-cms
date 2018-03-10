@@ -139,7 +139,7 @@ export default class Interstitcher extends Component {
           page={this.state.page}
           style={{
             opacity: this.state.lightboxIsOpen ? 0 : 1,
-            pointerEvents: this.state.lightboxIsOpen ? 'none' : 'auto',
+            //pointerEvents: this.state.lightboxIsOpen ? 'none' : 'auto',
             transition: `opacity 300ms ${EASE}`
           }}
         />
@@ -154,14 +154,6 @@ export default class Interstitcher extends Component {
             transition: `opacity 300ms ${EASE}`
           }}
         />
-        {/*<div
-          css={{
-            opacity: this.state.lightboxIsOpen ? 0 : 1,
-            pointerEvents: this.state.lightboxIsOpen ? 'none' : 'auto',
-            transition: `opacity 300ms ${EASE}`
-          }}
-        >
-        </div>*/}
         {/*
         <Headroom
           //disable={ this.state.page === 'artist' ? false : true }

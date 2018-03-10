@@ -72,7 +72,8 @@ export default class ArtistsPage extends Component {
             'stylist',
             'grooming',
             'manicurist',
-            'color'
+            'color',
+            'special-bookings'
           ]}
           scrollToSection={this.scrollToSection}
           currentSection={this.state.inViewIndex}
@@ -89,6 +90,8 @@ export default class ArtistsPage extends Component {
                 innerRef={(ref) => this.returnRef(ref, refKey)}
               >
               {
+                //const leftEdge = 0.75
+                //const rightEdge = 0.2
                 (percentage) => {
                   let opacity
                   if (percentage > leftEdge) { // edge of menu
@@ -103,7 +106,7 @@ export default class ArtistsPage extends Component {
                     <div
                       css={{
                         width: `calc(100vw - 21rem)`,
-                        height: `21rem`,
+                        height: `20vh`,
                         marginBottom: '1vh',
                         //backgroundColor: 'rgba(0, 0, 0, 0.1)'
                       }}
@@ -112,8 +115,10 @@ export default class ArtistsPage extends Component {
                       <div
                         css={{
                           //transition: `opacity 200ms linear, 800ms filter linear`,
+                          display: 'flex',
                           position: `fixed`,
-                          top: `14rem`,
+                          top: `0`,
+                          bottom: `0`,
                           left: `calc(100vw)`,
                           width: `100vw`
                         }}
@@ -126,6 +131,8 @@ export default class ArtistsPage extends Component {
                         <div
                           css={{
                             width: `21rem`,
+                            height: `29rem`,
+                            alignSelf: `center`
                             //backgroundColor: 'rgba(0, 0, 0, 0.1)'
                           }}
                         >
@@ -143,14 +150,13 @@ export default class ArtistsPage extends Component {
                               )
                             })
                           }
-                          {/*<p>{refKey}</p>
+                          <p>{refKey}</p>
                           <p>{`Percentage scrolled: ${percentage.toPrecision(2)}%.`}</p>
-                          */}
                         </div>
                       </div>
-                      {/*<p>{refKey}</p>
+                      <p>{refKey}</p>
                           <p>{`Percentage scrolled: ${percentage.toPrecision(2)}%.`}</p>
-                          */}
+
                     </div>
                   )
                 }
@@ -271,6 +277,25 @@ export const query = graphql`
       filter: {
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "color"}}
+      },
+      sort: {order: ASC, fields: [frontmatter___order]}
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            type
+          }
+        }
+      }
+    }
+    specialBookings: allMarkdownRemark(
+      filter: {
+        id: { regex: "/pages/artists/"},
+        frontmatter: {kind: {eq: "artist"}, type: {eq: "special-bookings"}}
       },
       sort: {order: ASC, fields: [frontmatter___order]}
     ) {
