@@ -27,6 +27,8 @@ export default class Item extends Component {
 
       let opacity
       if (nextProps.active) {
+
+        console.log('nextProps.active!', this.props.title)
         opacity = 1
       } else {
         opacity = 0.3
@@ -47,7 +49,10 @@ export default class Item extends Component {
 
   handleOnClick = () => {
     if (this.props.onClick) {
-      this.props.onClick(this.props.index, this.props.title.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() }))
+      const key = this.props.title.replace(/\s/g, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() })
+      // .replace(/\s/g, '')
+      console.log('key: ', key)
+      this.props.onClick(this.props.index, key)
     }
   }
 
@@ -73,6 +78,7 @@ export default class Item extends Component {
         css={{
           transition: 'opacity 300ms ease-in-out',
           opacity: this.state.opacity,
+          willChange: `opacity`,
           filter: 'blur(1px)',
           letterSpacing: '3px',
           textTransform: 'lowercase',

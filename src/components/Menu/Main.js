@@ -6,8 +6,9 @@ import Link from 'gatsby-link'
 import Item from './MainItem'
 import Close from '../Burger'
 
+import { withWindowSizeListener } from '../../utils/windowResizeListener'
 
-export default class Menu extends Component {
+class Menu extends Component {
 
   state = {
     startingYs: [],
@@ -18,6 +19,16 @@ export default class Menu extends Component {
 
   componentWillReceiveProps(nextProps, nextContext) {
     // console.log('Menu context: ', this.context, nextContext)
+
+    if (
+        this.props.windowSize.windowHeight !== nextProps.windowSize.windowHeight ||
+        this.props.windowSize.windowWidth !== nextProps.windowSize.windowWidth
+      ) {
+      const startingYs = this.props.sections.map((section, i) => this[section].getBoundingClientRect().y)
+      this.setState({startingYs})
+      console.log('startingYs: ', startingYs)
+    }
+
   }
 
   componentDidMount() {
@@ -115,3 +126,4 @@ export default class Menu extends Component {
   }
 }
 
+export default withWindowSizeListener(Menu)

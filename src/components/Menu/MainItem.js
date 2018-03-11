@@ -6,19 +6,22 @@ import Emdash from '../Emdash'
 
 const ease = `cubic-bezier(0.455, 0.03, 0.515, 0.955)` // easeInOutQuad
 
-export default class Item extends Component {
+class Item extends Component {
   state = {
     opacity: 1,
     y: 0
   }
 
   componentDidMount() {
-    console.log('componentDidMount', this.props.index, this.props.startingYs, this.props.collapsed)
+    //console.log('componentDidMount', this.props.index, this.props.startingYs, this.props.collapsed)
   }
 
   componentWillReceiveProps (nextProps) {
 
-    if (this.props.collapsed !== nextProps.collapsed) {
+    if (
+      this.props.collapsed !== nextProps.collapsed ||
+      this.props.startingYs[0] !== nextProps.startingYs[0]
+    ) {
       if (nextProps.collapsed) {
 
         if (nextProps.startingYs.length > 0) {
@@ -36,13 +39,6 @@ export default class Item extends Component {
       }
     }
 
-/*    if (
-      this.props.startingYs.length > 0 &&
-      this.props.startingYs !== nextProps.startingYs
-    ) {
-      this.setState({startingY: nextProps.startingYs[this.props.index]})
-    }
-*/
   }
 
   onMouseEnter = () => {
@@ -114,3 +110,7 @@ export default class Item extends Component {
     )
   }
 }
+
+export default Item
+//export default withWindowSizeListener(Item)
+

@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
+
+import { withWindowSizeListener } from '../utils/windowResizeListener'
+
 import { ScrollHorizontal, ScrollTop } from '../components/Scroll'
 import { HeaderXS, Blurry, HeaderMD } from '../components/Styled'
 
 import Menu from '../components/Menu/Services'
+import FullWidth from '../components/Columns/FullWidth'
 
 import ScrollPercentage from 'react-scroll-percentage'
 
 const calcPercentage = percentage => Math.floor(percentage * 100)
 
-export default class ServicesPage extends Component {
+class ServicesPage extends Component {
 
   state = {
     inViewIndex: 0,
@@ -17,17 +21,47 @@ export default class ServicesPage extends Component {
     isHovered: true
   }
 
+  componentDidMount() {
+    if (this.props.location.hash) {
+      this.scrollToSection(0, this.props.location.hash.replace('#', ''))
+    } else {
+      const {
+        data: {
+          services
+        }
+      } = this.props
+      const refKey = services && services.edges[0].node.frontmatter.title.replace(/\s+/g, '')
+      this.scrollToSection(0, refKey)
+    }
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    const {
+      windowSize: { windowHeight, windowWidth }
+    } = nextProps
+
+    if (
+        this.props.windowSize.windowHeight !== windowHeight ||
+        this.props.windowSize.windowWidth !== windowWidth
+      ) {
+
+      this.setState({
+        viewportUnit: windowHeight >= windowWidth ? 'vh' : 'vw'
+      })
+
+    }
+
+  }
+
   scrollToSection = (i, key) => {
+    console.log('scrollToSection: ', this[key])
     this.setState({isHovered: false})
-    ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
+    ScrollTop(this[key], {duration: 500, offset: window.innerHeight / 2, align: 'middle'})
   }
 
   handleChange = ({percentage, inView, index, refKey}) => {
-    const node = this[refKey]
-
-    // console.log(`handleChange ${index} / ${refKey} / ${percentage} / ${inView}`)
-
-    if (inView && (percentage >= 0.25 && percentage <= 0.75)) {
+    //console.log(`handleChange ${index} / ${refKey} / ${percentage}`)
+    if (inView && (percentage >= 0.45 && percentage <= 1)) {
       this.setState({inView: refKey, inViewIndex: index})
     }
 
@@ -52,6 +86,8 @@ export default class ServicesPage extends Component {
       },
       transition
     } = this.props
+
+    //console.log('this.state.inViewIndex: ', this.state.inViewIndex)
 
     return (
       <div style={transition && transition.style}>
@@ -93,50 +129,21 @@ export default class ServicesPage extends Component {
               return (
                 <ScrollPercentage
                   key={refKey}
-                  onChange={(percentage, inView) => this.handleChange({percentage, inView, index, refKey})}
+                  //onChange={(percentage, inView) => this.handleChange({percentage, inView, index, refKey})}
                   innerRef={(ref) => this.returnRef(ref, refKey)}
                 >
-                {(percentage) => {
-                  let opacity
-                  if (percentage > 0.55) { // edge of menu
-                    opacity = 0.5 - percentage.toPrecision(2)
-                  } else if (percentage < 0.45) { // right edge
-                    opacity = percentage.toPrecision(2)
-                  } else {
-                    opacity = percentage.toPrecision(2) * 1.5
-                  }
+                {(percentage, inView) => {
                   return (
-                  <div
-                    css={{
-                      width: `calc(100vw - 21rem)`,
-                      height: `100vh`,
-                      marginBottom: '1vh',
-                    }}
-                    //threshold='0.7'
-                  >
-                      <div
-                        css={{
-                          transition: `opacity 200ms linear, 800ms filter linear`,
-                          position: `fixed`,
-                          top: `14rem`,
-                          left: `calc(100vw - 16rem)`,
-                          width: `100vw`
-                          //willChange:`transform`
-                          // https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
-                        }}
-                        style={{
-                          //opacity: percentage > 0.55 ? 0.6 - percentage.toPrecision(2) : percentage.toPrecision(2),
-                          opacity: opacity,
-                          transform: `translate3d(${-(percentage * 100) + 'vw'}, 0px, 0px)`,
-                          //filter: percentage < 0.30 || percentage > 0.55 ? `blur(1px)` : `blur(0)`
-                        }}
-                      >
-                        <HeaderMD style={{maxWidth: `40rem`}}>{frontmatter.description}</HeaderMD>
-                        {/*
-                        <p>{`Percentage scrolled: ${percentage.toPrecision(2)}%.`}</p>
-                        */}
-                      </div>
-                  </div>
+                    <FullWidth
+                      viewportUnit={this.state.viewportUnit}
+                      index={index}
+                      refKey={refKey}
+                      onChange={this.handleChange}
+                      inView={inView}
+                      active={this.state.inViewIndex === index}
+                      percentage={percentage.toPrecision(2)}
+                      description={frontmatter.description}
+                    />
                   )
                 }
                 }
@@ -145,6 +152,12 @@ export default class ServicesPage extends Component {
             }
           )
         }
+
+        <div
+          css={{
+            height: `100vh`,
+          }}
+        ></div>
 
         {/*<ScrollHorizontal
           pageLock
@@ -160,6 +173,8 @@ export default class ServicesPage extends Component {
   }
 
 }
+
+export default withWindowSizeListener(ServicesPage)
 
 export const query = graphql`
   query ServicesQuery {

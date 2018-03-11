@@ -4,6 +4,8 @@ import React, { createElement } from "react"
 import { Transition } from "react-transition-group"
 import createHistory from "history/createBrowserHistory"
 
+import 'intersection-observer'
+
 import Interstitcher from './src/components/Interstitcher'
 
 import getTransitionStyle from "./src/utils/getTransitionStyle"

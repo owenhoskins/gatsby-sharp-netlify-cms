@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom'
-import scroll from 'scroll'
+import scroll from '../../utils/scroll'
 import scrollDoc from 'scroll-doc'
 
 const page = scrollDoc()
 
 function calculateScrollOffset(element, offset, alignment) {
+  //console.log('calculateScrollOffset: ', element, offset, alignment)
   var body = document.body,
       html = document.documentElement;
   var elementRect = element.getBoundingClientRect();
@@ -20,6 +21,10 @@ function calculateScrollOffset(element, offset, alignment) {
       default: scrollPosition = elementRect.bottom - clientHeight / 2 - elementRect.height / 2; break; //defaul to middle
     }
   var maxScrollPosition = documentHeight - clientHeight;
+
+  // for some reason alignment seems to have no effect on the services scroll
+  // however setting the offset works well
+  //console.log('result: ', Math.min(scrollPosition + offset + window.pageYOffset,maxScrollPosition))
   return Math.min(scrollPosition + offset + window.pageYOffset,
                   maxScrollPosition);
 }

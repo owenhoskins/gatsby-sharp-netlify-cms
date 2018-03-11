@@ -15,6 +15,7 @@ const Emdash = ({ timeout = 300, opacity, y, top, style }, { color }) => {
         right: 0,
         transition: `opacity ${timeout}ms ${EASE}, transform ${timeout}ms ${EASE}, backgroundColor ${timeout}ms ${EASE}`,
         transform: `translate3d(0px, ${y}px, 0px)`, // x, y, z
+        willChange: `opacity`,
         display: `inline-block`,
         marginLeft: `3rem`,
         letterSpacing: `-1px`,
