@@ -90,8 +90,10 @@ const Cover = ({
               zIndex: 3000,
               opacity: isCover ? 1 : 0,
               //pointerEvents: isCover ? 'auto' : 'none',
+              //textShadow: `#575483 1px 0 16px`,
               transition: '1s opacity ease-in-out',
               textAlign: 'center',
+              whiteSpace: 'nowrap'
             }}
           >{name}</HeaderXL>
           <Img
@@ -103,9 +105,10 @@ const Cover = ({
               right: 0,
               bottom: 0,
               opacity: isCover ? 1 : 0,
+              willChange: 'opacity, filter, transform',
               filter: isCover ? 'blur(0)' : 'blur(50px)',
-              transition: `600ms opacity ${EASE}, 600ms filter ${EASE}, 600ms ${EASE}`,
-              transform: `scale(1.1)`
+              transition: `600ms opacity ${EASE}, 600ms filter ${EASE}, 600ms transform ${EASE}`,
+              transform: isCover ? `scale(1)` : `scale(1.1)`
             }}
             customAspect={{ height: '100vh' }}
             objectFit={`cover`}

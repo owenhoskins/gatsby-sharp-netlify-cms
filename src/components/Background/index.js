@@ -32,9 +32,9 @@ function returnState(props) {
     } else {
 
       // services & agency
-      opacity = 0.6
+      opacity = 0.8
       blur = true
-      playing = false
+      playing = true
 
     }
 

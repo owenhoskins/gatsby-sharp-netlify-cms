@@ -6,13 +6,13 @@ export const HeaderXL = ({ children, style, onClick, weight }) => (
   <h1
     onClick={onClick}
     css={{
-      filter: 'blur(2px)',
-      letterSpacing: '4px',
+      filter: 'blur(3px)',
+      letterSpacing: '6px',
       textTransform: 'uppercase',
       fontWeight: 200,
       ...basekick({
-        typeSizeModifier: 4,
-        typeRowSpan: 8,
+        typeSizeModifier: 6,
+        typeRowSpan: 11,
       }),
       fontWeight: weight || 200,
       ...style
@@ -130,7 +130,7 @@ export const Blurry = ({ children, style, inline, opacity, weight }) => (
   <div
     css={{
       opacity: opacity || 1,
-      transition: `opacity 300ms ${EASE}`,
+      //transition: `opacity 300ms ${EASE}`,
       display: inline ? 'inline-block' : 'block',
       filter: 'blur(1px)',
       letterSpacing: '3px',

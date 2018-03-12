@@ -26,7 +26,7 @@ class Menu extends Component {
       ) {
       const startingYs = this.props.sections.map((section, i) => this[section].getBoundingClientRect().y)
       this.setState({startingYs})
-      console.log('startingYs: ', startingYs)
+      //console.log('startingYs: ', startingYs)
     }
 
   }
@@ -36,7 +36,7 @@ class Menu extends Component {
     // we only know where the Y position is on mount
     const startingYs = this.props.sections.map((section, i) => this[section].getBoundingClientRect().y)
     this.setState({startingYs})
-    console.log('startingYs: ', startingYs)
+    //console.log('startingYs: ', startingYs)
 
     // Item's collapsed state animation completes in this.props.timeout
     // Wait a tick to fade in the menu items

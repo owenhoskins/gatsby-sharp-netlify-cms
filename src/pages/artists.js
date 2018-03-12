@@ -6,13 +6,39 @@ import { ScrollTop } from '../components/Scroll'
 
 import Menu from '../components/Menu/Services'
 import ColumnWidth from '../components/Columns/ColumnWidth'
-import NameList from '../components/Columns/NameList'
 
 import ScrollPercentage from 'react-scroll-percentage'
 
 
 const columnPixelWidth = 576
 const leftOffset = 300
+
+function computeColumns(data, rows) {
+
+  const dataArray = data ? Object.values(data) : []
+  if (!dataArray.length > 0) { return [] }
+
+  const types = dataArray.length > 0 && dataArray.map((type, index) => {
+    return type.edges.map((edges, i) => {
+      return {
+        ...edges.node.fields,
+        ...edges.node.frontmatter,
+        first: i === 0,
+        last: (type.edges.length - 1) === i
+      }
+    })
+  })
+  const artists = [].concat.apply([], types)
+
+  // divide artists over columns
+  const columns = artists.reduce((acc, cell, idx) => {
+    const column = Math.floor(idx / rows);
+    acc[column] = acc[column] ? [...acc[column], cell] : [cell]; // eslint-disable-line no-param-reassign
+    return acc;
+  }, []);
+
+  return columns
+}
 
 class ArtistsPage extends Component {
 
@@ -21,12 +47,16 @@ class ArtistsPage extends Component {
 
     this.state = {
       inViewIndex: 0,
-      inView: ''
+      inView: 'hair'
     }
 
   }
 
   componentDidMount() {
+
+    const { data } = this.props
+    console.log('columns: ', computeColumns(data, 6))
+
     if (this.props.location.hash) {
       // console.log('this.props.location.hash: ', this.props.location.hash)
       this.scrollToSection(this.props.location.hash.replace('#', ''))
@@ -81,7 +111,7 @@ class ArtistsPage extends Component {
   }
 
   handleChange = ({percentage, inView, index, refKey}) => {
-    //console.log(`handleChange ${index} / ${refKey} / ${percentage}`)
+    //console.log(`handleChange ${inView} / ${index} / ${refKey} / ${percentage}`)
     if (
       inView &&
       (
@@ -99,7 +129,6 @@ class ArtistsPage extends Component {
   render() {
 
     const { data, transition } = this.props
-    const dataArray = data ? Object.values(data) : []
 
     return (
       <div style={transition && transition.style}>
@@ -117,14 +146,12 @@ class ArtistsPage extends Component {
           currentSection={this.state.inViewIndex}
         />
         {
-          this.state.vwUnits && dataArray && dataArray.map((type, index) => {
+          this.state.vwUnits && data && computeColumns(data, 6).map((column, index) => {
               const refKey = Object.keys(data)[index]
               return (
                 <ScrollPercentage
                   key={refKey}
-                  //onChange={(percentage, inView) => this.handleChange({percentage, inView, index, refKey})}
                   innerRef={(ref) => this.returnRef(ref, refKey)}
-                  //threshold={1 - (index / 100)}
                 >
                 {(percentage, inView) => {
                   return (
@@ -136,11 +163,11 @@ class ArtistsPage extends Component {
                       refKey={refKey}
                       onChange={this.handleChange}
                       inView={inView}
+                      inViewKey={this.state.inView}
                       active={this.state.inViewIndex === index}
                       percentage={percentage.toPrecision(4)}
-                    >
-                      <NameList type={type} />
-                    </ColumnWidth>
+                      column={column}
+                    />
                   )
                 }
                 }

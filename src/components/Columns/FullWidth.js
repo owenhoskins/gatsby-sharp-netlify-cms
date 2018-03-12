@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { HeaderMD } from '../Styled'
+import { EASE } from '../../utils/presets'
 
 export default class FullWidth extends Component {
 
@@ -33,11 +34,14 @@ export default class FullWidth extends Component {
 */
 
       if (percentage > 0.75) { // edge of menu
-        opacity = 1 - percentage
+        //opacity = 1 - percentage
+        opacity = 0
       } else if (percentage < 0.45) { // right edge
-        opacity = percentage
+        //opacity = percentage
+        opacity = 0.6
       } else {
-        opacity = percentage * 1.5
+        opacity = 1
+        //opacity = percentage * 1.5
       }
 
 
@@ -58,7 +62,7 @@ export default class FullWidth extends Component {
   render () {
 
     // how should Motion work with the percentage value?
-    const { viewportUnit } = this.props
+    const { viewportUnit, refKey, inViewKey , description} = this.props
 
     return (
       <div
@@ -93,11 +97,18 @@ export default class FullWidth extends Component {
                 width: `60%`,
                 maxWidth: `37rem`,
                 opacity: this.state.opacity,
+                transition: `opacity 300ms ${EASE}`,
                 willChange: `opacity`,
                 ...this.props.style
                 //transition: `opacity 300ms linear, 800ms filter linear`,
               }}
             >
+              <HeaderMD
+                style={{
+                  willChange: `filter`,
+                  filter: refKey == inViewKey ? `blur(0)` : `blur(4px)`,
+                }}
+              >{description}</HeaderMD>
               {this.props.children}
               {/*<p>{this.state.percentage} — {this.props.refKey}</p>*/}
             </div>

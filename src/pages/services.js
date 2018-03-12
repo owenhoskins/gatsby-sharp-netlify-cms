@@ -54,7 +54,7 @@ class ServicesPage extends Component {
   scrollToSection = (key) => {
     console.log('scrollToSection: ', this[key])
     this.setState({isHovered: false})
-    ScrollTop(this[key], {duration: 500, offset: window.innerHeight / 2, align: 'middle'})
+    ScrollTop(this[key], {duration: 500, offset: window.innerHeight / 2.5, align: 'middle'})
   }
 
   handleChange = ({percentage, inView, index, refKey}) => {
@@ -136,12 +136,12 @@ class ServicesPage extends Component {
                       refKey={refKey}
                       onChange={this.handleChange}
                       inView={inView}
+                      inViewKey={this.state.inView}
                       active={this.state.inViewIndex === index}
-                      percentage={percentage.toPrecision(2)}
+                      percentage={percentage.toPrecision(3)}
                       style={{height: `17rem`}}
-                    >
-                      <HeaderMD>{frontmatter.description}</HeaderMD>
-                    </FullWidth>
+                      description={frontmatter.description}
+                    />
                   )
                 }
                 }
