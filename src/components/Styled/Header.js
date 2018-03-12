@@ -9,7 +9,7 @@ export const HeaderXL = ({ children, style, onClick }) => (
       filter: 'blur(2px)',
       letterSpacing: '4px',
       textTransform: 'uppercase',
-      fontWeight: 400,
+      fontWeight: 200,
       ...basekick({
         typeSizeModifier: 4,
         typeRowSpan: 8,
@@ -28,7 +28,7 @@ export const HeaderLG = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 400,
+      fontWeight: 200,
       ...basekick({
         typeSizeModifier: 2,
         typeRowSpan: 5,
@@ -47,7 +47,7 @@ export const HeaderMD = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 400,
+      fontWeight: 200,
       ...basekick({
         typeSizeModifier: 1.125,
         typeRowSpan: 2,
@@ -71,7 +71,7 @@ export const HeaderSM = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 400,
+      fontWeight: 200,
       ...basekick({
         typeSizeModifier: 1,
         typeRowSpan: 2,
@@ -95,7 +95,7 @@ export const HeaderXS = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 400,
+      fontWeight: 200,
       ...basekick({
         typeSizeModifier: 0.875,
         typeRowSpan: 3,

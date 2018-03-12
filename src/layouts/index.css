@@ -1,14 +1,38 @@
-@font-face {
+/*@font-face {
   font-family: "neuzeit";
   src: url("../assets/fonts/29626D_0_0.woff") format("woff2"), url("../assets/fonts/29626D_0_0.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+}*/
+
+@font-face {
+  font-family: "basis";
+  src: url("../assets/fonts/BasisGrotesquePro-Light.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "basis";
+  src: url("../assets/fonts/BasisGrotesquePro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "basis";
+  src: url("../assets/fonts/BasisGrotesquePro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 html {
-  font-family: "neuzeit", sans-serif;
+  font-family: "basis", sans-serif;
+  font-weight: 200;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 body {
   margin: 0;

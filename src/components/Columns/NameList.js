@@ -20,7 +20,7 @@ const NameList = ({ type, handleClick }) => (
           >
             <Link
               to={fields.slug}
-              onClick={e => handleClick(e, fields.slug, frontmatter.type)}
+              //onClick={e => handleClick(e, fields.slug, frontmatter.type)}
             >{frontmatter.title}</Link>
           </HeaderLG>
         )

@@ -21,7 +21,7 @@ class ServicesPage extends Component {
 
   componentDidMount() {
     if (this.props.location.hash) {
-      this.scrollToSection(0, this.props.location.hash.replace('#', ''))
+      this.scrollToSection(this.props.location.hash.replace('#', ''))
     } else {
       const {
         data: {
@@ -29,7 +29,7 @@ class ServicesPage extends Component {
         }
       } = this.props
       const refKey = services && services.edges[0].node.frontmatter.title.replace(/\s+/g, '')
-      this.scrollToSection(0, refKey)
+      this.scrollToSection(refKey)
     }
   }
 
@@ -51,7 +51,7 @@ class ServicesPage extends Component {
 
   }
 
-  scrollToSection = (i, key) => {
+  scrollToSection = (key) => {
     console.log('scrollToSection: ', this[key])
     this.setState({isHovered: false})
     ScrollTop(this[key], {duration: 500, offset: window.innerHeight / 2, align: 'middle'})

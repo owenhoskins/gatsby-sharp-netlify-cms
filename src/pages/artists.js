@@ -11,36 +11,42 @@ import NameList from '../components/Columns/NameList'
 import ScrollPercentage from 'react-scroll-percentage'
 
 
-class ArtistsPage extends Component {
+const columnPixelWidth = 576
+const leftOffset = 300
 
+class ArtistsPage extends Component {
 
   constructor(props) {
     super(props)
 
-    const columnPixelWidth = 400
-    const vwUnitPixelWidth = props.windowWidth / 100 // 25.6
-    const vwUnits = columnPixelWidth / vwUnitPixelWidth
-
-    const leftOffset = 300
-    const limit = 1 - (leftOffset / props.windowWidth)
-
     this.state = {
       inViewIndex: 0,
-      inView: '',
-      viewportUnit: props.windowHeight >= props.windowWidth ? 'vh' : 'vw',
-      vwUnitPixelWidth,
-      vwUnits,
-      limit
+      inView: ''
     }
 
   }
 
   componentDidMount() {
     if (this.props.location.hash) {
-      this.scrollToSection(0, this.props.location.hash.replace('#', ''))
+      // console.log('this.props.location.hash: ', this.props.location.hash)
+      this.scrollToSection(this.props.location.hash.replace('#', ''))
     } else {
-      this.scrollToSection(0, 'hair')
+      this.scrollToSection('hair')
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    if (typeof(prevState.vwUnits) === 'undefined') {
+      // console.log('vwUnits is undefined!')
+      if (this.props.location.hash) {
+        // console.log('this.props.location.hash: ', this.props.location.hash)
+        this.scrollToSection(this.props.location.hash.replace('#', ''))
+      } else {
+        this.scrollToSection('hair')
+      }
+    }
+
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -53,13 +59,9 @@ class ArtistsPage extends Component {
         this.props.windowSize.windowWidth !== windowWidth
       ) {
 
-      // const columnWidth = `23` // rem === 368px
-      // 2rem gutter
-      const columnPixelWidth = 400
       const vwUnitPixelWidth = windowWidth / 100 // 25.6
       const vwUnits = columnPixelWidth / vwUnitPixelWidth
 
-      const leftOffset = 300
       const limit = 1 - (leftOffset / windowWidth)
 
       this.setState({
@@ -74,13 +76,19 @@ class ArtistsPage extends Component {
 
   }
 
-  scrollToSection = (i, key) => {
+  scrollToSection = (key) => {
     ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
   }
 
   handleChange = ({percentage, inView, index, refKey}) => {
     //console.log(`handleChange ${index} / ${refKey} / ${percentage}`)
-    if (inView && (percentage >= this.state.limit && percentage <= 1)) {
+    if (
+      inView &&
+      (
+        percentage < this.state.limit &&
+        percentage > (this.state.limit / 1.25)
+      )
+    ) {
       this.setState({inView: refKey, inViewIndex: index})
     }
 
@@ -108,9 +116,8 @@ class ArtistsPage extends Component {
           scrollToSection={this.scrollToSection}
           currentSection={this.state.inViewIndex}
         />
-
         {
-          dataArray && dataArray.map((type, index) => {
+          this.state.vwUnits && dataArray && dataArray.map((type, index) => {
               const refKey = Object.keys(data)[index]
               return (
                 <ScrollPercentage
@@ -130,7 +137,7 @@ class ArtistsPage extends Component {
                       onChange={this.handleChange}
                       inView={inView}
                       active={this.state.inViewIndex === index}
-                      percentage={percentage.toPrecision(2)}
+                      percentage={percentage.toPrecision(4)}
                     >
                       <NameList type={type} />
                     </ColumnWidth>
@@ -166,7 +173,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "hair"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -185,7 +192,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "makeup"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -204,7 +211,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "stylist"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -223,7 +230,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "grooming"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -242,7 +249,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "manicurist"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -261,7 +268,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "color"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {
@@ -280,7 +287,7 @@ export const query = graphql`
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "special-bookings"}}
       },
-      sort: {order: ASC, fields: [frontmatter___order]}
+      sort: {order: ASC, fields: [frontmatter___title]}
     ) {
       edges {
         node {

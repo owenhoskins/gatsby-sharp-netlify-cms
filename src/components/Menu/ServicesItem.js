@@ -52,7 +52,7 @@ export default class Item extends Component {
       const key = this.props.title.replace(/\s/g, '').replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() })
       // .replace(/\s/g, '')
       console.log('key: ', key)
-      this.props.onClick(this.props.index, key)
+      this.props.onClick(key)
     }
   }
 

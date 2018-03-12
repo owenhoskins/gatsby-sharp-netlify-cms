@@ -37,15 +37,15 @@ export const options = {
   headerColor: `inherit`,
   bodyColor: `inherit`,
   blockMarginBottom: 0.75,
-  headerFontFamily: [`neuzeit`, `sans-serif`],
-  bodyFontFamily: [`neuzeit`, `sans-serif`],
+  headerFontFamily: [`basis`, `sans-serif`],
+  bodyFontFamily: [`basis`, `sans-serif`],
   overrideStyles: () => {
     return {
       html: {
         overflowY: `scroll`,
       },
-      h1: {
-
+      'h1,h2,h3,h5,h5,h6': {
+        fontWeight: 200
       },
       a: {
         color: `inherit`,
