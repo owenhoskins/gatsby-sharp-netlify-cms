@@ -5,6 +5,7 @@ type: makeup
 order: '3'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: brigittemakeup
+cover: /img/BRA_HEADER.jpg
 ---
 Brigitte Reiss-Andersen is one of the most accomplished and respected makeup artists at work in the beauty industry. Her career spans three decades at the top level in both the fashion and celebrity spheres.
 

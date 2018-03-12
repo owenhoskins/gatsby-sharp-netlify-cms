@@ -147,6 +147,8 @@ export default class Interstitcher extends Component {
         <Breadcrumbs
           breadcrumbs={this.state.breadcrumbs}
           gradient={this.state.page === 'artist' && !this.state.isCover}
+          //textShadow={this.state.page === 'artist' && this.state.isCover}
+          textShadow={this.state.page === 'artist'}
           frontmatter={this.state.page === 'artist' && this.props.pageResources.json.data.markdownRemark.frontmatter}
           style={{
             opacity: this.state.lightboxIsOpen ? 0 : 1,

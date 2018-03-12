@@ -9,6 +9,8 @@ export default class Breadcrumbs extends Component {
   }
 
   render () {
+    const { textShadow } = this.props
+
     return (
       <div
         css={{
@@ -45,11 +47,13 @@ export default class Breadcrumbs extends Component {
                 {
                   this.props.breadcrumbs.length - 1 === i ? (
                     <Breadcrumb
-                      opacity={1}
+                      textShadow={textShadow}
+                      opacity={0.6}
                       {...pathObject}
                     />
                   ) : (
                     <Breadcrumb
+                      textShadow={textShadow}
                       prepend
                       opacity={0.6}
                       {...pathObject}
@@ -69,8 +73,10 @@ export default class Breadcrumbs extends Component {
                 <span>
                   <Blurry
                     inline
+                    weight={textShadow ? 700 : 200}
                     style={{
                       opacity: 0.6,
+                      textShadow: textShadow ? `#575483 1px 0 16px` : 'none',
                       ':hover': {
                         opacity: 1
                       }
@@ -89,8 +95,10 @@ export default class Breadcrumbs extends Component {
                   <Blurry inline opacity={0.3} style={{ margin: `0 1rem` }}>{`/`}</Blurry>
                   <Blurry
                     inline
+                    weight={textShadow ? 700 : 200}
                     style={{
                       opacity: 0.6,
+                      textShadow: textShadow ? `#575483 1px 0 16px` : 'none',
                       ':hover': {
                         opacity: 1
                       }

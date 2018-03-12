@@ -5,6 +5,7 @@ type: stylist
 order: '5'
 enquire: noelle.keshishian@starworksgroup.com
 instagram_handle: josephcassell1
+cover: /img/JCL_HEADER.jpg
 ---
 After earning his degree in musical theater and opera performance in Nashville, Joseph Cassell chose a career behind the scenes in the recording industry as an A&R director and producer. He soon began styling his own artists for photo shoots, album packaging and video shoots. After 12 years in the music business, he started his own company, providing imaging and wardrobe services to celebrity clientele, record labels and ad agencies. Over the past 15 years he has styled numerous fashion shoots, music world tours and award-winning music videos. Joseph has designed for film and television as well as created iconic looks for major advertisers in global print and commercial campaigns shot by top industry photographers and directors.
 

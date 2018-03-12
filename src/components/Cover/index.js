@@ -81,6 +81,7 @@ const Cover = ({
             }}
           >
           <HeaderXL
+            weight={700}
             style={{
               position: 'fixed',
               top: '50%',
@@ -90,7 +91,7 @@ const Cover = ({
               opacity: isCover ? 1 : 0,
               //pointerEvents: isCover ? 'auto' : 'none',
               transition: '1s opacity ease-in-out',
-              textAlign: 'center'
+              textAlign: 'center',
             }}
           >{name}</HeaderXL>
           <Img

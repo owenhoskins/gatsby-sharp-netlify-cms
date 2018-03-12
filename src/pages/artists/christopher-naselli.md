@@ -5,6 +5,7 @@ type: hair
 order: '6'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: cnaselli
+cover: /img/CNI_HEADER.jpg
 ---
 Christopher Naselli is an accomplished hairstylist whose work has earned him a loyal following among New York City’s creative community. Raised by his hairstylist mother in New York, Christopher spent afternoons in her salon watching 1970s street style explode around him. He became passionate about the aesthetics of beauty and set a course at an early age to perfect his technique.
 

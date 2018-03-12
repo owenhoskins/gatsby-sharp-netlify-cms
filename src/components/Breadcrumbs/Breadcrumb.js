@@ -19,7 +19,7 @@ export default class Breadcrumb extends Component {
   }
 */
   render () {
-    const { path, name, opacity, prepend } = this.props
+    const { path, name, opacity, prepend, textShadow } = this.props
 
     const transitionProps = {
       timeout: {
@@ -51,8 +51,10 @@ export default class Breadcrumb extends Component {
                 opacity: opacity,
                 ':hover': {
                   opacity: 1
-                }
+                },
+                textShadow: textShadow ? `#575483 1px 0 16px` : 'none'
               }}
+              weight={ textShadow ? 700 : 200}
             >
               <Link to={`/${path}`}>{name}</Link>
             </Blurry>

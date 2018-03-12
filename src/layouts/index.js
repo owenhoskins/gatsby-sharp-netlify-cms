@@ -22,18 +22,21 @@ const handleClickAdmin = () => {
   }
 }
 
-
 const TemplateWrapper = ({
   children,
-  // data: { pages, photos },
+  data: {
+    site: {
+      siteMetadata
+    }
+  },
   ...props
 }) => (
   <div>
     <Helmet
-      title="Gallery pages"
+      title={siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: siteMetadata.meta.description },
+        { name: 'keywords', content: siteMetadata.meta.keywords },
       ]}
     />
    {/*<a
@@ -63,25 +66,23 @@ TemplateWrapper.propTypes = {
 export default TemplateWrapper
 
 
-export const query = graphql`
-  query LayoutQuery {
-
-    pages: allMarkdownRemark(
-      filter: {
-        id: { regex: "/pages/"},
-        frontmatter: {kind: {eq: "artist"}}
-      },
-      sort: {order: ASC, fields: [frontmatter___order]}
-    ) {
-      edges {
-        node {
-          frontmatter {
-            path
-            title
-          }
+export const siteMetadataFragment = graphql`
+  fragment siteMetadata on RootQueryType {
+    site {
+      siteMetadata {
+        title
+        meta {
+          description
+          keywords
         }
       }
     }
-
   }
 `
+
+export const pageQuery = graphql`
+  query LayoutQuery {
+    ...siteMetadata
+  }
+`;
+

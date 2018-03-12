@@ -5,6 +5,7 @@ type: hair
 order: '4'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: cailenoble
+cover: /img/CNE_HEADER.jpg
 ---
 A first generation Scotsman, Caile Noble was raised in Southern California. After years of traveling the world as a professional cyclist, Caile was inspired to make a change to professional hair styling. His education began at the Vidal Sassoon Academy, after which he started to work for celebrated stylist Serge Normant at the John Frieda Salon. Assisting Serge on high profile fashion editorials and campaigns soon led Caile to pursue his current career in freelance hairstyling.
 

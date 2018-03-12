@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { basekick } from '../../utils/typography'
 
+import { Blurry } from '../Styled'
 import Emdash from '../Emdash'
 
 export default class Item extends Component {
@@ -78,17 +79,10 @@ export default class Item extends Component {
         css={{
           transition: 'opacity 300ms ease-in-out',
           opacity: this.state.opacity,
-          willChange: `opacity`,
-          filter: 'blur(1px)',
-          letterSpacing: '3px',
-          textTransform: 'lowercase',
-          ...basekick({
-            typeSizeModifier: 0.875,
-            typeRowSpan: 3,
-          })
+          willChange: `opacity`
         }}
         >
-          {title.replace(/-/g, ' ')}
+          <Blurry>{title.replace(/-/g, ' ')}</Blurry>
         </div>
         <Emdash
           opacity={ this.props.active ? 0.6 : 0.3 }

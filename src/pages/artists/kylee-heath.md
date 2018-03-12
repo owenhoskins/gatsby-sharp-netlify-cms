@@ -5,6 +5,7 @@ type: hair
 order: '11'
 enquire: alexandra.feldman@starworksgroup.com
 instagram_handle: kyleeheathhair
+cover: /img/KHH_HEADER.jpg
 ---
 Northern California native Kylee Heath knew early that her love of hairstyling would lead her to pursue a career in Los Angeles. Kylee’s talent was recognized shortly after graduating from the Paul Mitchell School, where she was selected for the coveted position of on-stage assistant instructor for Paul Mitchell Signature events. After excelling at the Angus Mitchell Salon in Beverly Hills, Kylee went on to assist renowned hairstylists Renato Campora, Giannandrea and Jenny Cho. These experiences gave her the opportunity to key looks for Vogue’s annual fashion show as well as the Marchesa collections during New York Fashion Week.
 

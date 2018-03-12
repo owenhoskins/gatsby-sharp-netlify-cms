@@ -5,10 +5,46 @@ contact:
   - header: General
     name: swa@starworksgroup.com
     url: 'mailto:swa@starworksgroup.com'
+  - header: Booking
+    name: swabooking@starworksgroup.com
+    url: 'mailto:swabooking@starworksgroup.com'
+  - header: Press
+    name: swapress@starworksgroup.com
+    url: 'mailto:swapress@starworksgroup.com'
+  - header: Digital/Web
+    name: swadigital@starworksgroup.com
+    url: 'mailto:swadigital@starworksgroup.com'
+  - header: Instagram
+    name: '@starworksartists'
+    url: 'https://instagram.com/starworksartists'
+  - header: Twitter
+    name: '@swartists'
+    url: 'https://twitter.com/swartists'
+  - header: Facebook
+    name: '@starworksartists'
+    url: 'https://facebook.com/starworksartists'
+  - header: Tumblr
+    name: 'starworksartists.tumblr.com'
+    url: 'http://starworksartists.tumblr.com'
 addresses:
   - header: LA
-    address: >-
-      1601 Vine St, Los Angeles, CA 90028, 00.1.323.782.8630
+    address: |
+      1601 Vine St
+      Los Angeles
+      CA 90028
+      00.1.323.782.8630
+  - header: NYC
+    address: |
+      5 Crosby St
+      New York
+      NY 10013
+      00.1.646.336.5920
+  - header: Mail payments
+    address: |
+      Starworks Artists
+      1125 N Fairfax Ave, #46309
+      West Hollywood
+      CA 90046-9998
 
 
 

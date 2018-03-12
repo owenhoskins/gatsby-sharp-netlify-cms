@@ -252,10 +252,10 @@ class Image extends React.Component {
                 alt={alt}
                 title={title}
                 src={image.base64}
-                opacity={!this.state.imgLoaded ? 1 : 0}
+                opacity={!this.state.imgLoaded ? 0.5 : 0}
                 transitionDelay={`0.25s`}
                 style={{
-                  opacity: 0.5,
+                  //opacity: 0.5,
                   filter: 'blur(20px)',
                   transform: 'scale(1.5)'
                 }}

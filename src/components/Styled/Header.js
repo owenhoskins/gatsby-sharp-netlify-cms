@@ -2,7 +2,7 @@ import React from 'react'
 import { basekick } from '../../utils/typography'
 import { MIN_MOBILE_MQ, EASE } from '../../utils/presets'
 
-export const HeaderXL = ({ children, style, onClick }) => (
+export const HeaderXL = ({ children, style, onClick, weight }) => (
   <h1
     onClick={onClick}
     css={{
@@ -14,6 +14,7 @@ export const HeaderXL = ({ children, style, onClick }) => (
         typeSizeModifier: 4,
         typeRowSpan: 8,
       }),
+      fontWeight: weight || 200,
       ...style
     }}
   >
@@ -71,7 +72,8 @@ export const HeaderSM = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 200,
+      fontWeight: 400,
+      marginBottom: 0,
       ...basekick({
         typeSizeModifier: 1,
         typeRowSpan: 2,
@@ -79,7 +81,7 @@ export const HeaderSM = ({ children, style, uppercase, blur }) => (
       [MIN_MOBILE_MQ]: {
         ...basekick({
           typeSizeModifier: 1.125,
-          typeRowSpan: 4,
+          typeRowSpan: uppercase ? 2 : 4,
         }),
       },
       ...style
@@ -95,10 +97,11 @@ export const HeaderXS = ({ children, style, uppercase, blur }) => (
       letterSpacing: uppercase ? '2px' : 0,
       filter: blur ? 'blur(1px)' : 'blur(0)',
       textTransform: uppercase ? 'uppercase' : 'none',
-      fontWeight: 200,
+      fontWeight: 700,
+      marginBottom: 0,
       ...basekick({
         typeSizeModifier: 0.875,
-        typeRowSpan: 3,
+        typeRowSpan: uppercase ? 2 : 3,
       }),
       ...style
     }}
@@ -107,7 +110,23 @@ export const HeaderXS = ({ children, style, uppercase, blur }) => (
   </h3>
 )
 
-export const Blurry = ({ children, style, inline, opacity }) => (
+export const Paragraph = ({ children, style }) => (
+  <p
+    css={{
+      fontWeight: 400,
+      marginBottom: 0,
+      ...basekick({
+        typeSizeModifier: 0.875,
+        typeRowSpan: 3,
+      }),
+      ...style
+    }}
+  >
+    {children}
+  </p>
+)
+
+export const Blurry = ({ children, style, inline, opacity, weight }) => (
   <div
     css={{
       opacity: opacity || 1,
@@ -117,12 +136,16 @@ export const Blurry = ({ children, style, inline, opacity }) => (
       letterSpacing: '3px',
       textTransform: 'lowercase',
       ...basekick({
-        typeSizeModifier: 0.875,
+        //typeSizeModifier: 0.875,
+        typeSizeModifier: 0.9375,
+        //typeSizeModifier: 1,
         typeRowSpan: 3,
       }),
+      fontWeight: weight || 200,
       ...style
     }}
   >
     {children}
   </div>
 )
+

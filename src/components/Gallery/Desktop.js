@@ -117,7 +117,7 @@ class Desktop extends Component {
     });
   }
 
-  scrollToSection = (i, key) => {
+  scrollToSection = (key) => {
     const index = this.props.sections.findIndex(section => section.key === key)
     this.setState({isVisible: false})
     setTimeout(()=> {
@@ -231,8 +231,9 @@ class Desktop extends Component {
           <div css={{
             marginTop: '2.5rem',
             float: 'left',
-            width: 'calc(100% - 18rem)',
+            width: 'calc(100% - 20rem)',
             marginLeft: '18rem',
+
             pointerEvents: this.context.isCover || this.context.lightboxIsOpen ? 'none' : 'auto'
           }}>
             <div
@@ -264,7 +265,7 @@ class Desktop extends Component {
               }
 
               { // INSTAGRAM
-                instagram && (
+                instagram.length > 0 && (
                   <Instagram
                     biography={biography}
                     instagram={instagram}

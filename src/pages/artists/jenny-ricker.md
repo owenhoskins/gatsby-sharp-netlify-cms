@@ -5,6 +5,7 @@ type: stylist
 order: '4'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: jennyricker
+cover: /img/JRR_HEADER.jpg
 ---
 A graduate of NYU’s Tisch School of the Arts, Jenny Ricker first became interested in the world of fashion styling while working as an agent for Ford Models. Ricker began by assisting some of the top fashion stylists in Los Angeles and has gone on to become one of the most sought after men’s celebrity stylists in Hollywood.
 

@@ -21,7 +21,7 @@ const Emdash = ({ timeout = 300, opacity, y, top, style }, { color }) => {
         letterSpacing: `-1px`,
         filter: `blur(1px)`,
         width: `1rem`,
-        height: `2px`,
+        height: `1.5px`,
         ...style
       }}
     >

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import { basekick } from '../../utils/typography'
 
+import { Blurry } from '../Styled'
+
 import Emdash from '../Emdash'
 
 const ease = `cubic-bezier(0.455, 0.03, 0.515, 0.955)` // easeInOutQuad
@@ -82,22 +84,15 @@ class Item extends Component {
               opacity: this.state.opacity,
             }}
           >
-            <div css={{
-              filter: 'blur(1px)',
-              letterSpacing: '3px',
-              textTransform: 'lowercase',
-              ...basekick({
-                typeSizeModifier: 0.875,
-                typeRowSpan: 3,
-              })
-            }}
+            <Blurry
+              weight={400}
             >
               <Link
                 to={`/${title}`}
               >
                 {title}
               </Link>
-            </div>
+            </Blurry>
           </div>
           <Emdash
             timeout={timeout}
