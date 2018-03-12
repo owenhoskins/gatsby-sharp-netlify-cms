@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { HeaderMD } from '../Styled'
 
-export default class FullWidth extends Component {
+export default class ColumnWidth extends Component {
 
   state = {
     opacity: 0
@@ -9,63 +9,43 @@ export default class FullWidth extends Component {
 
   componentWillReceiveProps(nextProps) {
 
-    let { active, percentage, inView, index, refKey } = nextProps
+    let { limit, active, percentage, inView, index, refKey } = nextProps
     if (
         this.props.percentage !== percentage ||
-        this.props.active !== active
+        this.props.active !== active ||
+        this.props.limit !== limit
       ) {
-      //console.log('nextProps.percentage: ', nextProps.percentage)
-      //let percentage = nextProps.percentage
       let opacity
-
-/*
-      if (percentage > 0.8) {
-        opacity = 0
-      } else if (percentage < 0.45) { // right edge
-        opacity = 0
-      } else {
-        opacity = 1
-      }
-
-      if (opacity !== this.state.opacity) {
-        this.setState({opacity})
-      }
-*/
-
-      if (percentage > 0.75) { // edge of menu
+      if (percentage > limit) { // edge of menu
         opacity = 1 - percentage
-      } else if (percentage < 0.45) { // right edge
-        opacity = percentage
+      } else if (percentage < (limit - 0.1)) { // right edge
+        opacity = 0.6
       } else {
         opacity = percentage * 1.5
       }
 
-
-      if (percentage > 0.75) {
-        percentage = 0.75
+      if (percentage > limit) {
+        percentage = limit
       }
       this.setState({opacity, percentage})
       this.props.onChange({percentage, inView, index, refKey})
-    }
-
-    if (this.props.inView !== inView) {
-      // this.props.onChange({percentage, inView, index, refKey})
-      //console.log('nextProps.inView: ', inView)
     }
 
   }
 
   render () {
 
-    // how should Motion work with the percentage value?
-    const { viewportUnit } = this.props
+    // Calculate how many columns of a fixed width should fit in the window
+    //
+    const { viewportUnit, vwUnits } = this.props
 
     return (
       <div
         css={{
-          height: `99vh`,
-          marginBottom: '1vh',
-          //backgroundColor: `rgba(0,0,0,0.1)`
+          //height: `14.375vh`,
+          //marginBottom: '2vh',
+          height: `${vwUnits}vh`
+          //backgroundColor: `rgba(0,0,0,${(this.props.index - 10)})`
         }}
       >
           <div
@@ -74,8 +54,21 @@ export default class FullWidth extends Component {
               display: 'flex',
               top: 0,
               bottom: 0,
+
+              // this works at full width (2560px)
+              // left: `100${viewportUnit}`,
+              // width: `16.375${viewportUnit}`,
+
+              // 1282px
               left: `100${viewportUnit}`,
-              width: `100${viewportUnit}`,
+              width: `${vwUnits + viewportUnit}`,
+
+              // do they need to be the same?
+              //left: `${100 - vwUnits}${viewportUnit}`,
+
+              //left: `${vwUnits + viewportUnit}`,
+              //width: `${vwUnits + viewportUnit}`,
+
               willChange:`transform`, // https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
               //backgroundColor: 'rgba(0, 0, 0, 0.1)',
               //transition: `transform 100ms linear`
@@ -90,8 +83,6 @@ export default class FullWidth extends Component {
               css={{
                 //filter: percentage < 0.30 || percentage > 0.55 ? `blur(1px)` : `blur(0)`
                 alignSelf: `center`,
-                width: `60%`,
-                maxWidth: `37rem`,
                 opacity: this.state.opacity,
                 willChange: `opacity`,
                 ...this.props.style

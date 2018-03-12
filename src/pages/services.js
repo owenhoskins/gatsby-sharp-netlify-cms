@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import Link from 'gatsby-link'
 
 import { withWindowSizeListener } from '../utils/windowResizeListener'
 
-import { ScrollHorizontal, ScrollTop } from '../components/Scroll'
-import { HeaderXS, Blurry, HeaderMD } from '../components/Styled'
+import { ScrollTop } from '../components/Scroll'
+import { Blurry, HeaderMD } from '../components/Styled'
 
 import Menu from '../components/Menu/Services'
 import FullWidth from '../components/Columns/FullWidth'
+import NameList from '../components/Columns/NameList'
 
 import ScrollPercentage from 'react-scroll-percentage'
-
-const calcPercentage = percentage => Math.floor(percentage * 100)
 
 class ServicesPage extends Component {
 
@@ -87,8 +85,6 @@ class ServicesPage extends Component {
       transition
     } = this.props
 
-    //console.log('this.state.inViewIndex: ', this.state.inViewIndex)
-
     return (
       <div style={transition && transition.style}>
         <Menu
@@ -142,8 +138,10 @@ class ServicesPage extends Component {
                       inView={inView}
                       active={this.state.inViewIndex === index}
                       percentage={percentage.toPrecision(2)}
-                      description={frontmatter.description}
-                    />
+                      style={{height: `17rem`}}
+                    >
+                      <HeaderMD>{frontmatter.description}</HeaderMD>
+                    </FullWidth>
                   )
                 }
                 }

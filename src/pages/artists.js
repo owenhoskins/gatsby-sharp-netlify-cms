@@ -1,69 +1,90 @@
 import React, { Component } from 'react'
-import Link from 'gatsby-link'
-import { ScrollHorizontal, ScrollTop } from '../components/Scroll'
-import { HeaderXS, HeaderSM, HeaderMD, HeaderLG } from '../components/Styled'
-import { Motion, spring, presets } from 'react-motion'
-const springConfig = presets.noWobble
+
+import { withWindowSizeListener } from '../utils/windowResizeListener'
+
+import { ScrollTop } from '../components/Scroll'
 
 import Menu from '../components/Menu/Services'
-
-import Columns from '../components/Columns'
+import ColumnWidth from '../components/Columns/ColumnWidth'
+import NameList from '../components/Columns/NameList'
 
 import ScrollPercentage from 'react-scroll-percentage'
 
-const calcPercentage = percentage => Math.floor(percentage * 100)
 
-const leftEdge = 0.75
-const rightEdge = 0.2
+class ArtistsPage extends Component {
 
-export default class ArtistsPage extends Component {
 
-  state = {
-    inViewIndex: 0,
-    inView: '',
-    to: '',
-    totalPercentage: 0
+  constructor(props) {
+    super(props)
+
+    const columnPixelWidth = 400
+    const vwUnitPixelWidth = props.windowWidth / 100 // 25.6
+    const vwUnits = columnPixelWidth / vwUnitPixelWidth
+
+    const leftOffset = 300
+    const limit = 1 - (leftOffset / props.windowWidth)
+
+    this.state = {
+      inViewIndex: 0,
+      inView: '',
+      viewportUnit: props.windowHeight >= props.windowWidth ? 'vh' : 'vw',
+      vwUnitPixelWidth,
+      vwUnits,
+      limit
+    }
+
   }
 
   componentDidMount() {
     if (this.props.location.hash) {
       this.scrollToSection(0, this.props.location.hash.replace('#', ''))
+    } else {
+      this.scrollToSection(0, 'hair')
     }
   }
 
-  scrollToSection = (i, key) => {
-    console.log('scrollToSection: ', this[key])
-    ScrollTop(this[key], {duration: 500, offset: 0, align: 'middle'})
+  componentWillReceiveProps(nextProps, nextContext) {
+    const {
+      windowSize: { windowHeight, windowWidth }
+    } = nextProps
+
+    if (
+        this.props.windowSize.windowHeight !== windowHeight ||
+        this.props.windowSize.windowWidth !== windowWidth
+      ) {
+
+      // const columnWidth = `23` // rem === 368px
+      // 2rem gutter
+      const columnPixelWidth = 400
+      const vwUnitPixelWidth = windowWidth / 100 // 25.6
+      const vwUnits = columnPixelWidth / vwUnitPixelWidth
+
+      const leftOffset = 300
+      const limit = 1 - (leftOffset / windowWidth)
+
+      this.setState({
+        viewportUnit: windowHeight >= windowWidth ? 'vh' : 'vw',
+        vwUnitPixelWidth,
+        vwUnits,
+        limit
+      })
+
+
+    }
+
   }
 
-/*  handleChange = ({percentage, inView, index, refKey}) => {
-    const node = this[refKey]
+  scrollToSection = (i, key) => {
+    ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
+  }
 
-    // console.log(`handleChange ${index} / ${refKey} / ${percentage} / ${inView}`)
-
-    if (inView && (percentage >= 0.40 && percentage <= 0.50)) {
+  handleChange = ({percentage, inView, index, refKey}) => {
+    //console.log(`handleChange ${index} / ${refKey} / ${percentage}`)
+    if (inView && (percentage >= this.state.limit && percentage <= 1)) {
       this.setState({inView: refKey, inViewIndex: index})
     }
 
   }
-*/
-
-  handleChange = (totalPercentage) => {
-    this.setState({totalPercentage})
-  }
-
-  handleClick(e, to, type) {
-    e.preventDefault()
-    console.log('handleClick: ', to, type)
-    this.setState({to: type})
-    // here we could set the state
-    // the menu component would be passed that state
-    // and could animate the
-    setTimeout( () => {
-      window.___navigateTo(to)
-    }, 1000)
-  }
-
 
   returnRef = (ref, refKey) => this[refKey] = ref
 
@@ -87,33 +108,56 @@ export default class ArtistsPage extends Component {
           scrollToSection={this.scrollToSection}
           currentSection={this.state.inViewIndex}
         />
+
         {
-
-
-
-          // 1% is past the viewport
-          // .5% is dead centered in the viewport
-          // 0% is before the viewport
-
-          <ScrollPercentage
-            //key={refKey}
-            //onChange={(percentage, inView) => this.handleChange({percentage, inView, index, refKey})}
-            //innerRef={(ref) => this.returnRef(ref, refKey)}
-            onChange={this.handleChange}
-          >
-            <div css={{position: 'fixed'}}>{this.state.totalPercentage.toPrecision(2)}%</div>
-            <Columns
-              data={data}
-              dataArray={dataArray}
-              totalPercentage={this.state.totalPercentage}
-            />
-          }
-        </ScrollPercentage>
+          dataArray && dataArray.map((type, index) => {
+              const refKey = Object.keys(data)[index]
+              return (
+                <ScrollPercentage
+                  key={refKey}
+                  //onChange={(percentage, inView) => this.handleChange({percentage, inView, index, refKey})}
+                  innerRef={(ref) => this.returnRef(ref, refKey)}
+                  //threshold={1 - (index / 100)}
+                >
+                {(percentage, inView) => {
+                  return (
+                    <ColumnWidth
+                      viewportUnit={this.state.viewportUnit}
+                      vwUnits={this.state.vwUnits}
+                      limit={this.state.limit}
+                      index={index}
+                      refKey={refKey}
+                      onChange={this.handleChange}
+                      inView={inView}
+                      active={this.state.inViewIndex === index}
+                      percentage={percentage.toPrecision(2)}
+                    >
+                      <NameList type={type} />
+                    </ColumnWidth>
+                  )
+                }
+                }
+                </ScrollPercentage>
+              )
+            }
+          )
         }
+
+        <div
+          css={{
+            height: `100vh`,
+          }}
+        ></div>
+
       </div>
+
     )
+
   }
+
 }
+
+export default withWindowSizeListener(ArtistsPage)
 
 export const query = graphql`
   query ArtistsQuery {

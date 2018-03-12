@@ -6,7 +6,7 @@ const NameList = ({ type, handleClick }) => (
 
   <div
     css={{
-      width: `21rem`,
+      //width: `21rem`,
       height: `29rem`,
       alignSelf: `center`
       //backgroundColor: 'rgba(0, 0, 0, 0.1)'
