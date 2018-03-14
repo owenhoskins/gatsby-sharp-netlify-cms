@@ -15,9 +15,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          time
           media
-          text
           username
         }
       }

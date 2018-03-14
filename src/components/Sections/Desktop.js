@@ -86,19 +86,24 @@ export class Portfolios extends Component {
                   portfolio.gallery && portfolio.gallery.map(({image}, index) => {
                     if (image && image.childImageSharp) {
                       const { childImageSharp: { sizes }} = image
-                      const { aspectRatio, src, srcSet } = sizes
-                      const srcSetArray = srcSet.split(',')
-                      sizes.sizes = '500px'
-                      images.push(src)
-                      photos.push({
-                        width: aspectRatio,
-                        height: 1,
-                        src,
-                        srcSet: srcSetArray,
-                        sizes: [sizes.sizes],
-                        originalSizes: sizes,
-                        imageIndex: images.length - 1
-                      })
+                      if (sizes && sizes.aspectRatio) {
+                        const { aspectRatio, src, srcSet } = sizes
+                        const srcSetArray = srcSet.split(',')
+                        sizes.sizes = '500px'
+                        images.push(src)
+                        photos.push({
+                          width: aspectRatio,
+                          height: 1,
+                          src,
+                          srcSet: srcSetArray,
+                          sizes: [sizes.sizes],
+                          originalSizes: sizes,
+                          imageIndex: images.length - 1
+                        })
+                        console.log('sizes: ', image, index, refKey)
+                      } else {
+                        console.log('!sizes: ', image, index, refKey)
+                      }
                     }
                   })
                 }

@@ -2,10 +2,9 @@
 kind: artist
 title: Ryan Trygstad
 type: hair
-order: '16'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: ryantrygstadhair
-cover: /img/RZE_HEADER.jpg
+#cover: /img/RZE_HEADER.jpg
 ---
 Hairstylist Ryan Trygstad’s career has been defined by his distinct talent for combining aesthetics that are both contemporary and classic. His work crosses the diverse media of session styling, salon and feature film. Trained at the Aveda Institute, Ryan began his career in New York City at the John Frieda Salon. As apprentice to famed hairstylist Sally Hershberger, the demand for Ryan’s talent among top celebrity clients quickly translated into fashion editorial and advertising shoots with top photographers and high-profile red carpet events.
 

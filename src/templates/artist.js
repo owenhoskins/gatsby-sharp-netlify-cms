@@ -75,6 +75,7 @@ export const pageQuery = graphql`
         node {
           id
           media
+          media_preview
           followers
         }
       }

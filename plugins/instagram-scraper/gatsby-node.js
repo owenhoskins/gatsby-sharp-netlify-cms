@@ -21,18 +21,41 @@ exports.sourceNodes = ({ boundActionCreators }, { usernames }) => {
             if (err) {
               console.log('Instagram get error: ', username, err)
             } else {
-              res.data.user.media.nodes.map(item => {
+              /*
+                  graphql: {
+                    user: {
+                      edge_followed_by: {
+                        count: 206938
+                      },
+                      edge_owner_to_timeline_media: {
+                        edges: [
+                          {
+                            node: {
+                              id: '',
+                              display_url: '',
+                              is_video: false,
+                              dimensions: {
+                                width: 1080,
+                                height: 1080
+                              },
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+*/
+
+              res.data.graphql.user.edge_owner_to_timeline_media.edges.map(item => {
 
                 const datum = {
                   username: username,
-                  id: get(item, `id`),
-                  code: get(item, `code`),
-                  time: toISO8601(get(item, `date`)),
-                  type: get(item, `__typename`),
-                  text: get(item, `caption`),
-                  media: get(item, `display_src`),
-                  image: `images/${item.code}.jpg`,
-                  followers: kFormatter(res.data.user.followed_by.count)
+                  id: get(item.node, `id`), // string
+                  media: get(item.node, `display_url`), // string
+                  is_video: get(item.node, `is_video`), // boolean
+                  dimensions: get(item.node, `dimensions`), // height, width
+                  media_preview: get(item.node, `media_preview`), // base64
+                  followers: kFormatter(res.data.graphql.user.edge_followed_by.count)
                 }
 
                 const digest = crypto

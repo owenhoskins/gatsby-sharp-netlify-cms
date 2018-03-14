@@ -139,7 +139,6 @@ class ArtistsPage extends Component {
             'stylist',
             'grooming',
             'manicurist',
-            'color',
             'special-bookings'
           ]}
           scrollToSection={this.scrollToSection}
@@ -275,25 +274,6 @@ export const query = graphql`
       filter: {
         id: { regex: "/pages/artists/"},
         frontmatter: {kind: {eq: "artist"}, type: {eq: "manicurist"}}
-      },
-      sort: {order: ASC, fields: [frontmatter___title]}
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            type
-          }
-        }
-      }
-    }
-    color: allMarkdownRemark(
-      filter: {
-        id: { regex: "/pages/artists/"},
-        frontmatter: {kind: {eq: "artist"}, type: {eq: "color"}}
       },
       sort: {order: ASC, fields: [frontmatter___title]}
     ) {
