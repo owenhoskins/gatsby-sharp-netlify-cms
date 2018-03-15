@@ -13,6 +13,8 @@ import ScrollPercentage from 'react-scroll-percentage'
 const columnPixelWidth = 576
 const leftOffset = 300
 
+const ROWS = 10
+
 function computeColumns(data, rows) {
 
   const dataArray = data ? Object.values(data) : []
@@ -55,7 +57,7 @@ class ArtistsPage extends Component {
   componentDidMount() {
 
     const { data } = this.props
-    console.log('columns: ', computeColumns(data, 6))
+    console.log('columns: ', computeColumns(data, ROWS))
 
     if (this.props.location.hash) {
       // console.log('this.props.location.hash: ', this.props.location.hash)
@@ -145,7 +147,7 @@ class ArtistsPage extends Component {
           currentSection={this.state.inViewIndex}
         />
         {
-          this.state.vwUnits && data && computeColumns(data, 6).map((column, index) => {
+          this.state.vwUnits && data && computeColumns(data, ROWS).map((column, index) => {
               const refKey = Object.keys(data)[index]
               return (
                 <ScrollPercentage

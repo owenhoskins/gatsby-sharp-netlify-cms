@@ -2,7 +2,6 @@
 kind: artist
 title: Kumi Craig
 type: grooming
-order: '3'
 enquire: caitlin.mazonas@starworksgroup.com
 instagram_handle: kumicraig
 ---

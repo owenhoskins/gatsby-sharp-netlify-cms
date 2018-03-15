@@ -1,9 +1,7 @@
 ---
 kind: artist
 title: Adir Abergel
-path: '/artist/adir-abergel'
 type: hair
-order: '1'
 cover: /img/AAL_HEADER_02.jpg
 enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: hairbyadir
