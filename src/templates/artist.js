@@ -65,6 +65,26 @@ export default function Template({ data, transition }) {
   );
 }
 
+export const gatsbyImageSharpSizes = graphql`
+  fragment GatsbyImageSharpSizes on ImageSharpSizes {
+    base64
+    aspectRatio
+    src
+    srcSet
+    sizes
+  }
+`
+
+export const gatsbyImageSharpResolutions = graphql`
+  fragment GatsbyImageSharpResolutions on ImageSharpResolutions {
+    base64
+    width
+    height
+    src
+    srcSet
+  }
+`
+
 export const pageQuery = graphql`
   query ArtistByPath($slug: String!, $instagram_handle: String!, $title: String!) {
     followers: instagramPhoto(username: {eq: $instagram_handle}) {
@@ -97,7 +117,7 @@ export const pageQuery = graphql`
         enquire
         cover {
           childImageSharp {
-            sizes(maxWidth: 2600, quality: 100) {
+            sizes(maxWidth: 2600, quality: 60) {
               ...GatsbyImageSharpSizes
             }
           }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Headroom from 'react-headroom'
+//import Headroom from 'react-headroom'
 import { HeaderMD, HeaderSM } from '../Styled'
 
 const Header = ({ isCover, biography }) => (

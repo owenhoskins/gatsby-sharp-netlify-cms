@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Headroom from 'react-headroom'
+//import Headroom from 'react-headroom'
 import Background from '../Background'
 import Breadcrumbs from '../Breadcrumbs'
 import Menu from '../Menu/Main'

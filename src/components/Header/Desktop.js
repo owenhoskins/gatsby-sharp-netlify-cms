@@ -1,9 +1,9 @@
 import React from 'react'
-import Headroom from 'react-headroom'
+//import Headroom from 'react-headroom'
 import { HeaderMD, HeaderXS } from '../Styled'
 
 const Header = ({ name, instagram, enquire, isCover }) => (
-    <Headroom
+    <div
       disableInlineStyles
       style={{
         opacity: isCover ? 0 : 1,
@@ -40,7 +40,7 @@ const Header = ({ name, instagram, enquire, isCover }) => (
           </a>
         </HeaderXS>
       </div>
-  </Headroom>
+  </div>
 )
 
 export default Header
