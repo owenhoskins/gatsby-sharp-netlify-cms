@@ -25,7 +25,9 @@ export default function Template({ data, transition }) {
   const insta = instagram ? instagram.edges : []
   //const { followers: { followers } } = data
   const followers = data.followers && data.followers.followers
-  const { vimeo: { videos = [] } } = data
+  //const { vimeo: { videos = [] } } = data
+  const { vimeo = {} } = data
+  const videos = vimeo ? vimeo.videos : []
 
   return (
     <section
