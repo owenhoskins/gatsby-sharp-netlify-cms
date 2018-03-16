@@ -73,7 +73,8 @@ export default class Interstitcher extends Component {
       page: pathObject.page,
       ...colorways(pathObject.page, true, pathObject.page === 'artist'),
       isCover: pathObject.page === 'artist' ? true : false,
-      lightboxIsOpen: false
+      lightboxIsOpen: false,
+      base64: ''
     }
   }
 
@@ -87,7 +88,8 @@ export default class Interstitcher extends Component {
       lightboxIsOpen: this.state.lightboxIsOpen,
       toggleLightbox: this.toggleLightbox,
       page: this.state.page,
-      color: this.state.color
+      color: this.state.color,
+      setBase64: this.setBase64
     }
   }
 
@@ -112,6 +114,8 @@ export default class Interstitcher extends Component {
     }
 
   }
+
+  setBase64 = (base64) => this.setState({base64})
 
   toggleCollapse = () => this.setState({collapsed: !this.state.collapsed, ...colorways('home', !this.state.collapsed)})
 
@@ -169,9 +173,11 @@ export default class Interstitcher extends Component {
         </Headroom>
         */}
         <Background
+          isCover={this.state.isCover}
           page={this.state.page}
           collapsed={this.state.collapsed}
           backgroundColor={this.state.backgroundColor}
+          base64={this.state.base64}
         />
 
         {this.props.children}
@@ -191,6 +197,7 @@ Interstitcher.childContextTypes = {
   page: PropTypes.string,
   color: PropTypes.string,
   isCover: PropTypes.bool,
-  toggleIsCover: PropTypes.func
+  toggleIsCover: PropTypes.func,
+  setBase64: PropTypes.func
 }
 

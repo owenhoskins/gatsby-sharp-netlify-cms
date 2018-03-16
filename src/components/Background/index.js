@@ -10,6 +10,7 @@ function returnState(props) {
   let opacity
   let playing
   let blur
+  let base64Opacity = 0
 
   if (
     props.page === 'home' ||
@@ -42,23 +43,35 @@ function returnState(props) {
 
     // artists pages
     opacity = 0
+    base64Opacity = 0.3
+
+    if (props.page === 'artist') {
+      if (props.isCover) {
+        base64Opacity = 0
+      } else {
+        base64Opacity = 1
+      }
+    }
 
   }
 
   return {
     opacity,
     playing,
-    blur
+    blur,
+    base64Opacity
   }
 
 }
+
 
 export default class Background extends Component {
 
   state = {
     blur: false,
     playing: false,
-    opacity: 1
+    opacity: 1,
+    base64: 0
   }
 
   constructor(props){
@@ -99,6 +112,22 @@ export default class Background extends Component {
         backgroundColor: this.props.backgroundColor,
       }}
     >
+      <div
+        css={{
+          opacity: this.state.base64Opacity,
+          transition: `opacity 300ms ${EASE}`,
+          backgroundImage: `url(${this.props.base64})`,
+          backgroundRepeat: `no-repeat`,
+          backgroundSize: `cover`,
+          filter: `blur(50px)`,
+          transform: `scale(1.1)`,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          position: `absolute`
+        }}
+      />
       <Video {...this.state} />
     </div>
   }

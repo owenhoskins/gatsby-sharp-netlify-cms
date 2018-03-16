@@ -4,7 +4,7 @@ import { withWindowSizeListener } from '../utils/windowResizeListener'
 
 import { ScrollTop } from '../components/Scroll'
 
-import Menu from '../components/Menu/Services'
+import Menu from '../components/Menu/Artists'
 import ColumnWidth from '../components/Columns/ColumnWidth'
 
 import ScrollPercentage from 'react-scroll-percentage'
@@ -15,10 +15,11 @@ const leftOffset = 300
 
 const ROWS = 10
 
-function computeColumns(data, rows) {
+function computeColumns(data) {
 
   const dataArray = data ? Object.values(data) : []
   if (!dataArray.length > 0) { return [] }
+
 
   const types = dataArray.length > 0 && dataArray.map((type, index) => {
     return type.edges.map((edges, i) => {
@@ -32,6 +33,13 @@ function computeColumns(data, rows) {
   })
   const artists = [].concat.apply([], types)
 
+
+  const rows = Math.ceil(artists.length / dataArray.length)
+
+  // console.log('dataArray.length: ', dataArray.length)
+  // console.log('artists.length: ', artists.length)
+  // console.log('rows: ', rows)
+
   // divide artists over columns
   const columns = artists.reduce((acc, cell, idx) => {
     const column = Math.floor(idx / rows);
@@ -42,14 +50,71 @@ function computeColumns(data, rows) {
   return columns
 }
 
+
+function computeFirsts (data) {
+
+  if (!data.length > 0) { return [] }
+
+  return data.length > 0 && data.map(column => {
+
+    const first = column.filter((artist, index) => {
+      return artist.first
+    })
+
+    const last = column.filter((artist, index) => {
+      return artist.last
+    })
+
+    return first.length > 0 ? first[0].type : ''
+  })
+
+}
+
+
+function computeFirstOrLast(data) {
+
+  if (!data.length > 0) { return [] }
+
+  return data.length > 0 && data.map(column => {
+
+    const first = column.filter((artist, index) => {
+      return artist.first
+    })
+
+    const last = column.filter((artist, index) => {
+      return artist.last
+    })
+
+    let key
+
+    if (first.length > 0 && last.length > 0) {
+      key = first[0].type
+    } else if (first.length > 0) {
+      key = first[0].type
+    } else if (last.length > 0) {
+      key = last[0].type
+    } else {
+      key = column[0].type
+    }
+
+    return key
+
+  })
+
+}
+
 class ArtistsPage extends Component {
 
   constructor(props) {
     super(props)
 
+    const columns = computeColumns(props.data)
     this.state = {
       inViewIndex: 0,
-      inView: 'hair'
+      inViewKey: 'hair',
+      columns,
+      columnFirsts: computeFirsts(columns),
+      columnFirstOrLast: computeFirstOrLast(columns)
     }
 
   }
@@ -57,7 +122,7 @@ class ArtistsPage extends Component {
   componentDidMount() {
 
     const { data } = this.props
-    console.log('columns: ', computeColumns(data, ROWS))
+    //console.log('columns: ', computeColumns(data, ROWS))
 
     if (this.props.location.hash) {
       // console.log('this.props.location.hash: ', this.props.location.hash)
@@ -109,11 +174,14 @@ class ArtistsPage extends Component {
   }
 
   scrollToSection = (key) => {
-    ScrollTop(this[key], {duration: 500, offset: 0, align: 'top'})
+    // here "key" is the name of the type
+    // we search for the value in columnFirsts and
+    // return the index, which we use as a dom ref
+    const index = this.state.columnFirsts.findIndex(value => key === value)
+    ScrollTop(this[index.toString()], {duration: 500, offset: 0, align: 'top'})
   }
 
-  handleChange = ({percentage, inView, index, refKey}) => {
-    //console.log(`handleChange ${inView} / ${index} / ${refKey} / ${percentage}`)
+  handleChange = ({percentage, inView, index}) => {
     if (
       inView &&
       (
@@ -121,9 +189,22 @@ class ArtistsPage extends Component {
         percentage > (this.state.limit / 1.25)
       )
     ) {
-      this.setState({inView: refKey, inViewIndex: index})
+
+      // could this above logic use columnFirsts?
+      // not really it would need another array
+      // here I could probably just changet the inViewIndex
+
+      this.setState({
+        inViewKey: this.state.columnFirstOrLast[index],
+        inViewIndex: index
+      })
     }
 
+  }
+
+  handleOnHover = (key) => {
+    console.log('handleOnHover: ', key)
+    this.setState({inViewKey: key})
   }
 
   returnRef = (ref, refKey) => this[refKey] = ref
@@ -144,15 +225,14 @@ class ArtistsPage extends Component {
             'special-bookings'
           ]}
           scrollToSection={this.scrollToSection}
-          currentSection={this.state.inViewIndex}
+          currentSection={this.state.inViewKey}
         />
         {
-          this.state.vwUnits && data && computeColumns(data, ROWS).map((column, index) => {
-              const refKey = Object.keys(data)[index]
+          this.state.vwUnits && data && this.state.columns.map((column, index) => {
               return (
                 <ScrollPercentage
-                  key={refKey}
-                  innerRef={(ref) => this.returnRef(ref, refKey)}
+                  key={index}
+                  innerRef={(ref) => this.returnRef(ref, index.toString())}
                 >
                 {(percentage, inView) => {
                   return (
@@ -161,13 +241,13 @@ class ArtistsPage extends Component {
                       vwUnits={this.state.vwUnits}
                       limit={this.state.limit}
                       index={index}
-                      refKey={refKey}
                       onChange={this.handleChange}
                       inView={inView}
-                      inViewKey={this.state.inView}
+                      inViewKey={this.state.inViewKey}
                       active={this.state.inViewIndex === index}
                       percentage={percentage.toPrecision(4)}
                       column={column}
+                      onHover={this.handleOnHover}
                     />
                   )
                 }
@@ -211,6 +291,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
@@ -230,6 +317,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
@@ -249,6 +343,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
@@ -268,6 +369,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
@@ -287,6 +395,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
@@ -306,6 +421,13 @@ export const query = graphql`
           frontmatter {
             title
             type
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 2600, quality: 60) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }

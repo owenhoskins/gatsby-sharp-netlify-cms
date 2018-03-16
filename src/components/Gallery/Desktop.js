@@ -130,7 +130,7 @@ class Desktop extends Component {
 
   onPositionChange = ({currentPosition}, key) => {
     if (!this.context.isCover) {
-      console.log('onPositionChange: ', currentPosition, key)
+      //console.log('onPositionChange: ', currentPosition, key)
       const index = this.props.sections.findIndex(section => section.key === key)
       if (currentPosition === 'inside') {
         this.setState({currentSection: index})

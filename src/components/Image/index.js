@@ -113,7 +113,7 @@ const Img = props => {
         position: `absolute`,
         top: 0,
         left: 0,
-        transition: `opacity 0.5s`,
+        transition: `opacity 1s`,
         transitionDelay,
         opacity,
         width: `100%`,
@@ -253,7 +253,8 @@ class Image extends React.Component {
                 title={title}
                 src={image.base64}
                 opacity={!this.state.imgLoaded ? 0.5 : 0}
-                transitionDelay={`0.25s`}
+                transitionDelay={`0.5s`}
+                objectFit={objectFit}
                 style={{
                   //opacity: 0.5,
                   filter: 'blur(20px)',
@@ -300,6 +301,7 @@ class Image extends React.Component {
                 sizes={image.sizes}
                 objectFit={objectFit}
                 objectPosition={objectPosition}
+                transitionDelay={`0.5s`}
                 opacity={
                   this.state.imgLoaded || this.props.fadeIn === false ? 1 : 0
                 }

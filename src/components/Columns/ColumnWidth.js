@@ -9,7 +9,25 @@ export default class ColumnWidth extends Component {
   state = {
     opacity: 0
   }
+/*
+  constructor(props) {
+    super(props)
 
+    const first = props.column.filter((artist, index) => {
+      return artist.first
+    })
+
+    const last = props.column.filter((artist, index) => {
+      return artist.last
+    })
+
+    this.state = {
+      opacity: 0,
+      first,
+      last
+    }
+  }
+*/
   componentWillReceiveProps(nextProps) {
 
     let { limit, active, percentage, inView, index, refKey } = nextProps
@@ -35,7 +53,14 @@ export default class ColumnWidth extends Component {
         percentage = limit
       }
       this.setState({opacity, percentage})
-      this.props.onChange({percentage, inView, index, refKey})
+      this.props.onChange({
+        percentage,
+        inView,
+        //first: this.state.first,
+        //last: this.state.last,
+        index
+      })
+
     }
 
   }
@@ -80,15 +105,16 @@ export default class ColumnWidth extends Component {
               }}
             >
               <NameList
+                onHover={this.props.onHover}
                 column={this.props.column}
                 inViewKey={this.props.inViewKey}
                 opacity={this.state.opacity}
               />
               {this.props.children}
-              {/*<p>{this.state.percentage} — {this.props.refKey}</p>*/}
+              {/*<p>{this.state.percentage}</p>*/}
             </div>
           </div>
-          {/*<p>{this.state.percentage} — {this.props.refKey}</p>*/}
+          {/*<p>{this.state.percentage}</p>*/}
       </div>
     )
   }

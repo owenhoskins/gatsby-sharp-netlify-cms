@@ -100,7 +100,7 @@ export class Portfolios extends Component {
                           originalSizes: sizes,
                           imageIndex: images.length - 1
                         })
-                        console.log('sizes: ', image, index, refKey)
+                        //console.log('sizes: ', image, index, refKey)
                       } else {
                         console.log('!sizes: ', image, index, refKey)
                       }
