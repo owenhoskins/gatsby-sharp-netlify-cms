@@ -3,8 +3,8 @@ kind: artist
 title: Adir Abergel
 type: hair
 cover: /img/AAL_HEADER_02.jpg
-enquire: 'samantha.jeudy@starworksgroup.com'
 instagram_handle: hairbyadir
+enquire: samantha.jeudy@starworksgroup.com
 portfolios:
   - gallery:
       - image: /img/starworks-artists_2017-03_AAL_VMAG_01.jpg
@@ -102,7 +102,7 @@ portfolios:
       - image: /img/starworks-artists_2008-04_AAL_MQH_JALOUSE_04.jpg
       - image: /img/starworks-artists_2009-12_AAL_MCLAIRERU_01.jpg
       - image: /img/starworks-artists_2014-05_AAL_MCLAIRE_07.jpg
-    title: 'Editorial'
+    title: Editorial
   - gallery:
       - image: /img/starworks-artists_2017-09_AAL_CHANEL_02.jpg
       - image: /img/starworks-artists_2017-05_AAL_CHANEL_06.jpg
@@ -135,7 +135,7 @@ portfolios:
       - image: /img/starworks-artists_2011-10_AAL_COLEHAAN_04.jpg
       - image: /img/starworks-artists_2015-09_AAL_KYB_NIKE_07.jpg
       - image: /img/starworks-artists_2015-09_AAL_KYB_NIKE_04.jpg
-    title: 'Advertising'
+    title: Advertising
   - gallery:
       - image: /img/starworks-artists_AAL_KYB_RC_01.jpg
       - image: /img/starworks-artists_AAL_KYB_RC_02.jpg
@@ -189,17 +189,18 @@ portfolios:
       - image: /img/starworks-artists_AAL_RC_16.jpg
       - image: /img/starworks-artists_AAL_RC_18.jpg
       - image: /img/starworks-artists_AAL_RC_37.jpg
-    title: 'Red Carpet'
+    title: Red Carpet
 videos:
+  - url: '255787883'
   - title: '2016 Cannes Festival: Kristen Stewart for Chanel'
     url: '255787587'
-  - title: 'Boss by Hugo Boss featuring Sienna Miller'
+  - title: Boss by Hugo Boss featuring Sienna Miller
     url: '255787651'
-  - title: 'Capital One Featuring Jennifer Garner'
+  - title: Capital One Featuring Jennifer Garner
     url: '255787648'
   - title: 'ALICIA KEYS, “TEARS ALWAYS WIN”'
     url: '255787627'
-  - title: 'Acuvue Ask Your Parents featuring Demi Lovato'
+  - title: Acuvue Ask Your Parents featuring Demi Lovato
     url: '255787595'
   - title: 'ACUVUE®: #ACUVUE1DAY CONTEST FEATURING DEMI LOVATO'
     url: '255787590'
@@ -209,7 +210,6 @@ videos:
     url: '255787671'
   - title: 'CAPITAL ONE VENTURE: DAD FEATURING JENNIFER GARNER'
     url: '255787676'
-portrait: /img/adir-abergel-headshot.jpg
 ---
 A visual artist first and foremost, Adir Abergel fuses the boundaries between fashion, art and celebrity in a way that few Hollywood hairstylists have managed to do. Using hair as his principal medium, Adir challenges red carpet conventions to exquisite effect, integrating beauty and originality into a single expression. He is the creative force behind some of the most memorable moments in celebrity hairstyling, and has been instrumental in constructing the distinctive styles of such influential talent as Rooney Mara, Kristen Stewart, Marion Cotillard, Gwyneth Paltrow, Kirsten Dunst, Anne Hathaway and Reese Witherspoon.
 
