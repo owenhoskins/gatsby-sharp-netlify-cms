@@ -2,9 +2,9 @@
 kind: artist
 title: Allan Avendano
 type: makeup
-enquire: noelle.keshishian@starworksgroup.com
-instagram_handle: allanface
 cover: /img/AAO_HEADER.jpg
+instagram_handle: allanface
+enquire: noelle.keshishian@starworksgroup.com
 portfolios:
   - gallery:
       - image: /img/starworks-artists_allan-avendano_makeup_editorial_01.jpg
@@ -83,11 +83,14 @@ portfolios:
       - image: /img/starworks-artists_allan-avendano_makeup_editorial_74.jpg
       - image: /img/starworks-artists_allan-avendano_makeup_editorial_75.jpg
       - image: /img/starworks-artists_allan-avendano_makeup_editorial_76.jpg
-    title: 'Editorial'
+    title: Editorial
   - gallery:
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1320jpg-539f8338cf429-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1301jpg-539f831978682-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1314jpg-539f832fc50bb-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1320jpg-539f8338cf429-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1301jpg-539f831978682-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsairedcampaignfw1314jpg-539f832fc50bb-1400.jpg
       - image: /img/starworks-artists_AAO_mudo_ss14_1.jpg
       - image: /img/starworks-artists_AAO_mudo_ss14_5.jpg
       - image: /img/starworks-artists_AAO_mudo_ss14_3.jpg
@@ -99,17 +102,24 @@ portfolios:
       - image: /img/starworks-artists_2016-08_AAO_JRO_GUESS_01.jpg
       - image: /img/starworks-artists_2017-03_AAO_JRO_GUESS_07.jpg
       - image: /img/starworks-artists_2016-08_AAO_JRO_GUESS_02.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1311jpg-52fbc67707a3f-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1308jpg-52fbc6676147a-1400-1.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1303jpg-52fbc651ec7c6-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulss1402jpg-52fbbbc30351c-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulss1409jpg-52fbbbf36de8f-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1311jpg-52fbc67707a3f-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1308jpg-52fbc6676147a-1400-1.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulfw1303jpg-52fbc651ec7c6-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulss1402jpg-52fbbbc30351c-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaifreesoulss1409jpg-52fbbbf36de8f-1400.jpg
       - image: /img/starworks-artists_AAO_490_GUESS_JEANS_SP2014_13.jpg
       - image: /img/starworks-artists_AAO_490_GUESS_JEANS_SP2014_12.jpg
       - image: /img/starworks-artists_AAO_DITA1.jpg
       - image: /img/starworks-artists_AAO_DITA2.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaibeachbunnycandiceswanepoel2jpg-52faa1a3cdf42-1400-1.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaibeachbunnycandiceswanepoel1jpg-52faa19baa955-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaibeachbunnycandiceswanepoel2jpg-52faa1a3cdf42-1400-1.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaibeachbunnycandiceswanepoel1jpg-52faa19baa955-1400.jpg
       - image: /img/starworks-artists_2018-01_AAO_OUAI_05.jpg
       - image: /img/starworks-artists_2018-01_AAO_OUAI_13.jpg
       - image: /img/starworks-artists_2018-01_AAO_OUAI_11.jpg
@@ -119,11 +129,15 @@ portfolios:
       - image: /img/starworks-artists_2018-03_AAO_WAM_MATERIALGIRL_03.jpg
       - image: /img/starworks-artists_2018-03_AAO_WAM_MATERIALGIRL_02.jpg
       - image: /img/starworks-artists_2018-03_AAO_WAM_MATERIALGIRL_04.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaicocacolafifa2014brasil8jpg-539b82010d02c-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaicocacolafifa2014brasil4jpg-539b81ed09291-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaicocacolashareacoke01jpg-53c0667d6d0f3-1400.jpg
-      - image: /img/starworks-artists_AAO_yutsai-image-yutsaicocacolashareacoke10jpg-53c0667823127-1400.jpg
-    title: 'Advertising'
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaicocacolafifa2014brasil8jpg-539b82010d02c-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaicocacolafifa2014brasil4jpg-539b81ed09291-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaicocacolashareacoke01jpg-53c0667d6d0f3-1400.jpg
+      - image: >-
+          /img/starworks-artists_AAO_yutsai-image-yutsaicocacolashareacoke10jpg-53c0667823127-1400.jpg
+    title: Advertising
   - gallery:
       - image: /img/starworks-artists_AAO_MFS_RC_01.jpg
       - image: /img/starworks-artists_AAO_MFS_RC_03.jpg
@@ -165,8 +179,9 @@ portfolios:
       - image: /img/starworks-artists_AAO_RC_23.jpg
       - image: /img/starworks-artists_AAO_RC_36.jpg
       - image: /img/starworks-artists_AAO_RC_34.jpg
-    title: 'Red Carpet'
-portrait: /img/allan-avendano-portrait-1600.jpg
+    title: Red Carpet
+videos:
+  - url: '258875599'
 ---
 At a very early age, Allan Avendaño was enamored by the glamour of old Hollywood. Thinking he may find his path in the entertainment industry, he pursued a Bachelor of Science in Communications and acquired a job in television production. Upon realizing his true interest in beauty and fashion, he switched gears and began working for a fashion magazine. Given the responsibility of booking talent for shoots, Allan assigned himself as makeup artist on an editorial job, laying the foundation for his current career.
 
