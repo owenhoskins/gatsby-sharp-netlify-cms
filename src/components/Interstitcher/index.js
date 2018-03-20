@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-//import Headroom from 'react-headroom'
 import Background from '../Background'
 import Breadcrumbs from '../Breadcrumbs'
 import Menu from '../Menu/Main'
@@ -150,7 +149,7 @@ export default class Interstitcher extends Component {
 
         <Breadcrumbs
           breadcrumbs={this.state.breadcrumbs}
-          gradient={this.state.page === 'artist' && !this.state.isCover}
+          //gradient={this.state.page === 'artist' && !this.state.isCover}
           //textShadow={this.state.page === 'artist' && this.state.isCover}
           textShadow={this.state.page === 'artist'}
           frontmatter={this.state.page === 'artist' && this.props.pageResources.json.data.markdownRemark.frontmatter}
@@ -160,18 +159,6 @@ export default class Interstitcher extends Component {
             transition: `opacity 300ms ${EASE}`
           }}
         />
-        {/*
-        <Headroom
-          //disable={ this.state.page === 'artist' ? false : true }
-          disable
-          disableInlineStyles
-          style={{
-            //opacity: this.state.isCover ? 0 : 1,
-            //pointerEvents: this.state.isCover ? 'none' : 'auto'
-          }}
-        >
-        </Headroom>
-        */}
         <Background
           isCover={this.state.isCover}
           page={this.state.page}

@@ -1,14 +1,8 @@
 import React from 'react'
-//import Headroom from 'react-headroom'
 import { HeaderMD, HeaderXS } from '../Styled'
 
 const Header = ({ name, instagram, enquire, isCover }) => (
     <div
-      disableInlineStyles
-      style={{
-        opacity: isCover ? 0 : 1,
-        pointerEvents: isCover ? 'none' : 'auto'
-      }}
     >
       <HeaderMD
         uppercase
