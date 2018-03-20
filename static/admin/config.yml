@@ -6,6 +6,8 @@ backend:
 media_folder: 'static/img' # this is where netlify cms places images.
 public_folder: '/img' # this is where gatsby places images
 
+publish_mode: editorial_workflow
+
 collections:
 
   - name: artists
